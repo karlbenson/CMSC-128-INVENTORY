@@ -103,10 +103,11 @@
     z-index: 2;
     top: 0;
     right: 0;
-    background-color: #e01f25;
+    background-color: #7b1113;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    box-shadow: -2px 0px 10px  #0b0d0f;
 }
 
 .sidemenu a{
@@ -129,13 +130,17 @@
 
 /* SIDE MENU HOVER EFFECT */
 
+.close:hover{
+	color: white;
+}
+
 .sm-wrapper a:after{
     z-index: -1;
     position: absolute;
     left: 0%;
     width: 0;
     height: 50px;
-    background: #e85e4f;
+    background: white;
     content: '';
     transition: width 0.35s ease-in-out;
 }
@@ -145,6 +150,10 @@
 }
 
 .sm-wrapper a:hover{
-    padding-left: 64px;
+    padding-left: 50px;
     transition: 0.35s ease-in-out;
+}
+
+.sm-wrapper a{
+	height: 60px;
 }
