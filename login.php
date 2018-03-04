@@ -15,7 +15,7 @@
 <div class="container-fluid bg">
 	<div class="container-fluid topmost">
 		<div class="row">
-		<a href="login.php"><img src="pics/uplogo.png" width="120px" class="center"></a>
+		<a href="login.php"><img src="src/up.png" width="120px" class="center"></a>
 		</div>
 	</div>
 
