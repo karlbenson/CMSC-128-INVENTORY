@@ -1,7 +1,7 @@
 
 html,body{
 	/*background: #4b5320;*/
-	background: #800000;
+	background:  linear-gradient(to bottom right, #800000, #843711, #a36c23);
 	/*background: url('../pics/1.jpg');*/
 	width:100%;
 	height:100%;
