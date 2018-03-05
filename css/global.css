@@ -1,6 +1,6 @@
 
 .bg{
-	background: #800000;
+	background: linear-gradient(to bottom right,#800000, #93280d, #a05928);
 }
 
 .stack,.chenelin{
