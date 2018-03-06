@@ -8,8 +8,8 @@
 <body>
 	<div id="container-fluid">
 	<div class="edit">
-		<button class="button button5">yes</button>
-		<button class="button button5">no</button>
+		<button class="button button5"><i class="fa fa-plus fa-fw"></i></button>
+		<button class="button button5"><i class="fa fa-pencil fa-fw"></i></button>
 	</div>
 	<div class="tab">
 		
@@ -24,9 +24,9 @@
 			<table width="100%" class="table table-hover table-bordered">
 				<thead>
 					<tr>
-					<th style="width: 18%">Quantity Available</th>
-					<th style="width: 18%">Total Available</th>
-					<th style="width: 64%">Name</th>
+					<th style="width: 14%">Quantity Available</th>
+					<th style="width: 14%">Total Available</th>
+					<th style="width: 72%">Name</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,9 +41,9 @@
 		<table width="100%" class="table table-hover table-bordered">
 				<thead>
 					<tr>
-					<th style="width: 18%">Quantity Available</th>
-					<th style="width: 18%">Total Available</th>
-					<th style="width: 64%">Chemical Name</th>
+					<th style="width: 14%">Quantity Available</th>
+					<th style="width: 14%">Total Available</th>
+					<th style="width: 72%">Chemical Name</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,9 +57,9 @@
 		<table width="100%" class="table table-hover table-bordered">
 				<thead>
 					<tr>
-					<th style="width: 18%">Quantity Available</th>
-					<th style="width: 18%">Total Available</th>
-					<th style="width: 64%">Equipment Name</th>
+					<th style="width: 14%">Quantity Available</th>
+					<th style="width: 14%">Total Available</th>
+					<th style="width: 72%">Equipment Name</th>
 					</tr>
 				</thead>
 				<tbody>
