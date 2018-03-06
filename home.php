@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <?php
-	session_start();
-	
-	//verify if any user is logged in... otherwise kick them out!!
 	if (isset($_SESSION['username'])){
 		$con = mysqli_connect('127.0.0.1','root','');
 		$username=$_SESSION['username'];
@@ -44,6 +41,7 @@
 	<title>Home: UPB Glasswares and Chemicals Inventory</title>
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<?php include("head.php"); ?>
+	<script type="text/javascript" src="js/date_time.js"></script>
 </head>
 <body>
 	<div class="container-fluid hbod">
@@ -52,8 +50,12 @@
 				<h2>ALERTS</h2>
 			</div>
 			<span style="width: 8%;"></span>
-			<div class="col-lg-3">
-				
+			<div class="col-lg-3 timestamp align-text-middle">
+				<h3>TODAY IS</h3>
+				<h1><span id="date_time"></span></h1>
+				<h1>
+            		<script type="text/javascript">window.onload = date_time('date_time');</script>
+				</h1>
 			</div>
 		</div>
 
@@ -64,10 +66,7 @@
 			</div>	
 		</div>
 	</div>
+
 	
-	<?php
-	
-	?>
 </body>
 </html>
-
