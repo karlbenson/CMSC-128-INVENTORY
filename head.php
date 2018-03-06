@@ -35,7 +35,7 @@
 			<div class="col-sm-2 hidden-sm-down"><img src="src/cs.png" width="170px" style="right: 20px;"></div>
 		</div>
 	</div>
-	<div class="container-fluid second" style="margin-bottom: 30px;">
+	<div class="container-fluid second" style="margin-bottom: 50px;">
 		<div class="container">
 			<div class="row">
 			<div title="Go Home" class="col-sm-3"><a href="home.php"><i class="fas fa-home"></i> HOME</a></div>
