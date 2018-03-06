@@ -42,10 +42,28 @@
 <html>
 <head>
 	<title>Home: UPB Glasswares and Chemicals Inventory</title>
+	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<?php include("head.php"); ?>
 </head>
 <body>
-	<main style="height: 2000px;"></main>
+	<div class="container-fluid hbod">
+		<div class="container-fluid row justify-content-center first-row">
+			<div class="col-lg-8">
+				<h2>ALERTS</h2>
+			</div>
+			<span style="width: 8%;"></span>
+			<div class="col-lg-3">
+				
+			</div>
+		</div>
+
+		<div class="container-fluid row justify-content-between sec-row">
+			<div class="col-lg-12">
+				<h2>TRANSACTION HISTORY</h2>
+
+			</div>	
+		</div>
+	</div>
 	
 	<?php
 	
