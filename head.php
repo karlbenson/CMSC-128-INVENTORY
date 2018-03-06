@@ -18,13 +18,13 @@
 		<div class="sm-wrapper">
 			<a href="#"><i class="fas fa-search"></i> Search</a>
 			<a href="master.php"><i class="fas fa-th-list"></i> Master List</a>
-			<a href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+			<a href="#" onclick="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
 		</div>
 	</div>
 	<div class="container-fluid topmost">
-		<div class="hidden-md-up container-fluid" style="text-align: center;"><a href="home.php"><img id=uplogo src="src/up.png" width="180px"></a></div>
+		<div class="hidden-md-up container-fluid" style="text-align: center;"><a href="home.php"><img id=uplogo src="src/up.png" width="170px"></a></div>
 		<div class="row">
-			<div class="col-sm-2 hidden-sm-down"><a href="home.php"><img src="src/up.png" width="180px"></a></div>
+			<div title="Go Home" class="col-sm-2 hidden-sm-down"><a href="home.php"><img src="src/up.png" width="170px"></a></div>
 			<div class="col-sm-8 stack container-fluid">
 				<div style="height: 70px padding-bottom:20px;"><h1>University of The Philippines - Baguio</h1></div>
 				<span class="hidden-sm-down">
@@ -32,19 +32,19 @@
 					<div><h3>Glasswares and Chemicals Inventory</h3></div>
 				</span>
 			</div>
-			<div class="col-sm-2 hidden-sm-down"><img src="src/cs.png" width="180px" style="right: 20px;"></div>
+			<div class="col-sm-2 hidden-sm-down"><img src="src/cs.png" width="170px" style="right: 20px;"></div>
 		</div>
 	</div>
-	<div class="container-fluid second">
+	<div class="container-fluid second" style="margin-bottom: 30px;">
 		<div class="container">
 			<div class="row">
-			<div class="col-sm-3"><a href="home.php"><i class="fas fa-home"></i> HOME</a></div>
+			<div title="Go Home" class="col-sm-3"><a href="home.php"><i class="fas fa-home"></i> HOME</a></div>
 
 			<div class="col-sm-9 hidden-sm-down">
 				<div class="row fix-width" style="float: right;">
-					<div><a href="#"><i class="fas fa-search"></i> Search</a></div>
-					<div><a href="master.php"><i class="fas fa-th-list"></i> Master List</a></div>
-					<div><a href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
+					<div><a title="Search" href="#"><i class="fas fa-search"></i> Search</a></div>
+					<div><a title="Master List" href="master.php"><i class="fas fa-th-list"></i> Master List</a></div>
+					<div class="myBtn2"><a title="Sign Out" href=""><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
 				</div>
 			</div>
 			<div class="container-fliud hidden-md-up col-sm-9" style="text-align: right; position: absolute; right: 5%;">
