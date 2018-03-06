@@ -18,7 +18,7 @@
 		<div class="sm-wrapper">
 			<a href="#"><i class="fas fa-search"></i> Search</a>
 			<a href="master.php"><i class="fas fa-th-list"></i> Master List</a>
-			<a href="#" onclick="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+			<a href="login.php" onclick="return confirm('Do you really want to sign out?')"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
 		</div>
 	</div>
 	<div class="container-fluid topmost">
@@ -44,7 +44,7 @@
 				<div class="row fix-width" style="float: right;">
 					<div><a title="Search" href="#"><i class="fas fa-search"></i> Search</a></div>
 					<div><a title="Master List" href="master.php"><i class="fas fa-th-list"></i> Master List</a></div>
-					<div class="myBtn2"><a title="Sign Out" href=""><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
+					<div><a title="Sign Out" href="login.php" onclick="return confirm('Do you really want to sign out?')"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
 				</div>
 			</div>
 			<div class="container-fliud hidden-md-up col-sm-9" style="text-align: right; position: absolute; right: 5%;">
