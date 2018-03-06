@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2018 at 08:44 AM
+-- Generation Time: Mar 06, 2018 at 09:22 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -78,6 +78,17 @@ CREATE TABLE `group` (
   `Group_Id` int(11) NOT NULL,
   `Professor` varchar(256) NOT NULL,
   `Subject` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page_permissions`
+--
+
+CREATE TABLE `page_permissions` (
+  `User_Id` int(11) NOT NULL,
+  `Page_Name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -170,6 +181,13 @@ ALTER TABLE `group`
   ADD PRIMARY KEY (`Group_Id`);
 
 --
+-- Indexes for table `page_permissions`
+--
+ALTER TABLE `page_permissions`
+  ADD KEY `User_Id` (`User_Id`),
+  ADD KEY `Page_Name` (`Page_Name`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -257,6 +275,12 @@ ALTER TABLE `user_accounts`
 ALTER TABLE `borrower_group`
   ADD CONSTRAINT `borrower_group_ibfk_1` FOREIGN KEY (`Group_Id`) REFERENCES `group` (`Group_Id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `borrower_group_ibfk_2` FOREIGN KEY (`Borrower_Id`) REFERENCES `borrower` (`Borrower_Id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `page_permissions`
+--
+ALTER TABLE `page_permissions`
+  ADD CONSTRAINT `page_permissions_ibfk_1` FOREIGN KEY (`User_Id`) REFERENCES `user_accounts` (`User_Id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaction`
