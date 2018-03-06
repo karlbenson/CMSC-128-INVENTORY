@@ -4,15 +4,16 @@ body {font-family: Arial;}
 .tab {
     overflow: hidden;
 	border-bottom: 1px solid #ccc;
-    /*border: 1px solid #ccc;*/
-    /*background-color: #f1f1f1;*/
+}
+
+.edit{
+	overflow:hidden;
 }
 
 /* Style the buttons inside the tab */
-.tab button {
+button {
     background-color: inherit;
     float: right;
-    /*border: none;*/
 	border: 1px solid #ccc;
     outline: none;
     cursor: pointer;
@@ -22,7 +23,7 @@ body {font-family: Arial;}
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
+button:hover {
     background-color: #ddd;
 }
 
@@ -35,22 +36,17 @@ body {font-family: Arial;}
 .tabcontent {
     display: none;
     padding: 20px 12px;
-    /*border: 1px solid #ccc;
-    border-top: none;*/
-}
-
-h2{
-	text-align: center;
 }
 
 .button5 {
     background-color: inherit;
     float: left;
-    /*border: none;*/
+	margin-left:10px;
 	border: 1px solid #ccc;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 8px 10px;
     transition: 0.3s;
     font-size: 17px;
+	border-radius:50%;
 }
