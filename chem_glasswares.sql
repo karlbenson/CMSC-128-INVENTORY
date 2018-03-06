@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2018 at 09:22 AM
+-- Generation Time: Mar 06, 2018 at 10:26 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -103,6 +103,13 @@ CREATE TABLE `staff` (
   `Last_Name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`Staff_Id`, `First_Name`, `Last_Name`) VALUES
+(1, 'Kiana Alessandra', 'V. Villaera');
+
 -- --------------------------------------------------------
 
 --
@@ -141,8 +148,16 @@ CREATE TABLE `user_accounts` (
   `User_Id` int(11) NOT NULL,
   `Staff_Id` int(11) NOT NULL,
   `Username` varchar(256) NOT NULL,
-  `Password` varchar(256) NOT NULL
+  `Password` varchar(256) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_accounts`
+--
+
+INSERT INTO `user_accounts` (`User_Id`, `Staff_Id`, `Username`, `Password`, `status`) VALUES
+(1, 1, 'admin', 'admin123', 0);
 
 --
 -- Indexes for dumped tables
@@ -249,7 +264,7 @@ ALTER TABLE `group`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `Staff_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Staff_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `transaction`
 --
@@ -264,7 +279,7 @@ ALTER TABLE `transaction_history`
 -- AUTO_INCREMENT for table `user_accounts`
 --
 ALTER TABLE `user_accounts`
-  MODIFY `User_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `User_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
