@@ -1,3 +1,16 @@
+	.timestamp{
+		color: white;
+		text-align: center;
+	}
+
+	.timestamp h1,.timestamp h2,.timestamp h3,.timestamp h4,.timestamp h5,.timestamp h6{
+		margin-bottom: 30px;
+	}
+
+	.timestamp h3{
+		margin-top: 60px;
+	}
+
 	.fix-width div{
 		margin-left: 10px;
 		margin-right: 10px;
