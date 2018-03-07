@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+	session_start();
+	
 	if (isset($_SESSION['username'])){
 		$con = mysqli_connect('127.0.0.1','root','');
 		$username=$_SESSION['username'];
@@ -17,11 +19,11 @@
 		
 			while ($row=mysqli_fetch_row($result)){
 				$status=$row[0];
-				echo $status;
 			}
 		}//end if
 		
 		if ($status==0){
+			
 			echo 
 			'<script type="text/javascript"> alert("ACCESS DENIED") 
 			window.location.href = "login.php"
@@ -40,7 +42,7 @@
 <head>
 	<title>Home: UPB Glasswares and Chemicals Inventory</title>
 	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<?php include("head.php"); ?>
+	<?php 'loading head';include("head.php"); ?>
 	<script type="text/javascript" src="js/date_time.js"></script>
 </head>
 <body>

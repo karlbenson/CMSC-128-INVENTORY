@@ -98,9 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		
 		$_SESSION['username']=$_POST['username'];
 		
-		header("refresh:2;url=home.php");
+		
 		mysqli_close($con);
-			
+		header("refresh:2;url=home.php");
 	}else{
 		//login failure
 		echo '<script type="text/javascript"> alert("Incorrect credentials.") </script>';
