@@ -69,7 +69,7 @@
 	</div>
 	
 
-	<div id="All" class="tabcontent">
+	<div id="All" class="tabcontent" style="height: 2000px;">
 		<!--table for both chemicals+equipments-->
 		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Chemicals</em></h1>
 	    	<div>
@@ -181,7 +181,6 @@
 					</div>
 				</div>
 			</div>
-			
 	</div>
 
 	<div id="Chemicals" class="tabcontent">
@@ -319,5 +318,7 @@
 		evt.currentTarget.className += " active";
 	}
 	</script>
+
+
 </body>
 </html>
