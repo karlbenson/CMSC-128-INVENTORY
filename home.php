@@ -142,19 +142,20 @@
 													echo $MyResults2['Last_Name'].'<br> ';	
 												}
 												echo '</td>';
+												
+												$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0";
+												$MyValues3 = $MyConnection -> query($MySearchQuery3);
+											
+												while ($MyResults3 = $MyValues3 -> fetch_assoc()) //from group table
+												{											
+													echo '<td>'.$MyResults3['Professor'].'</td>';
+													echo '<td>'.$MyResults3['Subject'].'</td>';
+													
+												}
+												
+												echo '</tr>';
 											}
 											
-											
-											$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0";
-											$MyValues3 = $MyConnection -> query($MySearchQuery3);
-											
-											while ($MyResults3 = $MyValues3 -> fetch_assoc()) //from group table
-											{											
-												echo '<td>'.$MyResults3['Professor'].'</td>';
-												echo '<td>'.$MyResults3['Subject'].'</td>';
-											}
-											
-											echo '</tr>';
 											
 											
 											
@@ -206,19 +207,18 @@
 													echo $MyResults2['Last_Name'].'<br> ';	
 												}
 												echo '</td>';
+												
+												$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0 ";
+												$MyValues3 = $MyConnection -> query($MySearchQuery3);
+											
+												while ($MyResults3 = $MyValues3 -> fetch_assoc()) //from group table
+												{											
+													echo '<td>'.$MyResults3['Professor'].'</td>';
+													echo '<td>'.$MyResults3['Subject'].'</td>';
+													
+												}
+												echo '</tr>';
 											}
-											
-											
-											$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0";
-											$MyValues3 = $MyConnection -> query($MySearchQuery3);
-											
-											while ($MyResults3 = $MyValues3 -> fetch_assoc()) //from group table
-											{											
-												echo '<td>'.$MyResults3['Professor'].'</td>';
-												echo '<td>'.$MyResults3['Subject'].'</td>';
-											}
-											
-											echo '</tr>';
 											
 											
 											
