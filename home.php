@@ -2,41 +2,7 @@
 <?php
 	session_start();
 	
-	if (isset($_SESSION['username'])){
-		$con = mysqli_connect('127.0.0.1','root','');
-		$username=$_SESSION['username'];
-		$query = "SELECT status FROM user_accounts WHERE Username = '$username'";
-		
-		if (!$con){
-			echo 'Not connected to server';
-		}
-	
-		if (!mysqli_select_db($con,'chem_glasswares')){
-			echo 'Database not selected';
-		}
-		
-		if ($result=mysqli_query($con,$query)){
-		
-			while ($row=mysqli_fetch_row($result)){
-				$status=$row[0];
-			}
-		}//end if
-		
-		if ($status==0){
-			
-			echo 
-			'<script type="text/javascript"> alert("ACCESS DENIED") 
-			window.location.href = "login.php"
-			</script>';
-			
-		}
-		mysqli_close($con);
-	}else{
-		echo 
-		'<script type="text/javascript"> alert("ACCESS DENIED") 
-		window.location.href = "login.php"
-		</script>';
-	}//end if
+	include("verify.php");
 ?>
 <html>
 <head>

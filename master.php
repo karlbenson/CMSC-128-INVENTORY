@@ -13,41 +13,7 @@
 
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
-	if (isset($_SESSION['username'])){
-		
-		$username=$_SESSION['username'];
-		$query = "SELECT status FROM user_accounts WHERE Username = '$username'";
-		
-		if (!$MyConnection){
-			echo 'Not connected to server';
-		}
-	
-		if (!mysqli_select_db($MyConnection,'chem_glasswares')){
-			echo 'Database not selected';
-		}
-		
-		if ($result=mysqli_query($MyConnection,$query)){
-		
-			while ($row=mysqli_fetch_row($result)){
-				$status=$row[0];
-			}
-		}//end if
-		
-		if ($status==0){
-			
-			echo 
-			'<script type="text/javascript"> alert("ACCESS DENIED") 
-			window.location.href = "login.php"
-			</script>';
-			
-		}
-		mysqli_close($con);
-	}else{
-		echo 
-		'<script type="text/javascript"> alert("ACCESS DENIED") 
-		window.location.href = "login.php"
-		</script>';
-	}//end if
+	include("verify.php");
 
 	
 ?>
@@ -56,7 +22,6 @@
 	<title>Master List: UPB Glasswares and Chemicals Inventory</title>
 	<?php echo include("head.php"); ?>
 	<link rel="stylesheet" href="css/master.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div id="container-fluid">
@@ -66,24 +31,25 @@
 		<button class="tablinks" onclick="openTab(event, 'Chemicals')">Chemicals</button>
 		<button class="tablinks" onclick="openTab(event, 'Equipments')">Equipments</button>
 		<button class="tablinks" onclick="openTab(event, 'All')">All</button>
+		
 	</div>
 	
 
-	<div id="All" class="tabcontent" style="height: 2000px;">
+	<div id="All" class="tabcontent">
 		<!--table for both chemicals+equipments-->
 		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Chemicals</em></h1>
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
-			        	<div class="col-md-12 table-responsive">
-			          		<table width="100%" class="table table-hover">
+			        	<div class="col-md-12">
+			          		<table class="table">
 			          			<thead class="text-center">
 					            	<tr>
-						                <th style="width: 13%">ID</th>
-						                <th style="width: 42%">Name</th>
-						                <th style="width: 25%">Amount</th>
-						                <th style="width: 10%">Edit</th>
-						                <th style="width: 10%">Delete</th>
+						                <th>ID</th>
+						                <th>Name</th>
+						                <th>Amount</th>
+						                <th>Edit</th>
+						                <th>Delete</th>
 					            	</tr>
 					            </thead>
 					            <tbody>
@@ -103,7 +69,7 @@
 												echo '<td>
 												<form method="POST" action = "edit_chemical_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5"><i class="fa fa-pencil fa-fw" ></i></button>
+												<button type="submit" class="button button5"><i class="fa fa-plus fa-fw" ></i></button>
 												</form>
 												</td>';
 												
@@ -111,7 +77,7 @@
 												echo '<td>
 												<form method="POST" action = "delete_chemical_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fa fa-trash fa-fw"></i></button> 
+												<button type="submit" class="button button5" ><i class="fa fa-pencil fa-fw"></i></button> 
 												</form>
 												</td>
 												</tr>';
@@ -126,19 +92,19 @@
 					</div>
 				</div>
 			</div>
-			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Equipments</em></h1>
+			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Equipment</em></h1>
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
-			        	<div class="col-md-12 table-responsive">
-			          		<table width="100%" class="table table-hover">
+			        	<div class="col-md-12">
+			          		<table class="table">
 			          			<thead class="text-center">
 					            	<tr>
-						                <th style="width: 13%">ID</th>
-						                <th style="width: 42%">Name</th>
-						                <th style="width: 25%">Amount</th>
-						                <th style="width: 10%">Edit</th>
-						                <th style="width: 10%">Delete</th>
+						                <th>ID</th>
+						                <th>Name</th>
+						                <th>Amount</th>
+						                <th>Edit</th>
+						                <th>Delete</th>
 					            	</tr>
 					            </thead>
 					            <tbody>
@@ -158,7 +124,7 @@
 												echo '<td>
 												<form method="POST" action = "edit_glassware_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-												<button type="submit" class="button button5"><i class="fa fa-pencil fa-fw" ></i></button>
+												<button type="submit" class="button button5"><i class="fa fa-plus fa-fw" ></i></button>
 												</form>
 												</td>';
 												
@@ -166,7 +132,7 @@
 												echo '<td>
 												<form method="POST" action = "delete_glassware_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fa fa-trash fa-fw"></i></button> 
+												<button type="submit" class="button button5" ><i class="fa fa-pencil fa-fw"></i></button> 
 												</form>
 												</td>
 												</tr>';
@@ -181,6 +147,7 @@
 					</div>
 				</div>
 			</div>
+			
 	</div>
 
 	<div id="Chemicals" class="tabcontent">
@@ -189,15 +156,15 @@
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
-			        	<div class="col-md-12 table-responsive">
-			          		<table width="100%" class="table table-hover">
+			        	<div class="col-md-12">
+			          		<table class="table">
 			          			<thead class="text-center">
 					            	<tr>
-						                <th style="width: 13%">ID</th>
-						                <th style="width: 42%">Name</th>
-						                <th style="width: 25%">Amount</th>
-						                <th style="width: 10%">Edit</th>
-						                <th style="width: 10%">Delete</th>
+						                <th>ID</th>
+						                <th>Name</th>
+						                <th>Amount</th>
+						                <th>Edit</th>
+						                <th>Delete</th>
 					            	</tr>
 					            </thead>
 					            <tbody>
@@ -217,7 +184,7 @@
 												echo '<td>
 												<form method="POST" action = "edit_chemical_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5"><i class="fa fa-pencil fa-fw" ></i></button>
+												<button type="submit" class="button button5"><i class="fa fa-plus fa-fw" ></i></button>
 												</form>
 												</td>';
 												
@@ -225,7 +192,7 @@
 												echo '<td>
 												<form method="POST" action = "delete_chemical_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fa fa-trash fa-fw"></i></button> 
+												<button type="submit" class="button button5" ><i class="fa fa-pencil fa-fw"></i></button> 
 												</form>
 												</td>
 												</tr>';
@@ -244,19 +211,19 @@
 
 	<div id="Equipments" class="tabcontent">
 		<!--table for equipments only*/-->
-		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Equipments</em></h1>
+		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Equipment</em></h1>
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
-			        	<div class="col-md-12 table-responsive">
-			          		<table width="100%" class="table table-hover">
+			        	<div class="col-md-12">
+			          		<table class="table">
 			          			<thead class="text-center">
 					            	<tr>
-						                <th style="width: 13%">ID</th>
-						                <th style="width: 42%">Name</th>
-						                <th style="width: 25%">Amount</th>
-						                <th style="width: 10%">Edit</th>
-						                <th style="width: 10%">Delete</th>
+						                <th>ID</th>
+						                <th>Name</th>
+						                <th>Amount</th>
+						                <th>Edit</th>
+						                <th>Delete</th>
 					            	</tr>
 					            </thead>
 					            <tbody>
@@ -276,7 +243,7 @@
 												echo '<td>
 												<form method="POST" action = "edit_glassware_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-												<button type="submit" class="button button5"><i class="fa fa-pencil fa-fw" ></i></button>
+												<button type="submit" class="button button5"><i class="fa fa-plus fa-fw" ></i></button>
 												</form>
 												</td>';
 												
@@ -284,7 +251,7 @@
 												echo '<td>
 												<form method="POST" action = "delete_glassware_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fa fa-trash fa-fw"></i></button> 
+												<button type="submit" class="button button5" ><i class="fa fa-pencil fa-fw"></i></button> 
 												</form>
 												</td>
 												</tr>';
@@ -318,7 +285,5 @@
 		evt.currentTarget.className += " active";
 	}
 	</script>
-
-
 </body>
 </html>

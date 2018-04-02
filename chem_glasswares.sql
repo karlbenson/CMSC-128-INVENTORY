@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2018 at 10:26 AM
+-- Generation Time: Apr 02, 2018 at 03:12 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -53,8 +53,17 @@ CREATE TABLE `borrower_group` (
 CREATE TABLE `chemicals` (
   `Chemical_Id` int(11) NOT NULL,
   `Name` varchar(256) NOT NULL,
-  `Quantity_Available` int(11) NOT NULL
+  `Quantity_Available_ml` float NOT NULL,
+  `Quantity_Available_mg` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chemicals`
+--
+
+INSERT INTO `chemicals` (`Chemical_Id`, `Name`, `Quantity_Available_ml`, `Quantity_Available_mg`) VALUES
+(3, 'XXX', 12, 0),
+(4, 'trulalu', 12, 0);
 
 -- --------------------------------------------------------
 
@@ -67,6 +76,13 @@ CREATE TABLE `glasswares` (
   `Name` varchar(256) NOT NULL,
   `Quantity_Available` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `glasswares`
+--
+
+INSERT INTO `glasswares` (`Glassware_Id`, `Name`, `Quantity_Available`) VALUES
+(1, 'BONG BONG MARCOS', 6);
 
 -- --------------------------------------------------------
 
@@ -157,7 +173,7 @@ CREATE TABLE `user_accounts` (
 --
 
 INSERT INTO `user_accounts` (`User_Id`, `Staff_Id`, `Username`, `Password`, `status`) VALUES
-(1, 1, 'admin', 'admin123', 0);
+(1, 1, 'admin', '$2y$10$TXqiyhSKm/2zWJT843WsaurTzjpxrvQ5vNq/VCnLj8QLasfE.KWWu', 1);
 
 --
 -- Indexes for dumped tables
@@ -249,12 +265,12 @@ ALTER TABLE `borrower_group`
 -- AUTO_INCREMENT for table `chemicals`
 --
 ALTER TABLE `chemicals`
-  MODIFY `Chemical_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Chemical_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `glasswares`
 --
 ALTER TABLE `glasswares`
-  MODIFY `Glassware_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Glassware_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `group`
 --

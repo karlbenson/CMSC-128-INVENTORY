@@ -2,41 +2,7 @@
 	session_start();
 	error_reporting(0);
 	
-	if (isset($_SESSION['username'])){
-		$con = mysqli_connect('127.0.0.1','root','');
-		$username=$_SESSION['username'];
-		$query = "SELECT status FROM user_accounts WHERE Username = '$username'";
-		
-		if (!$con){
-			echo 'Not connected to server';
-		}
-	
-		if (!mysqli_select_db($con,'chem_glasswares')){
-			echo 'Database not selected';
-		}
-		
-		if ($result=mysqli_query($con,$query)){
-		
-			while ($row=mysqli_fetch_row($result)){
-				$status=$row[0];
-			}
-		}//end if
-		
-		if ($status==0){
-			
-			echo 
-			'<script type="text/javascript"> alert("ACCESS DENIED") 
-			window.location.href = "login.php"
-			</script>';
-			
-		}
-		mysqli_close($con);
-	}else{
-		echo 
-		'<script type="text/javascript"> alert("ACCESS DENIED") 
-		window.location.href = "login.php"
-		</script>';
-	}//end if
+	include("verify.php");
 
 	//Server Credentials
 	$MyServerName = "localhost";
@@ -82,9 +48,10 @@
 <html>
 	<!-- Head -->
 	<head>
-		<?php 
-			echo include("head.php");
-		?>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+  		<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 		<title>Add to Inventory</title>
 	</head>
 

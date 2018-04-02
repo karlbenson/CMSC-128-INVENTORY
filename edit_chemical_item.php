@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	error_reporting(0);
+	
+	include("verify.php");
 
 	//Server Credentials
 	$MyServerName = "localhost";
@@ -62,12 +64,25 @@
 <html>
 	<!-- Head -->
 	<head>
-		<?php include("head.php"); ?>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+  		<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
 		<title>Add to Inventory</title>
 	</head>
 
 	<!-- Body -->
 	<body onload="hideSpecial()">
+
+		<!-- Navigation Bar -->
+	    <nav class="navbar navbar-expand-md">
+	    	<div class="container">
+	    		<a class="navbar-brand" href="master.php">
+	    			<b>Home</b>
+	    		</a>
+	      	</div>
+    	</nav>
+
     	<!--Body Contents-->
 		
 		<form class="form-signin" name="myForm" method="POST" enctype="multipart/form-data" name="addroom" onsubmit="return validateForm()">
