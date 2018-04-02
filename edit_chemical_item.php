@@ -24,7 +24,8 @@
 		{
 			$c_id = $MyResults['Chemical_Id'];
 			$c_name = $MyResults['Name'];
-			$c_amount = $MyResults['Quantity_Available'];
+			$c_amount_mg = $MyResults['Quantity_Available_mg'];
+			$c_amount_ml = $MyResults['Quantity_Available_ml'];
 		}
 	}
 
@@ -32,7 +33,8 @@
 	{
 		
 		$nc_name = $_POST['c_name'];
-		$nc_amount = $_POST['c_amount'];
+		$nc_amount_mg = $_POST['c_amount_mg'];
+		$nc_amount_ml = $_POST['c_amount_ml'];
 		$nc_id = $_POST['c_id'];
 		
 		if(empty($nc_id))
@@ -52,7 +54,7 @@
 
 		$nc_fixedName = mysqli_real_escape_string($MyConnection, $nc_name);
 
-		mysqli_query($MyConnection, "UPDATE chemicals SET Name = '$nc_fixedName', Quantity_Available = $nc_amount WHERE (chemicals.Chemical_Id = $nc_id);");
+		mysqli_query($MyConnection, "UPDATE chemicals SET Name = '$nc_fixedName', Quantity_Available_mg = $nc_amount_mg, Quantity_Available_ml = $nc_amount_ml WHERE (chemicals.Chemical_Id = $nc_id);");
 		
 		echo "<script>alert('Edited Successfully!');
 			location = 'master.php';</script>";
@@ -98,9 +100,14 @@
 					<div class="col">
 						<input class="form-control" name="c_name" placeholder="<?php echo $c_name ?>">
 					</div>
-					<label class="px-2 col-form-label">Amount</label>
+					<label class="px-2 col-form-label">Amount (mg)</label>
 					<div class="col">
-						<input class="form-control" name="c_amount" placeholder="<?php echo $c_amount ?>">
+						<input class="form-control" name="c_amount_mg" placeholder="<?php echo $c_amount_mg ?>">
+					</div>
+					
+					<label class="px-2 col-form-label">Amount (ml)</label>
+					<div class="col">
+						<input class="form-control" name="c_amount_ml" placeholder="<?php echo $c_amount_ml ?>">
 					</div>
 				</div>	
 			</div

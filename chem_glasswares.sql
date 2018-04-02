@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 04:24 AM
+-- Generation Time: Apr 02, 2018 at 08:05 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -54,6 +54,16 @@ CREATE TABLE `borrower_group` (
   `Borrower_Id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `borrower_group`
+--
+
+INSERT INTO `borrower_group` (`Borrower_Group_Id`, `Group_Id`, `Borrower_Id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 3),
+(4, 2, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -72,8 +82,9 @@ CREATE TABLE `chemicals` (
 --
 
 INSERT INTO `chemicals` (`Chemical_Id`, `Name`, `Quantity_Available_ml`, `Quantity_Available_mg`) VALUES
-(3, 'XXX', 12, 0),
-(4, 'trulalu', 12, 0);
+(4, 'trulalu', 35, 0),
+(6, 'Jalapeno Sauce', 100, 0),
+(25, 'Good stuff', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -92,7 +103,9 @@ CREATE TABLE `glasswares` (
 --
 
 INSERT INTO `glasswares` (`Glassware_Id`, `Name`, `Quantity_Available`) VALUES
-(1, 'BONG BONG MARCOS', 6);
+(1, 'BONG BONG MARCOS', 6),
+(2, 'Hammer', 3),
+(3, 'Lofi Stereo', 2);
 
 -- --------------------------------------------------------
 
@@ -105,6 +118,14 @@ CREATE TABLE `group` (
   `Professor` varchar(256) NOT NULL,
   `Subject` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `group`
+--
+
+INSERT INTO `group` (`Group_Id`, `Professor`, `Subject`) VALUES
+(1, 'Sir Lee Javellana', 'Cmsc 128'),
+(2, 'Ma''am Ash Balangcod', 'Cmsc 125');
 
 -- --------------------------------------------------------
 
@@ -144,13 +165,21 @@ INSERT INTO `staff` (`Staff_Id`, `First_Name`, `Last_Name`) VALUES
 
 CREATE TABLE `transaction` (
   `Trans_Id` int(11) NOT NULL,
-  `Glassware_Id` int(11) NOT NULL,
-  `Chemical_Id` int(11) NOT NULL,
+  `Glassware_Id` int(11) DEFAULT NULL,
+  `Chemical_Id` int(11) DEFAULT NULL,
   `Group_Id` int(11) NOT NULL,
   `Qty_Borrowed_Glasswares` int(11) NOT NULL,
   `Qty_Borrowed_Chemicals_ml` float NOT NULL,
   `Qty_Borrowed_Chemicals_mg` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`Trans_Id`, `Glassware_Id`, `Chemical_Id`, `Group_Id`, `Qty_Borrowed_Glasswares`, `Qty_Borrowed_Chemicals_ml`, `Qty_Borrowed_Chemicals_mg`) VALUES
+(5, 1, NULL, 1, 1, 0, 0),
+(6, NULL, 4, 2, 0, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -164,6 +193,14 @@ CREATE TABLE `transaction_history` (
   `Date_Borrowed` date NOT NULL,
   `Date_Returned` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaction_history`
+--
+
+INSERT INTO `transaction_history` (`Trans_History_Id`, `Trans_Id`, `Date_Borrowed`, `Date_Returned`) VALUES
+(1, 5, '2018-04-09', '2018-04-10'),
+(2, 6, '2018-04-08', '2018-04-08');
 
 -- --------------------------------------------------------
 
@@ -271,22 +308,22 @@ ALTER TABLE `borrower`
 -- AUTO_INCREMENT for table `borrower_group`
 --
 ALTER TABLE `borrower_group`
-  MODIFY `Borrower_Group_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Borrower_Group_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `chemicals`
 --
 ALTER TABLE `chemicals`
-  MODIFY `Chemical_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Chemical_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `glasswares`
 --
 ALTER TABLE `glasswares`
-  MODIFY `Glassware_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Glassware_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `group`
 --
 ALTER TABLE `group`
-  MODIFY `Group_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Group_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `staff`
 --
@@ -296,12 +333,12 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `transaction_history`
 --
 ALTER TABLE `transaction_history`
-  MODIFY `Trans_History_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Trans_History_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_accounts`
 --

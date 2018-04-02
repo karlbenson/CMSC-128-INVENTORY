@@ -21,11 +21,12 @@
 		{
 			
 			$c_name = $_POST['c_name'];
-			$c_amount = $_POST['c_amount'];
+			$c_amount_mg = $_POST['c_amount_mg'];
+			$c_amount_ml = $_POST['c_amount_ml'];
 
 			$c_fixedName = mysqli_real_escape_string($MyConnection, $c_name);
 
-			mysqli_query($MyConnection, "INSERT INTO chemicals (Name, Quantity_Available) VALUES ('$c_fixedName', $c_amount);");
+			mysqli_query($MyConnection, "INSERT INTO chemicals (Name, Quantity_Available_mg, Quantity_Available_ml) VALUES ('$c_fixedName', $c_amount_mg,$c_amount_ml);");
 		}
 
 		else
@@ -93,9 +94,14 @@
 					<div class="col">
 						<input class="form-control" name="c_name">
 					</div>
-					<label class="px-2 col-form-label">Amount</label>
+					<label class="px-2 col-form-label">Amount (mg)</label>
 					<div class="form-inline">
-						<input class="form-control" name="c_amount">
+						<input class="form-control" name="c_amount_mg">
+					</div>
+					
+					<label class="px-2 col-form-label">Amount (ml)</label>
+					<div class="form-inline">
+						<input class="form-control" name="c_amount_ml">
 					</div>
 				</div>	
 			</div>

@@ -37,7 +37,7 @@
 
 	<div id="All" class="tabcontent">
 		<!--table for both chemicals+equipments-->
-		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Chemicals</em></h1>
+		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Chemicals</h1>
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
@@ -47,7 +47,8 @@
 					            	<tr>
 						                <th>ID</th>
 						                <th>Name</th>
-						                <th>Amount</th>
+						                <th>Amount (mg)</th>
+										 <th>Amount (ml)</th>
 						                <th>Edit</th>
 						                <th>Delete</th>
 					            	</tr>
@@ -64,8 +65,8 @@
 												echo '<tr>';
 												echo '<td>'.$MyResults['Chemical_Id'].'</td>';
 												echo '<td>'.$MyResults['Name'].'</td>';
-												echo '<td>'.$MyResults['Quantity_Available'].'</td>';
-											
+												echo '<td>'.$MyResults['Quantity_Available_mg'].'</td>';
+												echo '<td>'.$MyResults['Quantity_Available_ml'].'</td>';
 												echo '<td>
 												<form method="POST" action = "edit_chemical_item.php">
 												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
@@ -162,7 +163,8 @@
 					            	<tr>
 						                <th>ID</th>
 						                <th>Name</th>
-						                <th>Amount</th>
+						                <th>Amount (mg)</th>
+										<th>Amount (ml) </th>
 						                <th>Edit</th>
 						                <th>Delete</th>
 					            	</tr>
@@ -179,7 +181,8 @@
 												echo '<tr>';
 												echo '<td>'.$MyResults['Chemical_Id'].'</td>';
 												echo '<td>'.$MyResults['Name'].'</td>';
-												echo '<td>'.$MyResults['Quantity_Available'].'</td>';
+												echo '<td>'.$MyResults['Quantity_Available_mg'].'</td>';
+												echo '<td>'.$MyResults['Quantity_Available_ml'].'</td>';
 											
 												echo '<td>
 												<form method="POST" action = "edit_chemical_item.php">
