@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 03:12 AM
+-- Generation Time: Apr 02, 2018 at 04:24 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -31,6 +31,16 @@ CREATE TABLE `borrower` (
   `First_Name` varchar(256) NOT NULL,
   `Last_Name` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `borrower`
+--
+
+INSERT INTO `borrower` (`Borrower_Id`, `First_Name`, `Last_Name`) VALUES
+(1, 'Kiana Alessandra ', 'Villaera'),
+(2, 'Ralston Mark', 'Chan'),
+(3, 'Karl Vinzon', 'Mabutas'),
+(4, 'Bernadette', 'Genove');
 
 -- --------------------------------------------------------
 
@@ -138,7 +148,8 @@ CREATE TABLE `transaction` (
   `Chemical_Id` int(11) NOT NULL,
   `Group_Id` int(11) NOT NULL,
   `Qty_Borrowed_Glasswares` int(11) NOT NULL,
-  `Qty_Borrowed_Chemicals` int(11) NOT NULL
+  `Qty_Borrowed_Chemicals_ml` float NOT NULL,
+  `Qty_Borrowed_Chemicals_mg` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -255,7 +266,7 @@ ALTER TABLE `user_accounts`
 -- AUTO_INCREMENT for table `borrower`
 --
 ALTER TABLE `borrower`
-  MODIFY `Borrower_Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Borrower_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `borrower_group`
 --
