@@ -19,7 +19,7 @@
 <div class="container-fluid bg">
 	<div class="container-fluid topmost">
 		<div class="row">
-		<a href="login.php"><img src="src/up.png" width="120px" style="padding-top: 2.25%;"class="center"></a>
+		<a href="login.php"><img src="src/up.png" width="120px" style="padding-top: 1.5%;"class="center"></a>
 		</div>
 	</div>
 
