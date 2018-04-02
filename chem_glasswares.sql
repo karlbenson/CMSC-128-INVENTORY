@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2018 at 08:05 AM
+-- Generation Time: Apr 02, 2018 at 01:39 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -110,20 +110,20 @@ INSERT INTO `glasswares` (`Glassware_Id`, `Name`, `Quantity_Available`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `group`
+-- Table structure for table `group_table`
 --
 
-CREATE TABLE `group` (
+CREATE TABLE `group_table` (
   `Group_Id` int(11) NOT NULL,
   `Professor` varchar(256) NOT NULL,
   `Subject` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `group`
+-- Dumping data for table `group_table`
 --
 
-INSERT INTO `group` (`Group_Id`, `Professor`, `Subject`) VALUES
+INSERT INTO `group_table` (`Group_Id`, `Professor`, `Subject`) VALUES
 (1, 'Sir Lee Javellana', 'Cmsc 128'),
 (2, 'Ma''am Ash Balangcod', 'Cmsc 125');
 
@@ -170,37 +170,18 @@ CREATE TABLE `transaction` (
   `Group_Id` int(11) NOT NULL,
   `Qty_Borrowed_Glasswares` int(11) NOT NULL,
   `Qty_Borrowed_Chemicals_ml` float NOT NULL,
-  `Qty_Borrowed_Chemicals_mg` float NOT NULL
+  `Qty_Borrowed_Chemicals_mg` float NOT NULL,
+  `Date_Borrowed` date NOT NULL,
+  `Date_Returned` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaction`
 --
 
-INSERT INTO `transaction` (`Trans_Id`, `Glassware_Id`, `Chemical_Id`, `Group_Id`, `Qty_Borrowed_Glasswares`, `Qty_Borrowed_Chemicals_ml`, `Qty_Borrowed_Chemicals_mg`) VALUES
-(5, 1, NULL, 1, 1, 0, 0),
-(6, NULL, 4, 2, 0, 4, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `transaction_history`
---
-
-CREATE TABLE `transaction_history` (
-  `Trans_History_Id` int(11) NOT NULL,
-  `Trans_Id` int(11) NOT NULL,
-  `Date_Borrowed` date NOT NULL,
-  `Date_Returned` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transaction_history`
---
-
-INSERT INTO `transaction_history` (`Trans_History_Id`, `Trans_Id`, `Date_Borrowed`, `Date_Returned`) VALUES
-(1, 5, '2018-04-09', '2018-04-10'),
-(2, 6, '2018-04-08', '2018-04-08');
+INSERT INTO `transaction` (`Trans_Id`, `Glassware_Id`, `Chemical_Id`, `Group_Id`, `Qty_Borrowed_Glasswares`, `Qty_Borrowed_Chemicals_ml`, `Qty_Borrowed_Chemicals_mg`, `Date_Borrowed`, `Date_Returned`) VALUES
+(5, 1, NULL, 1, 1, 0, 0, '2018-04-08', '2018-04-13'),
+(6, NULL, 4, 2, 0, 4, 0, '2018-03-12', '2018-03-16');
 
 -- --------------------------------------------------------
 
@@ -254,9 +235,9 @@ ALTER TABLE `glasswares`
   ADD PRIMARY KEY (`Glassware_Id`);
 
 --
--- Indexes for table `group`
+-- Indexes for table `group_table`
 --
-ALTER TABLE `group`
+ALTER TABLE `group_table`
   ADD PRIMARY KEY (`Group_Id`);
 
 --
@@ -280,13 +261,6 @@ ALTER TABLE `transaction`
   ADD KEY `Glassware_Id` (`Glassware_Id`),
   ADD KEY `Chemical_Id` (`Chemical_Id`),
   ADD KEY `Group_Id` (`Group_Id`);
-
---
--- Indexes for table `transaction_history`
---
-ALTER TABLE `transaction_history`
-  ADD PRIMARY KEY (`Trans_History_Id`),
-  ADD KEY `Trans_Id` (`Trans_Id`);
 
 --
 -- Indexes for table `user_accounts`
@@ -320,9 +294,9 @@ ALTER TABLE `chemicals`
 ALTER TABLE `glasswares`
   MODIFY `Glassware_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `group`
+-- AUTO_INCREMENT for table `group_table`
 --
-ALTER TABLE `group`
+ALTER TABLE `group_table`
   MODIFY `Group_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `staff`
@@ -333,12 +307,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `transaction_history`
---
-ALTER TABLE `transaction_history`
-  MODIFY `Trans_History_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user_accounts`
 --
@@ -352,7 +321,7 @@ ALTER TABLE `user_accounts`
 -- Constraints for table `borrower_group`
 --
 ALTER TABLE `borrower_group`
-  ADD CONSTRAINT `borrower_group_ibfk_1` FOREIGN KEY (`Group_Id`) REFERENCES `group` (`Group_Id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `borrower_group_ibfk_1` FOREIGN KEY (`Group_Id`) REFERENCES `group_table` (`Group_Id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `borrower_group_ibfk_2` FOREIGN KEY (`Borrower_Id`) REFERENCES `borrower` (`Borrower_Id`) ON UPDATE CASCADE;
 
 --
@@ -367,13 +336,7 @@ ALTER TABLE `page_permissions`
 ALTER TABLE `transaction`
   ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`Glassware_Id`) REFERENCES `glasswares` (`Glassware_Id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`Chemical_Id`) REFERENCES `chemicals` (`Chemical_Id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaction_ibfk_3` FOREIGN KEY (`Group_Id`) REFERENCES `group` (`Group_Id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `transaction_history`
---
-ALTER TABLE `transaction_history`
-  ADD CONSTRAINT `transaction_history_ibfk_1` FOREIGN KEY (`Trans_Id`) REFERENCES `transaction` (`Trans_Id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaction_ibfk_3` FOREIGN KEY (`Group_Id`) REFERENCES `group_table` (`Group_Id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_accounts`
