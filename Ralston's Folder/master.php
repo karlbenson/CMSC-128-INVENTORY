@@ -335,7 +335,7 @@
 			$(document).on('click', '.add', function(){
 				var html = '';
 				html += '<tr>';
-				html += '<td><select name="special[]" class="form-control" onchange="updateSpecial(this.value)"><option value="1">Add Chemical</option><option value="2">Add Equipment</option></select></td>';
+				html += '<td><select name="special[]" class="form-control" onchange="updateSpecial(this.value)"><option value="chem">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
 				html += '<td><div class="col"><input class="form-control" name="name[]" placeholder="Name"></div></td>';
 				html += '<td><div class="col"><input class="form-control" name="amount[]" placeholder="Amount"></div></td>';
 				html += '<td><button type="button" name="remove" class="button button5 remove"><i class="fas fa-minus"></i></button></td></tr>';
@@ -361,14 +361,12 @@
 				    data: form_data,
 				    success:function(data)
 				    {
-				   		if(data == 'ok')
-				     	{
-				      		$('#item_table').find("tr:gt(0)").remove();
-					      	$('#error').html('<div class="alert alert-success">Item Details Saved</div>');
-				     	}
+			      		$('#item_table').find("tr:gt(0)").remove();
+				      	$('#error').html('<div class="alert alert-success">Item Details Saved</div>');
 				    }
 			   	}
 		   	);
+		   	location.reload();
 		});
 	</script>
 
