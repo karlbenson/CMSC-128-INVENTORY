@@ -22,7 +22,8 @@
 <body  style="z-index: -10000:">
   <div class="container">
         <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
-        <form  action="/bprocess.php" target="_self" method="POST">
+        <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2;">
+          <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
             <input class="form-control" id="borrowerid" readonly="readonly" value="insert php increment" />
@@ -30,25 +31,25 @@
           
           <label class="try" for="members">Group Members: </label>
           <div class="row grpmem" style="padding: 5px;">
-            <div class="col">
+            <div class="col-md-4">
               <input type="text" name="sid[]" class="form-control" placeholder="Student ID" required="true">
             </div>
-            <div class="col">
+            <div class="col-md-4">
               <input type="text" name="lname[]" class="form-control" placeholder="Last Name" required="true">
             </div>
-            <div class="col">
+            <div class="col-md-3">
               <input type="text" name="fname[]" class="form-control" placeholder="First Name" required="true">
             </div>
-            <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
+            <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden; text-align: right;"><i class="fas fa-minus"></i></button>
           </div>
-          <center><button type="button" class="btn btn-success" id="add-row" name="add-row" onmouseover="" style="cursor: pointer; margin-top: 20px;">Add Member</button></center>
+          <center><button type="button" class="btn btn-info" id="add-row" name="add-row" onmouseover="" style="cursor: pointer; margin-top: 20px;">Add Member</button></center>
           
           <label for="instruct">Instructor's Info:</label>
           <div class="row" id="instruct">
-            <div class="col">
+            <div class="col-md-6">
               <input type="text" id="prof" class="form-control" placeholder="Name of Professor">
             </div>
-            <div class="col">
+            <div class="col-md-5">
               <input type="text" id="subj" class="form-control" placeholder="Name of Subject" required="true">
             </div>
           </div>
@@ -73,10 +74,11 @@
             </div>
             <button class="btn btn-danger remover2" form="" style="float:right; cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
           </div>
-          <center><button type="button" class="btn btn-success" id="add-item" name="add-item" onmouseover="" style="cursor: pointer; margin-top: 20px;">Add Item</button></center>
+          <center><button type="button" class="btn btn-info" id="add-item" name="add-item" onmouseover="" style="cursor: pointer; margin-top: 20px; text-align: right;">Add Item</button></center>
 
-          <center><input type="submit" class="btn btn-success" style="margin: 50px; cursor: pointer;"></center>
+          <input type="submit" class="btn btn-success btn-lg btn-block" style="margin: auto; margin-top: 60px; cursor: pointer;">
         </form>
+        </div>
 
   </div>
 </body>
