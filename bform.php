@@ -1,3 +1,17 @@
+<?php
+  session_start();
+  
+  error_reporting(0);
+  //Server Credentials
+  $MyServerName = "localhost";
+  $MyUserName = "root";
+  $MyPassword = "";
+  //Database
+  $MyDBName = 'chem_glasswares';
+  $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
+  
+  include("verify.php");
+?>
 <html>
 <head>
   <title>Home: UPB Glasswares and Chemicals Inventory</title>
