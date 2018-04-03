@@ -18,13 +18,13 @@
           <label class="try" for="members">Group Members: </label>
           <div class="row grpmem" style="padding: 5px;">
             <div class="col">
-              <input type="text" name="sid[]" class="form-control" placeholder="Student ID">
+              <input type="text" name="sid[]" class="form-control" placeholder="Student ID" required="true">
             </div>
             <div class="col">
-              <input type="text" name="lname[]" class="form-control" placeholder="Last Name">
+              <input type="text" name="lname[]" class="form-control" placeholder="Last Name" required="true">
             </div>
             <div class="col">
-              <input type="text" name="fname[]" class="form-control" placeholder="First Name">
+              <input type="text" name="fname[]" class="form-control" placeholder="First Name" required="true">
             </div>
             <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
           </div>
@@ -36,7 +36,7 @@
               <input type="text" id="prof" class="form-control" placeholder="Name of Professor">
             </div>
             <div class="col">
-              <input type="text" id="subj" class="form-control" placeholder="Name of Subject">
+              <input type="text" id="subj" class="form-control" placeholder="Name of Subject" required="true">
             </div>
           </div>
 
@@ -47,10 +47,10 @@
           </div>
           <div class="row grpit" style="padding: 5px;">
             <div class="col-md-8">
-              <input type="text" name="it[]" class="form-control" placeholder="Chemical/Equipment">
+              <input type="text" name="it[]" class="form-control" placeholder="Chemical/Equipment" required="true">
             </div>
             <div class="col-md-1">
-              <input type="text" name="amount[]" class="form-control" placeholder="Amt">
+              <input type="text" name="amount[]" class="form-control" placeholder="Amt" required="true">
             </div>
             /<div class="col-md-1">
               <input type="text" class="form-control" placeholder="Max" readonly="readonly">
