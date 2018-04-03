@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2018 at 02:17 PM
+-- Generation Time: Apr 03, 2018 at 04:10 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -44,8 +44,8 @@ INSERT INTO `borrower` (`Borrower_Id`, `First_Name`, `Last_Name`, `Student_Numbe
 (2, 'Karl Vinzon', 'Mabutas', '2015-12345', 1, 1),
 (3, 'Bernadette', 'Genove', '2015-54321', 1, 2),
 (4, 'Ralston Mark', 'Chan', '2015-78945', 1, 2),
-(5, 'Karissa Isabel', 'Patriarca', '2016-52416', 1, 3),
-(6, 'Paul', 'Kline', '2007-85246', 1, 3);
+(5, 'Karissa Isabel', 'Patriarca', '2016-52416', 0, 3),
+(6, 'Paul', 'Kline', '2007-85246', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -56,8 +56,8 @@ INSERT INTO `borrower` (`Borrower_Id`, `First_Name`, `Last_Name`, `Student_Numbe
 CREATE TABLE `chemicals` (
   `Chemical_Id` int(11) NOT NULL,
   `Name` varchar(256) NOT NULL,
-  `Quantity_Available_ml` float NOT NULL,
-  `Quantity_Available_mg` float NOT NULL,
+  `Quantity_Available_ml` float DEFAULT NULL,
+  `Quantity_Available_mg` float DEFAULT NULL,
   `Original_Amt` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,10 +66,10 @@ CREATE TABLE `chemicals` (
 --
 
 INSERT INTO `chemicals` (`Chemical_Id`, `Name`, `Quantity_Available_ml`, `Quantity_Available_mg`, `Original_Amt`) VALUES
-(26, 'Good stuff ', 0, 50.44, 50),
-(27, 'Air Force Liquiblunt', 20.12, 0, 20.12),
-(28, 'We Stan Good Fumes', 0, 14.2, 14.2),
-(29, 'Unstan Milktea', 74.53, 0, 74.53);
+(26, 'Good stuff ', NULL, 10.2, 50),
+(27, 'Air Force Liquiblunt', 5.4, NULL, 20.12),
+(28, 'We Stan Good Fumes', NULL, 14.2, 14.2),
+(29, 'Unstan Milktea', 74.53, NULL, 74.53);
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `glasswares` (
 --
 
 INSERT INTO `glasswares` (`Glassware_Id`, `Name`, `Quantity_Available`) VALUES
-(1, 'Bong Pok Marcos', 4),
+(1, 'Bong Pok Marcos', 0),
 (2, 'Angel''s Burger MayoChup Tarpaulin', 10),
 (3, 'Lofi Stereo', 2);
 
@@ -158,7 +158,7 @@ CREATE TABLE `transaction` (
   `Qty_Borrowed_Chemicals_ml` float NOT NULL,
   `Qty_Borrowed_Chemicals_mg` float NOT NULL,
   `Date_Borrowed` date NOT NULL,
-  `Date_Returned` date NOT NULL
+  `Date_Returned` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -166,9 +166,10 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`Trans_Id`, `Glassware_Id`, `Chemical_Id`, `Group_Id`, `Qty_Borrowed_Glasswares`, `Qty_Borrowed_Chemicals_ml`, `Qty_Borrowed_Chemicals_mg`, `Date_Borrowed`, `Date_Returned`) VALUES
-(1, 1, NULL, 1, 2, 0, 0, '2018-04-01', '2018-04-08'),
+(1, 1, NULL, 1, 4, 0, 0, '2018-04-01', NULL),
 (2, 2, NULL, 2, 1, 0, 0, '2018-03-19', '2018-03-21'),
-(3, NULL, 26, 3, 0, 0, 5.2, '2018-02-14', '2018-02-14');
+(3, NULL, 26, 3, 0, 0, 5.2, '2018-02-14', NULL),
+(4, 2, NULL, 1, 3, 0, 0, '2018-04-16', NULL);
 
 -- --------------------------------------------------------
 
@@ -282,7 +283,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user_accounts`
 --
