@@ -30,7 +30,8 @@
           </div>
           
           <label class="try" for="members">Group Members: </label>
-          <div class="row grpmem" style="padding: 5px;">
+
+          <div class="row grpmem" style="padding: 5px; margin: auto;">
             <div class="col-md-4">
               <input type="text" name="sid[]" class="form-control" placeholder="Student ID" required="true">
             </div>
@@ -45,7 +46,7 @@
           <center><button type="button" class="btn btn-info" id="add-row" name="add-row" onmouseover="" style="cursor: pointer; margin-top: 20px;">Add Member</button></center>
           
           <label for="instruct">Instructor's Info:</label>
-          <div class="row" id="instruct">
+          <div class="row" id="instruct" style="margin: auto;">
             <div class="col-md-6">
               <input type="text" id="prof" class="form-control" placeholder="Name of Professor">
             </div>
@@ -59,7 +60,7 @@
               <div class="col-md-8"><center>Item</center></div>
               <div class="col-md-2"><center>Quantity</center></div>
           </div>
-          <div class="row grpit" style="padding: 5px;">
+          <div class="row grpit" style="padding: 5px; margin: auto;">
             <div class="col-md-8">
               <input type="text" name="it[]" class="form-control" placeholder="Chemical/Equipment" required="true">
             </div>
