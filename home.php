@@ -1,21 +1,18 @@
-<!DOCTYPE html>
 <?php
 	session_start();
 	
 	error_reporting(0);
-
 	//Server Credentials
 	$MyServerName = "localhost";
 	$MyUserName = "root";
 	$MyPassword = "";
-
 	//Database
 	$MyDBName = 'chem_glasswares';
-
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
-	include("verify.php");
+	//include("verify.php");
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Home: UPB Glasswares and Chemicals Inventory</title>
@@ -32,28 +29,58 @@
 					<div class="card p-3" id = "card-format" >
 						
 						<div class="card-block" id = "card-format">
-						  <h4 class="card-title">List of equipment that are not currently in stock</h4>
+						  <h4 class="card-title">List of equipment that are currently not in stock</h4>
 						  <p class="card-text">
 							<ul>
-								<li> 0 dapat yung quantity
+								<?php
+									$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{											
+												echo '<li>'.$MyResults['Name'];
+												
+											}
+										}	
+									?>	
+
 							</ul>
 						  </p>
-						  <!-- Pag okay na yung search, redirect to searched items -->
-							 <a href="search.php" class="btn btn-primary">See items</a>
+
+
 						</div>
+
+						
 					</div>
 					
 					<div class="card p-3" id = "card-format">
 						
 						<div class="card-block" id = "card-format">
-						  <h4 class="card-title">List of chemicals with low quantities</h4>
+						  <h4 class="card-title">List of chemicals with low quantities (30% or less than original amount)</h4>
 						  <p class="card-text">
 							<ul>
-								<li> Dapat less than smth %
+								
+									<?php
+										$MySearchQuery = "SELECT * FROM chemicals WHERE Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{					
+												echo '<li>'.$MyResults['Name'].' (';						
+												if (is_null($MyResults['Quantity_Available_ml'])){
+													echo $MyResults['Quantity_Available_mg'].' mg)';
+												}else{
+													echo $MyResults['Quantity_Available_ml'].' ml)';
+												}
+												
+												
+											}
+										}	
+									?>
 							</ul>
 						  </p>
-						  <!-- Pag okay na yung search, redirect to searched items -->
-							 <a href="search.php" class="btn btn-primary">See items</a>
 						  
 						</div>
 						 
@@ -61,12 +88,22 @@
 					
 					<div class="card p-3" id = "card-format" id = "card-format">
 						<div class="card-block" id = "card-format">
-						  <h4 class="card-title">Students with accountabilities</h4>
+						  <h4 class="card-title">Students with unfinished transactions</h4>
 						  <p class="card-text">
 							<ul>
-								<li>Student 1
-								<li>Student 2
-								<li>Student 3
+								<?php
+										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{											
+												echo '<li>'.$MyResults['Last_Name'].', '.$MyResults['First_Name'].' ('.$MyResults['Amt_of_transactions'].')';
+												
+												
+											}
+										}	
+									?>
 							</ul>
 						  
 						  </p>
@@ -118,7 +155,7 @@
 					            <tbody >
 								
 									<?php
-										$MySearchQuery = "SELECT * FROM transaction JOIN glasswares USING (Glassware_Id)";
+										$MySearchQuery = "SELECT * FROM transaction JOIN glasswares USING (Glassware_Id) ORDER BY transaction.Date_Returned";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{
@@ -128,22 +165,28 @@
 												echo '<td>'.$MyResults['Name'].'</td>';
 												echo '<td>'.$MyResults['Qty_Borrowed_Glasswares'].'</td>';
 												echo '<td>'.$MyResults['Date_Borrowed'].'</td>';
-												echo '<td>'.$MyResults['Date_Returned'].'</td>';
+												if (is_null($MyResults['Date_Returned'])){
+													echo '<td>'.'NOT YET RETURNED'.'</td>';
+												}else{
+													echo '<td>'.$MyResults['Date_Returned'].'</td>';
+												}
+												
 												
 												//get list of borrowers for this transaction
-												$Glassware_Id=$MyResults['Glassware_Id'];
-												$Group_Id = $MyResults ['Group_Id'];
+												$grp_id = $MyResults ['Group_Id'];
+												$t_id = $MyResults['Trans_Id'];
+											
 												
 												echo '<td>';
-												$MySearchQuery2 = "SELECT * FROM borrower ";
+												$MySearchQuery2 = "SELECT * FROM borrower JOIN group_table USING (Group_Id) WHERE group_table.Group_Id = $grp_id";
 												$MyValues2 = $MyConnection -> query($MySearchQuery2);
 												while ($MyResults2 = $MyValues2 -> fetch_assoc()) 
 												{											
-													echo $MyResults2['Last_Name'].'<br> ';	
+													echo $MyResults2['Last_Name'].', '.$MyResults2['First_Name'].'<br> ';	
 												}
 												echo '</td>';
 												
-												$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0";
+												$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0  AND transaction.Group_Id = $grp_id AND transaction.Trans_Id = $t_id";
 												$MyValues3 = $MyConnection -> query($MySearchQuery3);
 											
 												while ($MyResults3 = $MyValues3 -> fetch_assoc()) //from group table
@@ -182,7 +225,7 @@
 					            </thead>
 					            <tbody >
 									<?php
-										$MySearchQuery = "SELECT * FROM transaction JOIN chemicals USING (Chemical_Id)";
+										$MySearchQuery = "SELECT * FROM transaction JOIN chemicals USING (Chemical_Id) ORDER BY transaction.Date_Returned";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{
@@ -196,19 +239,19 @@
 												
 												
 												//get list of borrowers for this transaction
-												$Glassware_Id=$MyResults['Glassware_Id'];
-												$Group_Id = $MyResults ['Group_Id'];
+												$grp_id = $MyResults ['Group_Id'];
+												$t_id = $MyResults['Trans_Id'];
 												
 												echo '<td>';
-												$MySearchQuery2 = "SELECT * FROM borrower ";
+												$MySearchQuery2 = "SELECT * FROM borrower JOIN group_table USING (Group_Id) WHERE group_table.Group_Id = $grp_id";
 												$MyValues2 = $MyConnection -> query($MySearchQuery2);
 												while ($MyResults2 = $MyValues2 -> fetch_assoc()) 
 												{											
-													echo $MyResults2['Last_Name'].'<br> ';	
+													echo $MyResults2['Last_Name'].', '.$MyResults2['First_Name'].'<br> ';	
 												}
 												echo '</td>';
 												
-												$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Glassware_Id>0 ";
+												$MySearchQuery3 = "SELECT * FROM group_table JOIN transaction USING (Group_Id) WHERE transaction.Chemical_Id>0  AND transaction.Group_Id = $grp_id AND transaction.Trans_Id = $t_id";
 												$MyValues3 = $MyConnection -> query($MySearchQuery3);
 											
 												while ($MyResults3 = $MyValues3 -> fetch_assoc()) //from group table
@@ -216,7 +259,7 @@
 													echo '<td>'.$MyResults3['Professor'].'</td>';
 													echo '<td>'.$MyResults3['Subject'].'</td>';
 													
-												}
+												}//end while
 												echo '</tr>';
 											}
 											
