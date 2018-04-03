@@ -43,8 +43,6 @@
 						<option value = "0">Chemicals</option>
 						<option value = "1">Glasswares</option>
 						<option value = "2">Students</option>
-						<option value = "3">Professors</option>
-						<option value = "4">Subjects</option>
 				    </select>
     			</div>
     			<!-- Search Bar -->

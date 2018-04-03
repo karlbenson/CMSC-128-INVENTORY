@@ -2,7 +2,7 @@
 	session_start();
 	error_reporting(0);
 	
-	include("verify.php");
+	//include("verify.php");
 
 	//Server Credentials
 	$MyServerName = "localhost";
