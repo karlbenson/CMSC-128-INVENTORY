@@ -80,8 +80,9 @@
         $('.remover').css({
           visibility: ''
         });
-
-
+        $('.remover').first().css({
+          visibility: 'hidden'
+        });
         $('.grpmem').on('click','.remover', function() {
           $(this).closest('.grpmem').remove();
         });
@@ -95,6 +96,9 @@
       $('.remover2').css({
         visibility: ''
       });
+      $('.remover2').first().css({
+          visibility: 'hidden'
+        });
       $('.grpit').on('click','.remover2', function() {
           $(this).closest('.grpit').remove();
       });
