@@ -7,8 +7,7 @@
 </head>
 <body  style="z-index: -10000:">
   <div class="container">
-    
-        <center><h2>BORROWER'S FORM</h2></center>
+        <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
         <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>

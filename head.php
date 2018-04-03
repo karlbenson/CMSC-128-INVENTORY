@@ -13,7 +13,7 @@
 <!--BODY STARTS HERE-->
 <body>
 	<button class="btn-danger" onclick="topFunction()" id="myBtnh" title="Go to top" style="width: 70px; height: 70px;"><img src="src/upar.png" style="width: 50px; margin: auto;"></button>
-	<div id="mySidemenu" class="sidemenu">
+	<div id="mySidemenu" class="sidemenu" style="z-index: 2000;">
 		<a href="javascript:void(0)" class="close" onclick="closeSM()">&times;</a>
 		<div class="sm-wrapper">
 			<a href="#"><i class="fas fa-search"></i> Search</a>
