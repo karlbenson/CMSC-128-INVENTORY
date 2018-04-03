@@ -17,6 +17,7 @@
 		<a href="javascript:void(0)" class="close" onclick="closeSM()">&times;</a>
 		<div class="sm-wrapper">
 			<a href="#"><i class="fas fa-search"></i> Search</a>
+			<a href="bform.php"><i class="fa fa-file"></i> Borrower's Form</a>
 			<a href="master.php"><i class="fas fa-th-list"></i> Master List</a>
 			<a href="logout.php" onclick="return confirm('Do you really want to sign out?')"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
 		</div>
@@ -43,7 +44,7 @@
 			<div class="col-sm-9 hidden-sm-down">
 				<div class="row fix-width" style="float: right;">
 					<div><a title="Search" href="#"><i class="fas fa-search"></i> Search</a></div>
-					<div><a title="Borrower's Form" href="#"><i class="fa fa-file"></i> Borrower's Form</a></div>
+					<div><a title="Borrower's Form" href="bform.php"><i class="fa fa-file"></i> Borrower's Form</a></div>
 					<div><a title="Master List" href="master.php"><i class="fas fa-th-list"></i> Master List</a></div>
 					<div><a title="Sign Out" href="logout.php" onclick="return confirm('Do you really want to sign out?')"><i class="fas fa-sign-out-alt"></i> Sign Out</a></div>
 				</div>
