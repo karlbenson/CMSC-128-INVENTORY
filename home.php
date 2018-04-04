@@ -2,37 +2,24 @@
 	session_start();
 	
 	error_reporting(0);
+
 	//Server Credentials
 	$MyServerName = "localhost";
 	$MyUserName = "root";
 	$MyPassword = "";
+
 	//Database
 	$MyDBName = 'chem_glasswares';
+
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
 	//include("verify.php");
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home: UPB Glasswares and Chemicals Inventory</title>
-	<link rel="stylesheet" type="text/css" href="css/home.css">
-	<?php 'loading head';include("head.php"); ?>
-	<script type="text/javascript" src="js/date_time.js"></script>
-</head>
-<body>
-	<div class="container-fluid hbod">
-		<div class="container-fluid row justify-content-center first-row">
-			<div id="home-tops" class="col-lg-8"  >
-				
-				<div class="card-columns" style="background-color: #014421;opacity:1;color:#f3aa2c;">
-					<div class="card p-3" id = "card-format" >
-						
-						<div class="card-block" id = "card-format">
-						  <h4 class="card-title">List of equipment that are currently not in stock</h4>
-						  <p class="card-text">
+
+<!--
 							<ul>
 								<?php
+
 									$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
@@ -46,19 +33,9 @@
 									?>	
 
 							</ul>
-						  </p>
+						-->
 
-
-						</div>
-
-						
-					</div>
-					
-					<div class="card p-3" id = "card-format">
-						
-						<div class="card-block" id = "card-format">
-						  <h4 class="card-title">List of chemicals with low quantities (30% or less than original amount)</h4>
-						  <p class="card-text">
+						<!--
 							<ul>
 								
 									<?php
@@ -80,16 +57,9 @@
 										}	
 									?>
 							</ul>
-						  </p>
-						  
-						</div>
-						 
-					</div>
-					
-					<div class="card p-3" id = "card-format" id = "card-format">
-						<div class="card-block" id = "card-format">
-						  <h4 class="card-title">Students with unfinished transactions</h4>
-						  <p class="card-text">
+						-->
+
+						<!--
 							<ul>
 								<?php
 										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
@@ -105,16 +75,103 @@
 										}	
 									?>
 							</ul>
-						  
-						  </p>
-						</div>
+						-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home: UPB Glasswares and Chemicals Inventory</title>
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<?php 'loading head';include("head.php"); ?>
+	<script type="text/javascript" src="js/date_time.js"></script>
+</head>
+<body>
+
+	<div class="container-fluid hbod">
+		<div class="container-fluid row justify-content-center first-row">
+			<div id="home-tops" class="col-lg-8"  >
+
+				<!--
+					LOOB NG LEFT BOX
+				-->
+				<div class="container-fluid" style="background-color: #014421;color:white;">
+
+					<!-- Place columns here -->
+					<div class="row" id="no-gutter">
+						<div class="col-sm" style="background-color: #014421;color:white;">
+							<h2> Glassware that are currently not in stock</h2>
+      						<p>
+      							<ul>
+								<?php
+									$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{											
+												echo '<li>'.$MyResults['Name'];
+												
+											}
+										}	
+									?>	
+
+</ul>
+      						</p>
+   						 </div>
+    					<div class="col-sm" style="background-color: #014421;color:white;">
+    						<h2> Chemicals with less than 30% of its original amount</h2>
+      						<p >
+							<ul>
+								
+									<?php
+										$MySearchQuery = "SELECT * FROM chemicals WHERE Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{					
+												echo '<li>'.$MyResults['Name'].' (';						
+												if (is_null($MyResults['Quantity_Available_ml'])){
+													echo $MyResults['Quantity_Available_mg'].' mg)';
+												}else{
+													echo $MyResults['Quantity_Available_ml'].' ml)';
+												}
+												
+												
+											}
+										}	
+									?>
+							</ul>
+</p>
+    					</div>
+   						 <div class="col-sm" style="background-color: #014421;color:white;">
+   						 	<h2> Students with unfinished transactions</h2>
+      						<p>
+      							<ul>
+								<?php
+										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{											
+												echo '<li>'.$MyResults['Last_Name'].', '.$MyResults['First_Name'].' ('.$MyResults['Amt_of_transactions'].')';
+												
+												
+											}
+										}	
+									?>
+							</ul>
+      						</p>
+    					</div>
 					</div>
-			</div>		
-				
-				
+				</div>
 			</div>
+
+
+				
+				
 			
-			<span style="width: 8%;"></span>
+		<span style="width: 8%;"></span>
 			<div class="col-lg-3 timestamp align-text-middle" id="home-tops">
 			
 			
