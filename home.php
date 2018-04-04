@@ -16,66 +16,7 @@
 	//include("verify.php");
 ?>
 
-<!--
-							<ul>
-								<?php
 
-									$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
-										$MyValues = $MyConnection -> query($MySearchQuery);
-										if (($MyValues -> num_rows) > 0)
-										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
-											{											
-												echo '<li>'.$MyResults['Name'];
-												
-											}
-										}	
-									?>	
-
-							</ul>
-						-->
-
-						<!--
-							<ul>
-								
-									<?php
-										$MySearchQuery = "SELECT * FROM chemicals WHERE Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)";
-										$MyValues = $MyConnection -> query($MySearchQuery);
-										if (($MyValues -> num_rows) > 0)
-										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
-											{					
-												echo '<li>'.$MyResults['Name'].' (';						
-												if (is_null($MyResults['Quantity_Available_ml'])){
-													echo $MyResults['Quantity_Available_mg'].' mg)';
-												}else{
-													echo $MyResults['Quantity_Available_ml'].' ml)';
-												}
-												
-												
-											}
-										}	
-									?>
-							</ul>
-						-->
-
-						<!--
-							<ul>
-								<?php
-										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
-										$MyValues = $MyConnection -> query($MySearchQuery);
-										if (($MyValues -> num_rows) > 0)
-										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
-											{											
-												echo '<li>'.$MyResults['Last_Name'].', '.$MyResults['First_Name'].' ('.$MyResults['Amt_of_transactions'].')';
-												
-												
-											}
-										}	
-									?>
-							</ul>
-						-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +37,7 @@
 				<div class="container-fluid" style="background-color: #014421;color:white;">
 
 					<!-- Place columns here -->
-					<div class="row" id="no-gutter">
+					<div class="row" id="no-gutter" style="padding-top:0;padding-left:0;padding-right:0;">
 						<div class="col-sm" style="background-color: #014421;color:white;">
 							<h2> Glassware that are currently not in stock</h2>
       						<p>

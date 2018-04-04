@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
 	session_start();
-	
 ?>
+
+<!DOCTYPE html>
+
 
 <html lang="en">
 <head>
@@ -69,6 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = test_input($_POST["username"]);
 	$password = test_input($_POST["password"]);
 	
+	
+
 	$con = mysqli_connect('127.0.0.1','root','');
 	$query = "SELECT * FROM user_accounts WHERE Username = '$username'";
 	
@@ -103,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		header("refresh:2;url=home.php");
 	}else{
 		//login failure
-		echo '<script type="text/javascript"> alert("Incorrect credentials.") </script>';
+		echo '<script type="text/javascript"> alert("Incorrect Credentials.") </script>';
 	}//end if
 }//end if
 	
