@@ -1,0 +1,173 @@
+	.timestamp{
+		color: white;
+		text-align: center;
+	}
+
+	.timestamp h1,.timestamp h2,.timestamp h3,.timestamp h4,.timestamp h5,.timestamp h6{
+		margin-bottom: 30px;
+	}
+
+	.timestamp h3{
+		margin-top: 60px;
+	}
+
+	.fix-width div{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.stack div{
+		padding-top: 10px;
+		width:100%;
+		text-align: center;
+	}
+	.stack span{
+		font-style: italic;
+	}
+
+
+	#myBtn{
+		z-index: 1 !important;
+		border-radius: 200px;
+		padding-left: 12px;
+		padding-right: 12px;
+		padding-top: 2px;
+		border: none;
+		font-size: 45px;
+		position: fixed; /* Fixed/sticky position */
+	    bottom: 20px; /* Place the button at the bottom of the page */
+	    right: 30px; /* Place the button 30px from the right */
+	    z-index: 99; /* Make sure it does not overlap */
+	    border: none; /* Remove borders */
+	    outline: none; /* Remove outline */
+	    cursor: pointer;
+	}
+
+	#myBtn:hover{
+		transition: 0.35s ease-in;
+	}
+
+	.topmost{
+		padding: 15px;
+		color: white;
+		background-color: #7b1113;
+	}
+
+	.second{
+		background-color: #700f13;
+		height: 50px;
+		padding-top: 6px;
+		color: white;
+		font-size: 20px;
+		position: sticky;
+		top: 0;
+		box-shadow: 0 6px 8px rgba(0, 0, 0, 0.35);
+	}
+
+	.second a{
+		color: gray;
+	}
+
+	.second a:hover{
+		color: white;
+		text-decoration: none;
+		transition: 0.25s ease-out;
+	}
+
+	.pg-content{
+		margin-right: 10px;
+		position: absolute;
+	}
+
+	.btn {
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+	}
+	 
+	.btn-secondary:focus, .btn-secondary:active:focus, .btn-secondary.active:focus {
+	    outline: 0 none;
+	}
+	 
+	.btn-secondary {
+	    background:  #e01f25;
+	    color: #ffffff;
+	    cursor: pointer;
+	}
+	 
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+	    background: #33a6cc;
+	}
+	 
+	.btn-primary:active, .btn-primary.active {
+	    background: #007299;
+	    box-shadow: none;
+	}
+
+/* SIDE MENU PART */
+
+.sm-wrapper{
+    margin-top: 100px;
+}
+
+.sidemenu{
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    background-color: #7b1113;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: -2px 0px 10px  #0b0d0f;
+}
+
+.sidemenu a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.sidemenu .close{
+    position: absolute;
+    top: 0;
+    font-size: 95px;
+    margin-right: 50px;
+}
+
+/* SIDE MENU HOVER EFFECT */
+
+.close:hover{
+	color: white;
+}
+
+.sm-wrapper a:after{
+    z-index: -1;
+    position: absolute;
+    left: 0%;
+    width: 0;
+    height: 50px;
+    background: white;
+    content: '';
+    transition: width 0.35s ease-in-out;
+}
+
+.sm-wrapper a:hover:after{
+    width: 5%;
+}
+
+.sm-wrapper a:hover{
+    padding-left: 50px;
+    transition: 0.35s ease-in-out;
+}
+
+.sm-wrapper a{
+	height: 60px;
+}
