@@ -29,21 +29,13 @@
 </head>
 <body>
 	<div id="container-fluid">
-	
-		<div class="tab">
-			<button onclick="document.getElementById('id01').style.display='block'" class="tablinks">Add to Inventory</button>
-			<button class="tablinks" onclick="openTab(event, 'Chemicals')">Chemicals</button>
-			<button class="tablinks" onclick="openTab(event, 'Equipments')">Equipments</button>
-			<button class="tablinks" onclick="openTab(event, 'All')">All</button>
-			
-		<!--trigger the modal for add to inventory-->
-		
+		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Master List</h1>
 		<div id="id01" class="w3-modal" style="z-index:9999;">
 			<div class="w3-modal-content">
 				<header class="w3-container" style="text-align: center;"> 
-					<span onclick="document.getElementById('id01').style.display='none'" 
-					class="w3-button w3-display-topright"><i class="fa fa-window-close" style="font-size:30pt;color:red;"></i></span>
-					<h3><strong>Add to Inventory</strong></h3>
+					<button onclick="document.getElementById('id01').style.display='none'" 
+					class="btn btn-danger btn-lg"><i class="fas fa-times"></i></button>
+					<h3 style="padding: 8px;"><strong>Add to Inventory</strong></h3>
 				</header>
 				<div class="w3-container">
 					<div class="content">
@@ -74,16 +66,24 @@
 			</div>
 		</div>	
 	</div>
+	<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;">
+		<div class="tab">
+			<button onclick="document.getElementById('id01').style.display='block'" class="tablinks btn btn-primary" style="float: left;"><i class="fas fa-plus" style="margin-right: 10px;"></i>Add to Inventory</button>
+			<button class="tablinks btn btn-light" onclick="openTab(event, 'Chemicals')">Chemicals</button>
+			<button class="tablinks btn btn-light" onclick="openTab(event, 'Equipments')">Equipments</button>
+			<button class="tablinks btn btn-light" id="allbtn" onclick="openTab(event, 'All')">All</button>
+		</div>	
+		<!--trigger the modal for add to inventory-->
 	
 
 	<div id="All" class="tabcontent">
 		<!--table for both chemicals+equipments-->
-		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Chemicals</h1>
+		<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Chemicals</h1>
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table">
+			          		<table class="table table-striped table-condensed table-hover">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -134,12 +134,12 @@
 					</div>
 				</div>
 			</div>
-			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Equipment</em></h1>
+			<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Equipment</em></h1>
 	    	<div>
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table">
+			          		<table class="table table-striped table-condensed table-hover">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -199,7 +199,7 @@
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table">
+			          		<table class="table table-striped table-condensed table-hover">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -260,7 +260,7 @@
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table">
+			          		<table class="table table-striped table-condensed table-hover">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -311,7 +311,7 @@
 				</div>
 			</div>
 	</div>
-	
+	</div>
 </div>
 
 	<script>
@@ -369,7 +369,11 @@
 		   	location.reload();
 		});
 	</script>
-
+	<script>
+	jQuery(function(){
+	   jQuery('#allbtn').click();
+	});
+	</script>
 	
 </body>
 </html>
