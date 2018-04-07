@@ -29,10 +29,8 @@
 		z-index: 1 !important;
 		padding: 0 !important;
 		border-radius: 200px !important;
-		padding-bottom: 10px !important;
 		border: none !important;
 		margin: auto !important;
-		font-size: 45px !important;
 		position: fixed !important; /* Fixed/sticky position */
 	    bottom: 20px !important; /* Place the button at the bottom of the page */
 	    right: 30px !important; /* Place the button 30px from the right */
@@ -45,6 +43,7 @@
 
 	#myBtnh:hover{
 		transition: 0.35s ease-in;
+		background-color: #f26252;
 	}
 
 	.topmost{
