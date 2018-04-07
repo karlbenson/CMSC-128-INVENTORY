@@ -107,7 +107,7 @@
 											while ($MyResults = $MyValues -> fetch_assoc())
 											{
 												echo '<tr>';
-												echo '<td class="align-middle">'.$MyResults['Chemical_Id'].'</td>';
+												echo '<td class="align-middle text-center">'.$MyResults['Chemical_Id'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available_mg'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available_ml'].'</td>';
@@ -162,7 +162,7 @@
 											while ($MyResults = $MyValues -> fetch_assoc())
 											{
 												echo '<tr>';
-												echo '<td class="align-middle">'.$MyResults['Glassware_Id'].'</td>';
+												echo '<td class="align-middle text-center">'.$MyResults['Glassware_Id'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available'].'</td>';
 											
@@ -223,7 +223,7 @@
 											while ($MyResults = $MyValues -> fetch_assoc())
 											{
 												echo '<tr>';
-												echo '<td class="align-middle">'.$MyResults['Chemical_Id'].'</td>';
+												echo '<td class="align-middle text-center">'.$MyResults['Chemical_Id'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available_mg'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available_ml'].'</td>';
@@ -283,7 +283,7 @@
 											while ($MyResults = $MyValues -> fetch_assoc())
 											{
 												echo '<tr>';
-												echo '<td class="align-middle">'.$MyResults['Glassware_Id'].'</td>';
+												echo '<td class="align-middle text-center">'.$MyResults['Glassware_Id'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available'].'</td>';
 											
