@@ -23,6 +23,8 @@
 	<link rel="stylesheet" href="css/master.css">
 	<link rel="stylesheet" href="css/modal.css">
 	<link rel="stylesheet" href="css/font-awesome.min.js">
+	<link rel="stylesheet" href="datatables/datatables.css">
+	<script type="text/javascript" charset="utf8" src="datatables/datatables.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<?php 'loading head';include("head.php"); ?>
@@ -31,7 +33,7 @@
 	<div id="container-fluid">
 		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Master List</h1>
 		<div id="id01" class="w3-modal" style="z-index:9999;">
-			<div class="w3-modal-content">
+			<div class="w3-modal-content" style="border-radius: 10px; padding: 20px;">
 				<header class="w3-container" style="text-align: center;"> 
 					<button onclick="document.getElementById('id01').style.display='none'" 
 					class="btn btn-danger btn-lg"><i class="fas fa-times"></i></button>
@@ -83,7 +85,7 @@
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table table-striped table-condensed table-hover">
+			          		<table class="table table-striped table-condensed table-hover" id="table_id">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -139,7 +141,7 @@
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table table-striped table-condensed table-hover">
+			          		<table class="table table-striped table-condensed table-hover" id="table_id">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -199,7 +201,7 @@
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table table-striped table-condensed table-hover">
+			          		<table class="table table-striped table-condensed table-hover" id="table_id">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -260,7 +262,7 @@
 	    		<div class="container">
 			    	<div class="row">
 			        	<div class="col-md-12">
-			          		<table class="table table-striped table-condensed table-hover">
+			          		<table class="table table-striped table-condensed table-hover" id="table_id">
 			          			<thead class="text-center">
 					            	<tr>
 						                <th>ID</th>
@@ -374,6 +376,10 @@
 	   jQuery('#allbtn').click();
 	});
 	</script>
-	
+	<script>
+		$(document).ready( function () {
+		    $('#table_id').DataTable();
+		} );
+	</script>
 </body>
 </html>
