@@ -72,7 +72,7 @@
 		<div class="tab">
 			<button onclick="document.getElementById('id01').style.display='block'" class="tablinks btn btn-primary" style="float: left;"><i class="fas fa-plus" style="margin-right: 10px;"></i>Add to Inventory</button>
 			<button class="tablinks btn btn-light" onclick="openTab(event, 'Chemicals')">Chemicals</button>
-			<button class="tablinks btn btn-light" onclick="openTab(event, 'Equipments')">Equipments</button>
+			<button class="tablinks btn btn-light" onclick="openTab(event, 'Equipments')">Equipment</button>
 			<button class="tablinks btn btn-light" id="allbtn" onclick="openTab(event, 'All')">All</button>
 		</div>	
 		<!--trigger the modal for add to inventory-->
