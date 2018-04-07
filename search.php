@@ -38,8 +38,8 @@
     	<div class="py-0">
     		<form class="form-signin" action="item_search_query.php">
     			<!-- Filter -->
-    			<div class="form-group">
-    				<select name = "search_Filter" id = "sell" class = "form-control">
+    			<div class="form-group" >
+    				<select name = "search_Filter" id = "sell" class = "form-control" style="cursor: pointer;">
 						<option value = "0">Chemicals</option>
 						<option value = "1">Glasswares</option>
 						<option value = "2">Students</option>
@@ -47,11 +47,11 @@
     			</div>
     			<!-- Search Bar -->
     			<div class="form-group" id = "search">
-            		<input class = "form-control" type="search" id="search-input" name = "search_Query" placeholder="Search..."></input>
+            		<input class = "form-control" type="search" id="search-input" name = "search_Query" placeholder="Search..." required="required"></input>
         		</div>
         		
         		<!-- Enter Button -->
-      			<button type="submit" class="btn btn-primary">Enter</button>
+      			<button type="submit" class="btn btn-primary" style="cursor: pointer;">Enter</button>
     		</form>
     	</div>
 

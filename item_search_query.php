@@ -72,7 +72,7 @@
 						echo '<td>
 						<form method="POST" action = "edit_chemical_item.php">
 						<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-						<button type="submit" class="button button5"><i class="fa fa-plus fa-fw" ></i></button>
+						<button type="submit" class="button button5 btn btn-success" style="cursor:pointer;"><i class="fa fa-pencil-alt fa-fw"></i></button>
 						</form>
 						</td>';
 						
@@ -80,7 +80,7 @@
 						echo '<td>
 						<form method="POST" action = "delete_chemical_item.php">
 						<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-						<button type="submit" class="button button5" ><i class="fa fa-pencil fa-fw"></i></button> 
+						<button type="submit" class="button button5 btn btn-danger" style="cursor:pointer;"><i class="fa fa-trash-alt fa-fw"></i></button> 
 						</form>
 						</td>
 						</tr>';
@@ -93,7 +93,7 @@
 				{
 					$EmptySearchResults = "Your search returned no matches.";
 					$DivClass = "text-center py-5 jumbotron";
-					echo "<div class = py-5><div class = ".$DivClass."><h3>".$EmptySearchResults."</h3></div></div>";
+					echo "<div class = py-5><div class = ".$DivClass."><h3>".$EmptySearchResults."</h3><a href='search.php'><button class='btn btn-primaty text-center' style='cursor:pointer;'>BACK</button></a></div></div>";
 				}
 			}
 
@@ -129,7 +129,7 @@
 						echo '<td>
 						<form method="POST" action = "edit_glassware_item.php">
 						<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-						<button type="submit" class="button button5"><i class="fa fa-plus fa-fw" ></i></button>
+						<button type="submit" class="button btn button5 btn-success" style="cursor: pointer;"><i class="fas fa-pencil-alt fa-fw " ></i></button>
 						</form>
 						</td>';
 						
@@ -137,7 +137,7 @@
 						echo '<td>
 						<form method="POST" action = "delete_glassware_item.php">
 						<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-						<button type="submit" class="button button5" ><i class="fa fa-pencil fa-fw"></i></button> 
+						<button type="submit" class="button button5 btn btn-danger" style="cursor:pointer;"><i class="fas fa-trash-alt fa-fw" ></i></button> 
 						</form>
 						</td>
 						</tr>';
@@ -151,7 +151,7 @@
 				{
 					$EmptySearchResults = "Your search returned no matches.";
 					$DivClass = "text-center py-5 jumbotron";
-					echo "<div class = py-5><div class = ".$DivClass."><h3>".$EmptySearchResults."</h3></div></div>";
+					echo "<div class = py-5><div class = ".$DivClass."><h3>".$EmptySearchResults."</h3><a href='search.php'><button class='btn btn-primaty text-center' style='cursor:pointer;'>BACK</button></a></div></div>";
 				}
 			}
 
@@ -192,7 +192,7 @@
 				{
 					$EmptySearchResults = "Your search returned no matches.";
 					$DivClass = "text-center py-5 jumbotron";
-					echo "<div class = py-5><div class = ".$DivClass."><h3>".$EmptySearchResults."</h3></div></div>";
+					echo "<div class = py-5><div class = ".$DivClass."><h3>".$EmptySearchResults."</h3><a href='search.php'><button class='btn btn-primaty text-center' style='cursor:pointer;'>BACK</button></a></div></div>";
 				}
 			}
 
