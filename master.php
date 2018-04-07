@@ -54,6 +54,20 @@
 								                <th style="width: 19%">Amount</th>
 												<th style="width: 10%"><button type="button" name="add" class="button button5 add"><i class="fas fa-plus"></i></button></th>
 							            	</tr>
+							            	<tr>
+												<td>
+													<select name="special[]" class="form-control" onchange="updateSpecial(this.value)"><option value="chem">Add Chemical</option><option value="glass">Add Equipment</option></select>
+												</td>
+												<td>
+													<div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div>
+												</td>
+												<td>
+													<div class="col"><input class="form-control" name="amount[]" placeholder="Amount" required="required"></div>
+												</td>
+												<td>
+													<button type="button" name="remove" class="button button5 remove" id="remover" style="visibility: hidden;"><i class="fas fa-minus"></i></button>
+												</td>
+											</tr>
 							            </thead>
 							            
 							        </table>
@@ -339,11 +353,20 @@
 				var html = '';
 				html += '<tr>';
 				html += '<td><select name="special[]" class="form-control" onchange="updateSpecial(this.value)"><option value="chem">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
-				html += '<td><div class="col"><input class="form-control" name="name[]" placeholder="Name"></div></td>';
-				html += '<td><div class="col"><input class="form-control" name="amount[]" placeholder="Amount"></div></td>';
-				html += '<td><button type="button" name="remove" class="button button5 remove"><i class="fas fa-minus"></i></button></td></tr>';
-				$('#item_table').append(html)
+				html += '<td><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
+				html += '<td><div class="col"><input class="form-control" name="amount[]" placeholder="Amount" required="required"></div></td>';
+				html += '<td><button type="button" name="remove" class="button button5 remove" id="remover"><i class="fas fa-minus"></i></button></td></tr>';
+				$('#item_table').append(html);
+
+				$('#remover').css({
+			        visibility: ''
+			    });
+			    $('#remover').first().css({
+			        visibility: 'hidden'
+			    });
+				
 			});
+
 			
 			$(document).on('click', '.remove', function(){
 				$(this).closest('tr').remove();
