@@ -24,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="css/home.css">
 	<?php 'loading head';include("head.php"); ?>
 	<script type="text/javascript" src="js/date_time.js"></script>
+	
 </head>
 <body>
 

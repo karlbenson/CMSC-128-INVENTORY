@@ -22,6 +22,7 @@
 <body  style="z-index: -10000:">
   <div class="container">
         <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
+        <p class="text-center">Required fields are indicated by *</p>
         <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2;">
           <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
@@ -32,13 +33,13 @@
           <label class="try" for="members">Group Members: </label>
           <div class="row grpmem" style="padding: 5px; margin: auto;">
             <div class="col-md-4">
-              <input type="text" name="sid[]" class="form-control" placeholder="Student ID" required="true">
+              <input type="text" name="sid[]" class="form-control" placeholder="Student ID*" required="true">
             </div>
             <div class="col-md-4">
-              <input type="text" name="lname[]" class="form-control" placeholder="Last Name" required="true">
+              <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
             </div>
             <div class="col-md-3">
-              <input type="text" name="fname[]" class="form-control" placeholder="First Name" required="true">
+              <input type="text" name="fname[]" class="form-control" placeholder="First Name*" required="true">
             </div>
             <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden; text-align: right;"><i class="fas fa-minus"></i></button>
           </div>
@@ -50,21 +51,21 @@
               <input type="text" id="prof" class="form-control" placeholder="Name of Professor">
             </div>
             <div class="col-md-5">
-              <input type="text" id="subj" class="form-control" placeholder="Name of Subject" required="true">
+              <input type="text" id="subj" class="form-control" placeholder="Name of Subject*" required="true">
             </div>
           </div>
 
           <label for="item">Items:</label>
           <div class="row try2">
-              <div class="col-md-8"><center>Item</center></div>
-              <div class="col-md-2"><center>Quantity</center></div>
+              <div class="col-md-7"><center>Item</center></div>
+              <div class="col-md-4"><center>Quantity</center></div>
           </div>
           <div class="row grpit" style="padding: 5px; margin: auto;">
-            <div class="col-md-8">
-              <input type="text" name="it[]" class="form-control" placeholder="Chemical/Equipment" required="true">
+            <div class="col-md-7">
+              <input type="text" name="it[]" class="form-control" placeholder="Chemical/Equipment*" required="true">
             </div>
-            <div class="col-md-1">
-              <input type="text" name="amount[]" class="form-control" placeholder="Amt" required="true">
+            <div class="col-md-2">
+              <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
             </div>
             /<div class="col-md-1">
               <input type="text" class="form-control" placeholder="Max" readonly="readonly">
