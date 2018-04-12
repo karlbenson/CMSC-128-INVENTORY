@@ -6,7 +6,12 @@ body{
 	z-index: -10000;
 }
 
-
+.scrolleft{
+	unicode-bidi:bidi-override;
+    direction: rtl;
+    overflow: scroll;
+    overflow-x: hidden!important;
+}
 
 .first-row div{
 	min-height: 400px;
