@@ -43,7 +43,7 @@
 		
 		
 			<div class="row justify-content-between">
-				<div class="col-lg-5" style="background-color: gray; border-radius: 10px;">
+				<div class="col" style="background-color: gray; border-radius: 10px;">
 					<h2 class="text-center">Not In Stock</h2>
 	      			<p>
 	      				<ul>
@@ -59,7 +59,7 @@
 						</ul>
 	      			</p>
 				</div>
-				<div class="col-lg-5" style="background-color: gray; border-radius: 10px;">
+				<div class="col offset md-1" style="background-color: gray; border-radius: 10px;">
 					<h2 class="text-center">Insufficient Quantities</h2>
 	      			<p>
 						<ul>
