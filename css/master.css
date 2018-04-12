@@ -54,8 +54,8 @@ button:hover {
 	width: 35px;
 	height: 35px;
 	text-align: center;
-	padding: 6px 0;
+	padding: 1px;
 	font-size: 15px;
 	line-height: 1.428571429;
-	border-radius: 15px;
+	border-radius: 20px;
 }
