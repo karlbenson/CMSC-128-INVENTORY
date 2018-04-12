@@ -40,6 +40,13 @@
 					Deadline of submission of chuva on:
 				</div>
 			</div>
+
+			<div>
+					<button class="btn btn-primary">Add New User</button>
+					<button class="btn btn-primary">Delete User</button>
+					<button class="btn btn-primary">Liability Table</button>
+					<button class="btn btn-primary">Transaction Table</button>
+			</div>
 		
 		
 			<div class="row justify-content-between">
@@ -82,6 +89,41 @@
 						</ul>
 					</p>
 				</div>
+			</div>
+		</div>
+		<div class="container">
+			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Liabilities</h1>
+			<div>
+				<table class="table" style="background-color: white;">
+					<thead class="text-center">
+						<tr>
+							<th>Student Number</th>
+							<th>Last Name</th>
+							<th>First Name</th>
+							<th>No. of Items</th>
+							<th>Details</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<?php
+										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
+										$MyValues = $MyConnection -> query($MySearchQuery);
+										if (($MyValues -> num_rows) > 0)
+										{
+											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											{											
+												echo '<li>'.$MyResults['Last_Name'].', '.$MyResults['First_Name'].' ('.$MyResults['Amt_of_transactions'].')';
+												
+												
+											}
+										}	
+									?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div  >
