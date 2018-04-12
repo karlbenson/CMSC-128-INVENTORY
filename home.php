@@ -27,110 +27,63 @@
 	
 </head>
 <body>
-
-	<div class="container-fluid hbod">
-		<div class="container-fluid row justify-content-center first-row">
-			<div id="home-tops" class="col-lg-8"  >
-
-				<!--
-					LOOB NG LEFT BOX
-				-->
-				<div class="container-fluid" style="background-color: #014421;color:white;">
-
-					<!-- Place columns here -->
-					<div class="row" id="no-gutter" style="padding-top:0;padding-left:0;padding-right:0;">
-						<div class="col-sm" style="background-color: #014421;color:white;">
-							<h2> Glassware that are currently not in stock</h2>
-      						<p>
-      							<ul>
-								<?php
-									$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
-										$MyValues = $MyConnection -> query($MySearchQuery);
-										if (($MyValues -> num_rows) > 0)
-										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
-											{											
-												echo '<li>'.$MyResults['Name'];
-												
-											}
-										}	
-									?>	
-
-</ul>
-      						</p>
-   						 </div>
-    					<div class="col-sm" style="background-color: #014421;color:white;">
-    						<h2> Chemicals with less than 30% of its original amount</h2>
-      						<p >
-							<ul>
-								
-									<?php
-										$MySearchQuery = "SELECT * FROM chemicals WHERE Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)";
-										$MyValues = $MyConnection -> query($MySearchQuery);
-										if (($MyValues -> num_rows) > 0)
-										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
-											{					
-												echo '<li>'.$MyResults['Name'].' (';						
-												if (is_null($MyResults['Quantity_Available_ml'])){
-													echo $MyResults['Quantity_Available_mg'].' mg)';
-												}else{
-													echo $MyResults['Quantity_Available_ml'].' ml)';
-												}
-												
-												
-											}
-										}	
-									?>
-							</ul>
-</p>
-    					</div>
-   						 <div class="col-sm" style="background-color: #014421;color:white;">
-   						 	<h2> Students with unfinished transactions</h2>
-      						<p>
-      							<ul>
-								<?php
-										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
-										$MyValues = $MyConnection -> query($MySearchQuery);
-										if (($MyValues -> num_rows) > 0)
-										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
-											{											
-												echo '<li>'.$MyResults['Last_Name'].', '.$MyResults['First_Name'].' ('.$MyResults['Amt_of_transactions'].')';
-												
-												
-											}
-										}	
-									?>
-							</ul>
-      						</p>
-    					</div>
-					</div>
+		<div class="container">
+			<div class="row container-fluid" style="color: black; background-color: gray; border-radius: 5px; margin-bottom: 20px;">
+				<div class="col-sm-4 timestamp">
+					<span id="date_time" style="color:black;"></span>
+					<script type="text/javascript">window.onload = date_time('date_time');</script>
+				</div>
+				<div class="col-sm-4">
+					Last day of classes: May 18, 2018
+				</div>
+				<div class="col-sm-4">
+					Deadline of submission of chuva on:
 				</div>
 			</div>
-
-
-				
-				
-			
-		<span style="width: 8%;"></span>
-			<div class="col-lg-3 timestamp align-text-middle" id="home-tops">
-			
-			
-				<h1><span id="date_time" style="color:white"></span></h1>
-				<h1>
-            		<script type="text/javascript">window.onload = date_time('date_time');</script>
-				</h1>
-
-				
-					<ul style="color:white">
-						<li> Last day of classes: May 18, 2018
-						<li> Deadline of submission of chuva on:
-					</ul>
-				
+		
+		
+			<div class="row justify-content-between">
+				<div class="col-lg-5" style="background-color: gray; border-radius: 10px;">
+					<h2 class="text-center">Not In Stock</h2>
+	      			<p>
+	      				<ul>
+							<?php
+							$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
+							$MyValues = $MyConnection -> query($MySearchQuery);
+							if (($MyValues -> num_rows) > 0)
+							{
+									while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table 
+									{echo '<li>'.$MyResults['Name'];}
+							}	
+							?>	
+						</ul>
+	      			</p>
+				</div>
+				<div class="col-lg-5" style="background-color: gray; border-radius: 10px;">
+					<h2 class="text-center">Insufficient Quantities</h2>
+	      			<p>
+						<ul>
+							<?php
+							$MySearchQuery = "SELECT * FROM chemicals WHERE Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)";
+							$MyValues = $MyConnection -> query($MySearchQuery);
+							if (($MyValues -> num_rows) > 0)
+							{
+								while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+								{
+									echo '<li>'.$MyResults['Name'].' (';						
+									if (is_null($MyResults['Quantity_Available_ml'])){
+										echo $MyResults['Quantity_Available_mg'].' mg)';
+									}else{
+										echo $MyResults['Quantity_Available_ml'].' ml)';
+									}
+								}
+							}	
+							?>
+						</ul>
+					</p>
+				</div>
 			</div>
 		</div>
-
 		<div  >
 		
 			<div class="col-lg-12" style="background-color:white">
