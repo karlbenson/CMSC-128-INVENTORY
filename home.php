@@ -28,46 +28,84 @@
 </head>
 <body>
 		<div class="container">
-			<div class="row container-fluid" style="color: black; background-color: gray; border-radius: 5px; margin-bottom: 20px;">
-				<div class="col-sm-4 timestamp">
+			<div class="row container-fluid" style="color: black; background-color: #edeef2; border-radius: 5px; margin-bottom: 50px;">
+				<div class="col-sm-4 timestamp" style="text-align: left !important;">
 					<span id="date_time" style="color:black;"></span>
 					<script type="text/javascript">window.onload = date_time('date_time');</script>
 				</div>
 				<div class="col-sm-4">
-					Last day of classes: May 18, 2018
+					Last Day of Classes: May 18, 2018
 				</div>
 				<div class="col-sm-4">
-					Deadline of submission of chuva on:
+					Deadline of Returning:
 				</div>
 			</div>
 
-			<div>
-					<button class="btn btn-primary">Add New User</button>
-					<button class="btn btn-primary">Delete User</button>
-					<button class="btn btn-primary">Liability Table</button>
-					<button class="btn btn-primary">Transaction Table</button>
+			<div class="text-center" style="margin-bottom: 20px;">
+					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-user-plus" style="font-size: 50px;"></i><br/>Add New User</button>
+					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-user-times" style="font-size: 50px;"></i><br/>Delete User</button>
+					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-list-ol" style="font-size: 50px;"></i><br/>Liability Table</button>
+					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-list-alt" style="font-size: 50px;"></i><br/>Transaction Table</button>
 			</div>
 		
-		
-			<div class="row justify-content-between">
-				<div class="col" style="background-color: gray; border-radius: 10px;">
-					<h2 class="text-center">Not In Stock</h2>
+			<div class="row">
+				<div class="col">
+					<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Not In Stock</h1>
+				</div>
+				<div class="col">
+					<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Insufficient Quantities</h1>
+				</div>
+			</div>
+			<div class="row justify-content-between" style="height: 350px; overflow-y: scroll;">
+				<div class="col" style="background-color: #edeef2; border-radius: 10px; padding: 30px;">
+	      			<table class="table table-sm table-striped table-condensed table-hover">
+	      				<thead class="text-center">
+	      					<tr>
+	      						<th>ID</th>
+	      						<th>Item Type</th>
+	      						<th>Name</th>
+	      					</tr>
+	      				</thead>
+	      				<tbody>
+		      					<?php
+		      					
+								$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
+								$MyValues = $MyConnection -> query($MySearchQuery);
+								if (($MyValues -> num_rows) > 0)
+								{
+										while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table 
+										{
+											echo "<tr>";
+											echo '<td>'.$MyResults['Glassware_Id'].'</td>';
+											echo '<td> Glassware </td>';
+											echo '<td>'.$MyResults['Name'].'</td>';
+											echo "</tr>";
+										}
+								}
+								
+								$MySearchQuery = "SELECT * FROM chemicals WHERE Quantity_Available_ml =0 OR Quantity_Available_mg =0";
+								$MyValues = $MyConnection -> query($MySearchQuery);
+								if (($MyValues -> num_rows) > 0)
+								{
+									while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+									{
+										echo "<tr>";					
+										echo '<td>'.$MyResults['Chemical_Id'].'</td>';
+										echo '<td> Chemical </td>';
+										echo '<td>'.$MyResults['Name'].'</td>';
+										echo "</tr>";
+									}
+								}	
+								?>
+	      				</tbody>
+	      			</table>
 	      			<p>
 	      				<ul>
-							<?php
-							$MySearchQuery = "SELECT * FROM glasswares WHERE Quantity_Available = 0";
-							$MyValues = $MyConnection -> query($MySearchQuery);
-							if (($MyValues -> num_rows) > 0)
-							{
-									while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table 
-									{echo '<li>'.$MyResults['Name'];}
-							}	
-							?>	
+								
 						</ul>
 	      			</p>
 				</div>
-				<div class="col offset md-1" style="background-color: gray; border-radius: 10px;">
-					<h2 class="text-center">Insufficient Quantities</h2>
+				<div class="col" style="background-color: #edeef2; border-radius: 10px; height: 350px; overflow-y: scroll;">
 	      			<p>
 						<ul>
 							<?php
