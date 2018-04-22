@@ -33,11 +33,42 @@
 <body>
 	<div id="container-fluid">
 		<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Master List</h1>
+		<!--trigger the modal for confirm delete for chemical-->
+		<div id="id02" class="w3-modal" style="z-index:9999;">
+			<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
+				<header class="w3-container" style="text-align: center;"> 
+					<button onclick="document.getElementById('id02').style.display='none'" 
+					class="btn btn-danger"><i class="fas fa-times"></i></button>
+					<h3 style="padding: 8px;"><strong>Delete Item</strong></h3>
+				</header>
+				<div class="w3-container">
+					<div class="content">
+						<div class="container">
+					    	<div class="row">
+					        	<div class="col-md-12">
+									<p>Are you sure you want to delete the chemical in the inventory?</p>
+							        <footer class="w3-container">
+										<div>
+										<button class="btn btn-danger" type="submit" name="submit">Yes</button>
+										</div>
+										<div style="padding: 0px 80px 0px">
+										<button class="btn btn-default" type="submit" name="submit" style="border: 1px solid #ccc" onclick="document.getElementById('id02').style.display='none'">No</button>
+										</div>
+									</footer>
+									</form>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--trigger the modal for add to inventory-->
 		<div id="id01" class="w3-modal" style="z-index:9999;">
 			<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
 				<header class="w3-container" style="text-align: center;"> 
 					<button onclick="document.getElementById('id01').style.display='none'" 
-					class="btn btn-danger btn-lg"><i class="fas fa-times"></i></button>
+					class="btn btn-danger"><i class="fas fa-times"></i></button>
 					<h3 style="padding: 8px;"><strong>Add to Inventory</strong></h3>
 				</header>
 				<div class="w3-container">
@@ -89,10 +120,8 @@
 			<button class="tablinks btn btn-light" onclick="openTab(event, 'Chemicals')">Chemicals</button>
 			<button class="tablinks btn btn-light" onclick="openTab(event, 'Equipments')">Equipment</button>
 			<button class="tablinks btn btn-light" id="allbtn" onclick="openTab(event, 'All')">All</button>
-		</div>	
-		<!--trigger the modal for add to inventory-->
+		</div>
 	
-
 	<div id="All" class="tabcontent">
 		<!--table for both chemicals+equipments-->
 		<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Chemicals</h1>
@@ -126,18 +155,12 @@
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available_mg'].'</td>';
 												echo '<td class="align-middle">'.$MyResults['Quantity_Available_ml'].'</td>';
 												echo '<td>
-												<form method="POST" action = "edit_chemical_item.php">
-												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5"><i class="fas fa-pencil-alt"></i></button>
-												</form>
+												<button type="submit" class="button button5 onclick="editFunction()"><i class="fas fa-pencil-alt"></i></button>
 												</td>';
-												
-												
+											
+											
 												echo '<td>
-												<form method="POST" action = "delete_chemical_item.php">
-												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fas fa-trash-alt"></i></button> 
-												</form>
+												<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
 												</td>
 												</tr>';
 												//ADD DELETE CONFIRMATION
@@ -189,10 +212,7 @@
 												
 												
 												echo '<td>
-												<form method="POST" action = "delete_glassware_item.php">
-												<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fas fa-trash-alt"></i></button> 
-												</form>
+												<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
 												</td>
 												</tr>';
 												//ADD DELETE CONFIRMATION
@@ -251,10 +271,7 @@
 												
 												
 												echo '<td>
-												<form method="POST" action = "delete_chemical_item.php">
-												<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fas fa-trash-alt"></i></button> 
-												</form>
+												<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
 												</td>
 												</tr>';
 												//ADD DELETE CONFIRMATION
@@ -310,10 +327,7 @@
 												
 												
 												echo '<td>
-												<form method="POST" action = "delete_glassware_item.php">
-												<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-												<button type="submit" class="button button5" ><i class="fas fa-trash-alt"></i></button> 
-												</form>
+												<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
 												</td>
 												</tr>';
 												//ADD DELETE CONFIRMATION
@@ -346,6 +360,17 @@
 			evt.currentTarget.className += " active";
 		}
 	
+	</script>
+	<script>
+		function deleteFunction(){
+			document.getElementById("id02").style.display = "block";
+		}
+		function deleteChem(){
+			
+		}
+		function deleteGlass(){
+			
+		}
 	</script>
 	<script>
 		$(document).ready(function(){
