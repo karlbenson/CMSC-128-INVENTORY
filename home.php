@@ -2,15 +2,18 @@
 	session_start();
 	
 	error_reporting(0);
+
 	//Server Credentials
 	$MyServerName = "localhost";
 	$MyUserName = "root";
 	$MyPassword = "";
+
 	//Database
 	$MyDBName = 'chem_glasswares';
+
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
-	include("verify.php");
+	//include("verify.php");
 ?>
 
 
@@ -61,7 +64,7 @@
 			</div>
 			<div class="row justify-content-between">
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid #dbdbdb;">
+					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;">
 	      			<table class="table table-striped table-condensed table-hover" id="nistab">
 	      				<thead class="text-center">
 	      					<tr>
@@ -107,7 +110,7 @@
 				</div>
 				
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid #dbdbdb;">
+					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;">
 						<table class="table table-striped table-condensed table-hover" id="nistab2">
 	      				<thead class="text-center">
 	      					<tr>
@@ -160,14 +163,10 @@
 					</div>
 				</div>
 		</div>
-
-		<br>
-
-		<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;border:2px solid #dbdbdb;">
 		<div class="container">
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Liabilities</h1>
 			<div>
-				<table class="table table-sm table-striped table-condensed table-hover" id="table_id3" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;">
+				<table class="table" style="background-color: white;">
 					<thead class="text-center">
 						<tr>
 							<th>Student Number</th>
@@ -205,12 +204,12 @@
 		</div>
 		<div  >
 		
-			<div class="col-lg-12" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;">
+			<div class="col-lg-12" style="background-color:white">
 			
-				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px;background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;"><em>Transaction History for Glassware</h1>
+				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Transaction History for Glassware</h1>
 	    	
-	    		<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;" >
-			          		<table class="table table-sm table-striped table-condensed table-hover" id="table_id" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;>
+	    		<div class="container" style="background-color:white">
+			          		<table class="table" style="background-color:white">
 			          			<thead class="text-center" >
 					            	<tr>
 						                <th>Glassware Borrowed</th>
@@ -220,7 +219,7 @@
 						                <th>Borrowers</th>
 						                <th>Professor</th>
 										<th>Subject </th>
-										<!-- echo '<td class="text-center"><button class="btn btn-success" style="cursor:pointer;">See Details</button></td>'; -->
+										
 					            	</tr>
 					            </thead>
 					            <tbody >
@@ -237,7 +236,7 @@
 												echo '<td>'.$MyResults['Qty_Borrowed_Glasswares'].'</td>';
 												echo '<td>'.$MyResults['Date_Borrowed'].'</td>';
 												if (is_null($MyResults['Date_Returned'])){
-													echo '<td class="text-center" style="text-align:center;vertical-align:middle;" ><button class="btn" style="cursor:pointer;">Clear</button></td>';
+													echo '<td>'.'NOT YET RETURNED'.'</td>';
 												}else{
 													echo '<td>'.$MyResults['Date_Returned'].'</td>';
 												}
@@ -279,9 +278,9 @@
 					        </table>
 				</div>
 				
-				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px;background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;"><em>Transaction History for Chemicals</h1>
-				<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;" >
-			          		<table class="table table-sm table-striped table-condensed table-hover" id="table_id2" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;" >
+				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Transaction History for Chemicals</h1>
+				<div class="container" style="background-color:white">
+			          		<table class="table" style="background-color:white">
 			          			<thead class="text-center" >
 					            	<tr>
 						                <th>Chemical Requested</th>
@@ -347,8 +346,6 @@
 			
 		</div>
 	</div>
-</div>
-<?php include("footer.php") ?>
 	<script>
 		$('#nistab').DataTable({
 			"searching":false,
@@ -359,47 +356,6 @@
 			"searching":false,
 			"paging":false,
 			"info":false
-		});
-
-		$('#table_id').DataTable(
-		{
-		"columns":
-		[
-			null,
-			null,
-		    null,
-		    null,
-			null,
-			null,
-			null
-		    
-		]
-		});
-
-		$('#table_id2').DataTable(
-		{
-		"columns":
-		[
-			null,
-			null,
-		    null,
-			null,
-			null,
-			null,
-			null
-		]
-		});
-
-		$('#table_id3').DataTable(
-		{
-		"columns":
-		[
-			null,
-			null,
-		    null,
-			null,
-			{"orderable":false}
-		]
 		});
 	</script>
 	
