@@ -35,7 +35,8 @@
 	<!-- Body -->
 	<body>
     	<!-- Search -->
-    	<div class="py-0">
+    	<div class="container-fluid">
+    		<div class="py-0">
     		<form class="form-signin" action="item_search_query.php">
     			<!-- Filter -->
     			<div class="form-group" >
@@ -53,8 +54,11 @@
         		<!-- Enter Button -->
       			<button type="submit" class="btn btn-primary" style="cursor: pointer;">Enter</button>
     		</form>
+    		</div>
+    		
     	</div>
-
+    	
+		
     	<!-- Scripts -->
     	<script type = "text/javascript" src = "scripts/script.js"></script>
     	<script src="scripts/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -10,7 +10,7 @@
 	$MyDBName = 'chem_glasswares';
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
-	//include("verify.php");
+	include("verify.php");
 ?>
 
 
@@ -348,6 +348,7 @@
 		</div>
 	</div>
 </div>
+<?php include("footer.php") ?>
 	<script>
 		$('#nistab').DataTable({
 			"searching":false,

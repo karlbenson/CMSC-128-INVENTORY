@@ -152,7 +152,12 @@
 		</div>
 	</div>
 
-		<script>
+		
+
+	</body>
+</html>
+
+<script>
 			function openTab(evt, tabName)
 			{
 				var i, tabcontent, tablinks;
@@ -337,5 +342,3 @@
 				input.style.display = 'none';
 			}
 		</script>
-	</body>
-</html>
