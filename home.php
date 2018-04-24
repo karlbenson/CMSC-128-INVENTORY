@@ -61,7 +61,7 @@
 			</div>
 			<div class="row justify-content-between">
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid black;">
+					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid #dbdbdb;">
 	      			<table class="table table-striped table-condensed table-hover" id="nistab">
 	      				<thead class="text-center">
 	      					<tr>
@@ -107,7 +107,7 @@
 				</div>
 				
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid black;">
+					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid #dbdbdb;">
 						<table class="table table-striped table-condensed table-hover" id="nistab2">
 	      				<thead class="text-center">
 	      					<tr>
@@ -163,7 +163,7 @@
 
 		<br>
 
-		<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;border:2px solid black;">
+		<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;border:2px solid #dbdbdb;">
 		<div class="container">
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Liabilities</h1>
 			<div>
