@@ -64,7 +64,7 @@
 			</div>
 			<div class="row justify-content-between">
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;">
+					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll; border-color: #d3d3d3;">
 	      			<table class="table table-striped table-condensed table-hover" id="nistab">
 	      				<thead class="text-center">
 	      					<tr>
@@ -110,7 +110,7 @@
 				</div>
 				
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll;">
+					<div style="background-color: #edeef2; border-radius: 10px; border-color:#d3d3d3 ; padding: 20px; height: 350px; overflow-y: scroll;">
 						<table class="table table-striped table-condensed table-hover" id="nistab2">
 	      				<thead class="text-center">
 	      					<tr>
@@ -163,10 +163,11 @@
 					</div>
 				</div>
 		</div>
-		<div class="container">
+		<div class="container-fluid" style="padding-top :35px;padding-bottom :35px; margin-top:35px;margin-bottom:35px; background-color: #edeef2; border-radius: 10px; border-color:#d3d3d3;">
+			<div class="container" style="padding: 10px;">
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Liabilities</h1>
 			<div>
-				<table class="table" style="background-color: white;">
+				<table class="table table-striped table-hover" id="tab_lia">
 					<thead class="text-center">
 						<tr>
 							<th>Student Number</th>
@@ -177,8 +178,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>
 								<?php
 										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
 										$MyValues = $MyConnection -> query($MySearchQuery);
@@ -196,20 +195,18 @@
 											}
 										}	
 									?>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<div  >
 		
-			<div class="col-lg-12" style="background-color:white">
+			<div class="col-lg-12">
 			
-				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Transaction History for Glassware</h1>
+				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px; margin-top:35px;"><em>Transaction History for Glassware</h1>
 	    	
-	    		<div class="container" style="background-color:white">
-			          		<table class="table" style="background-color:white">
+	    		<div class="container">
+			          		<table class="table table-striped table-hover" id="tab_gla">
 			          			<thead class="text-center" >
 					            	<tr>
 						                <th>Glassware Borrowed</th>
@@ -278,9 +275,9 @@
 					        </table>
 				</div>
 				
-				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Transaction History for Chemicals</h1>
-				<div class="container" style="background-color:white">
-			          		<table class="table" style="background-color:white">
+				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px; margin-top:35px;"><em>Transaction History for Chemicals</h1>
+				<div class="container">
+			          		<table class="table table-striped table-hover" id="tab_che">
 			          			<thead class="text-center" >
 					            	<tr>
 						                <th>Chemical Requested</th>
@@ -344,6 +341,7 @@
 			</div>	
 			
 			
+			</div>
 		</div>
 	</div>
 	<script>
@@ -357,7 +355,30 @@
 			"paging":false,
 			"info":false
 		});
+		$('#tab_lia').DataTable({
+		"columns":
+		[
+			null,
+		    null,
+		    null,	
+		    { "orderable": false },
+		    { "orderable": false }
+		]
+		});
+		$('#tab_gla').DataTable({
+		"columns":
+		[
+			null,
+			null,
+		    null,
+		    null,
+		    null,
+		    null,
+		    null
+		]
+		});
+		$('#tab_che').DataTable({});
 	</script>
-	
+	<?php include("footer.php")  ?>
 </body>
 </html>
