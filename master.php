@@ -63,8 +63,12 @@
 					</div>
 				</div>
 			</div>
+			<div>
+				<div id = "error">
+				</div>
+			</div>
 			<!--trigger the modal for add to inventory-->
-			<div id="id01" class="w3-modal" style="z-index:9999;" onload="defAmt()">
+			<div id="id01" class="w3-modal" style="z-index:9999;">
 				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
 						<button onclick="document.getElementById('id01').style.display='none'" 
@@ -86,11 +90,11 @@
 													<th class="align-middle text-center" style="width: 10%"><button type="button" name="add" class="button button5 add"><i class="fas fa-plus"></i></button></th>
 								            	</tr>
 							            	</thead>
-							            	<tbody class="text-center">
+							            	<tbody class="text-center" id = "data_input">
 								            	<tr>
 													<td class="align-middle text-center" align="center">
-														<select name="special[]" class="form-control" onchange="test(this.id, this.value)" id = "myType">
-															<option value="chem">Add Chemical</option>
+														<select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType">
+															<option value="chem" selected="selected">Add Chemical</option>
 															<option value="glass">Add Equipment</option>
 														</select>
 													</td>
@@ -101,7 +105,7 @@
 														<div class = "row align-content-center">
 															<input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount">
 															<select name = "unit[]" class="form-control col-6" id="ChemUnit">
-																	<option value = "ml">ml</option>
+																	<option value = "ml" selected="selected">ml</option>
 																	<option value = "mg">mg</option>
 															</select>
 														</div>
@@ -134,224 +138,17 @@
 		
 		<div id="All" class="tabcontent">
 			<!--table for both chemicals+equipments-->
-			<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Chemicals</h1>
-		    	<div>
-		    		<div class="container">
-				    	<div class="row">
-				        	<div class="col-md-12">
-				          		<table class="table table-sm table-striped table-condensed table-hover" id="table_id">
-				          			<thead class="text-center">
-						            	<tr>
-							                <th>ID</th>
-							                <th>Name</th>
-							                <th>Amount (mg)</th>
-											 <th>Amount (ml)</th>
-							                <th>Edit</th>
-							                <th>Delete</th>
-						            	</tr>
-						            </thead>
-						            <tbody>
-									
-										<?php
-											$MySearchQuery = "SELECT * FROM chemicals ORDER BY Chemical_Id;";
-											$MyValues = $MyConnection -> query($MySearchQuery);
-											if (($MyValues -> num_rows) > 0)
-											{
-												while ($MyResults = $MyValues -> fetch_assoc())
-												{
-													echo '<tr>';
-													echo '<td class="align-middle text-center">'.$MyResults['Chemical_Id'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Quantity_Available_mg'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Quantity_Available_ml'].'</td>';
-													echo '<td>
-													<button type="submit" class="button button5 onclick="editFunction()"><i class="fas fa-pencil-alt"></i></button>
-													</td>';
-												
-												
-													echo '<td>
-													<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-													</td>
-													</tr>';
-													//ADD DELETE CONFIRMATION
-		
-												}
-											}
-										?>
-						        	</tbody>
-						        </table>
-						    </div>
-						</div>
-					</div>
-				</div>
-				<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Equipment</em></h1>
-		    	<div>
-		    		<div class="container">
-				    	<div class="row">
-				        	<div class="col-md-12">
-				          		<table class="table table-sm table-striped table-condensed table-hover" id="table_id2">
-				          			<thead class="text-center">
-						            	<tr>
-							                <th>ID</th>
-							                <th>Name</th>
-							                <th>Amount</th>
-							                <th>Edit</th>
-							                <th>Delete</th>
-						            	</tr>
-						            </thead>
-						            <tbody>
-									
-										<?php
-											$MySearchQuery = "SELECT * FROM glasswares ORDER BY Glassware_Id;";
-											$MyValues = $MyConnection -> query($MySearchQuery);
-											if (($MyValues -> num_rows) > 0)
-											{
-												while ($MyResults = $MyValues -> fetch_assoc())
-												{
-													echo '<tr>';
-													echo '<td class="align-middle text-center">'.$MyResults['Glassware_Id'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Quantity_Available'].'</td>';
-												
-													echo '<td>
-													<form method="POST" action = "edit_glassware_item.php">
-													<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-													<button type="submit" class="button button5"><i class="fas fa-pencil-alt"></i></button>
-													</form>
-													</td>';
-													
-													
-													echo '<td>
-													<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-													</td>
-													</tr>';
-													//ADD DELETE CONFIRMATION
-		
-												}
-											}
-										?>
-						        	</tbody>
-						        </table>
-						    </div>
-						</div>
-					</div>
-				</div>
-				
+			<?php include("table_all.php");?>
 		</div>
 
 		<div id="Chemicals" class="tabcontent">
 			<!--table for chemicals only*/ -->
-			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Chemicals</em></h1>
-		    	<div>
-		    		<div class="container">
-				    	<div class="row">
-				        	<div class="col-md-12">
-				          		<table class="table table-sm table-striped table-condensed table-hover" id="table_id3">
-				          			<thead class="text-center">
-						            	<tr>
-							                <th>ID</th>
-							                <th>Name</th>
-							                <th>Amount (mg)</th>
-											<th>Amount (ml) </th>
-							                <th>Edit</th>
-							                <th>Delete</th>
-						            	</tr>
-						            </thead>
-						            <tbody>
-									
-										<?php
-											$MySearchQuery = "SELECT * FROM chemicals ORDER BY Chemical_Id;";
-											$MyValues = $MyConnection -> query($MySearchQuery);
-											if (($MyValues -> num_rows) > 0)
-											{
-												while ($MyResults = $MyValues -> fetch_assoc())
-												{
-													echo '<tr>';
-													echo '<td class="align-middle text-center">'.$MyResults['Chemical_Id'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Quantity_Available_mg'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Quantity_Available_ml'].'</td>';
-												
-													echo '<td>
-													<form method="POST" action = "edit_chemical_item.php">
-													<input type="hidden" class="hide" placeholder="'.$MyResults['Chemical_Id'].'" value="'.$MyResults['Chemical_Id'].'" name="Chemical_Id" readonly>
-													<button type="submit" class="button button5"><i class="fas fa-pencil-alt"></i></button>
-													</form>
-													</td>';
-													
-													
-													echo '<td>
-													<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-													</td>
-													</tr>';
-													//ADD DELETE CONFIRMATION
-		
-												}
-											}
-										?>
-						        	</tbody>
-						        </table>
-						    </div>
-						</div>
-					</div>
-				</div>
+			<?php include("table_chem.php");?>
 		</div>
 
 		<div id="Equipments" class="tabcontent">
 			<!--table for equipments only*/-->
-			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Equipment</em></h1>
-		    	<div>
-		    		<div class="container">
-				    	<div class="row">
-				        	<div class="col-md-12">
-				          		<table class="table table-sm table-striped table-condensed table-hover" id="table_id4">
-				          			<thead class="text-center">
-						            	<tr>
-							                <th>ID</th>
-							                <th>Name</th>
-							                <th>Amount</th>
-							                <th>Edit</th>
-							                <th>Delete</th>
-						            	</tr>
-						            </thead>
-						            <tbody>
-									
-										<?php
-											$MySearchQuery = "SELECT * FROM glasswares ORDER BY Glassware_Id;";
-											$MyValues = $MyConnection -> query($MySearchQuery);
-											if (($MyValues -> num_rows) > 0)
-											{
-												while ($MyResults = $MyValues -> fetch_assoc())
-												{
-													echo '<tr>';
-													echo '<td class="align-middle text-center">'.$MyResults['Glassware_Id'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-													echo '<td class="align-middle">'.$MyResults['Quantity_Available'].'</td>';
-												
-													echo '<td>
-													<form method="POST" action = "edit_glassware_item.php">
-													<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-													<button type="submit" class="button button5"><i class="fas fa-pencil-alt"></i></button>
-													</form>
-													</td>';
-													
-													
-													echo '<td>
-													<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-													</td>
-													</tr>';
-													//ADD DELETE CONFIRMATION
-		
-												}
-											}
-										?>
-						        	</tbody>
-						        </table>
-						    </div>
-						</div>
-					</div>
-				</div>
-		</div>
+			<?php include("table_glass.php");?>
 		</div>
 	</div>
 
@@ -370,7 +167,7 @@
 
 				for (i = 0; i < tablinks.length; i++)
 				{
-					tablinks[i].className = tablinks[i].className.replace(" active", "");
+					tablinks[i].className = tablinks[i].className.replace("active", "");
 				}
 
 				document.getElementById(tabName).style.display = "block";
@@ -400,9 +197,9 @@
 				{
 					var html = '';
 					html += '<tr>';
-					html += '<td class="align-middle text-center" align="center"><select name="special[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
+					html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
 					html += '<td class="align-middle text-center" align="center" align="center"><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
-					html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml">ml</option><option value = "mg">mg</option></select></div></td>';
+					html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml" selected="selected">ml</option><option value = "mg">mg</option></select></div></td>';
 					html += '<td align="center"><button type="button" name="remove" class="button button5 remove" id="remover"><i class="fas fa-minus"></i></button></td>';
 					$('#item_table').append(html);
 
@@ -429,80 +226,40 @@
 				document.getElementById('id01').style.display='none';
 				var form_data = $(this).serialize();
 
-				$('#item_table').append(form_data); 
 				$.ajax
 				(
 					{
 					    url: "multiple_insert.php",
 					    method: "POST",
 					    data: form_data,
-					    success: function(data)
+					    success: function()
 					    {
-				      		$('#item_table').find("tr:gt(0)").remove();
-					      	$('#error').html('<div class="alert alert-success">Item Details Saved</div>');
+				      		var html = '';
+							html += '<tr>';
+							html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
+							html += '<td class="align-middle text-center" align="center" align="center"><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
+							html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml" selected="selected">ml</option><option value = "mg">mg</option></select></div></td>';
+							html += '<td align="center"><button type="button" name="remove" class="button button5 remove" id="remover" style="visibility: hidden;"><i class="fas fa-minus"></i></button></td>';
+
+							
+							$('#item_table').find("tr:gt(0)").remove();
+
+							$('#data_input').innerHTML = '';
+
+							$('#data_input').append(html);
+
+					      	$('#error').html('<div class="alert alert-success"><strong>Item Details Saved!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+					      	$('#All').load("table_all.php");
+					      	$('#Chemicals').load("table_chem.php");
+					      	$('#Equipments').load("table_glass.php");
 					    }
 				   	}
 			   	);
-			   	location.reload();
 			});
 		
 			jQuery(function()
 			{
 			   jQuery('#allbtn').click();
-			});
-
-			$('#table_id').DataTable(
-			{
-					"columns":
-					[
-						null,
-						null,
-					    null,
-					    null,
-						
-					    { "orderable": false },
-					    { "orderable": false }
-		  			]
-			});
-
-			$('#table_id2').DataTable(
-			{
-					"columns":
-					[
-						null,
-						null,
-					    null,
-						
-					    { "orderable": false },
-					    { "orderable": false }
-		  			]
-			});
-
-			$('#table_id3').DataTable(
-			{
-					"columns":
-					[
-						null,
-						null,
-					    null,
-					    null,
-						
-					    { "orderable": false },
-					    { "orderable": false }
-		  			]
-			});
-
-			$('#table_id4').DataTable(
-			{
-					"columns":
-					[
-						null,
-						null,
-					    null,
-						
-					    { "orderable": false },
-					    { "orderable": false }
-		  			]
 			});
 			
 			function changeID()
@@ -573,6 +330,11 @@
 						$('#ChemUnit_' + Count.toString())[0].selectedIndex = 0;
 					}
 				}
+			}
+
+			function hideDiV(input)
+			{
+				input.style.display = 'none';
 			}
 		</script>
 	</body>

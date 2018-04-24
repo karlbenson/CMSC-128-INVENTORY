@@ -14,18 +14,18 @@
 	
 	//include("verify.php");
 	
-	for($count = 0; $count < count($_POST['special']); $count++)
+	for ($count = 0; $count < (count($_POST['item_type'])); $count++)
 	{
-		$special = $_POST['special'][$count];
-
-		if ($special == 'chem')
+		$item_type = $_POST['item_type'][$count];
+		if (strcmp($item_type, 'chem') == 0)
 		{
 			$c_name = $_POST['name'][$count];
 			$c_unit = $_POST['unit'][$count];
 			$c_amount_orig = $_POST['amount'][$count];
+
 			$c_fixedName = mysqli_real_escape_string($MyConnection, $c_name);
 
-			if ($c_unit == 'ml')
+			if (strcmp($c_unit, 'ml') == 0)
 			{
 				$c_amount_ml = $_POST['amount'][$count];
 				mysqli_query($MyConnection, "INSERT INTO chemicals (Name, Quantity_Available_ml, Original_Amt) VALUES ('$c_fixedName', $c_amount_ml, $c_amount_orig);");
@@ -45,11 +45,7 @@
 
 			$e_fixedName = mysqli_real_escape_string($MyConnection, $e_name);
 
-
 			mysqli_query($MyConnection, "INSERT INTO glasswares (Name, Quantity_Available) VALUES ('$e_fixedName', $e_amount);");
 		}
 	}
-
-	header("location =master.php");
-
 ?>
