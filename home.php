@@ -199,13 +199,16 @@
 				</table>
 			</div>
 		</div>
-		<div  >
+		<div class="col-sm-12 text-center">
+			<button class="btn btn-primary" style="cursor: pointer;"> SEE FULL TABLE </button>
+		</div>
+		<div>
 		
 			<div class="col-lg-12">
 			
 				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px; margin-top:35px;"><em>Transaction History for Glassware</h1>
 	    	
-	    		<div class="container">
+	    		<div class="container" style="margin-bottom:35px;">
 			          		<table class="table table-striped table-hover" id="tab_gla">
 			          			<thead class="text-center" >
 					            	<tr>
@@ -274,9 +277,12 @@
 					        	</tbody>
 					        </table>
 				</div>
+				<div class="col-sm-12 text-center">
+					<button class="btn btn-primary" style="cursor: pointer;"> SEE FULL TABLE </button>
+				</div>
 				
 				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px; margin-top:35px;"><em>Transaction History for Chemicals</h1>
-				<div class="container">
+				<div class="container" style="margin-bottom:35px;">
 			          		<table class="table table-striped table-hover" id="tab_che">
 			          			<thead class="text-center" >
 					            	<tr>
@@ -337,7 +343,9 @@
 					        	</tbody>
 					        </table>
 				</div>
-						
+				<div class="col-sm-12 text-center">
+					<button class="btn btn-primary" style="cursor: pointer;"> SEE FULL TABLE </button>
+				</div>	
 			</div>	
 			
 			
@@ -358,6 +366,7 @@
 		$('#tab_lia').DataTable({
 			"searching":false,
 			"paging":false,
+			"info":false,
 		"columns":
 		[
 			null,
@@ -370,6 +379,7 @@
 		$('#tab_gla').DataTable({
 			"searching":false,
 			"paging":false,
+			"info":false,
 		"columns":
 		[
 			null,
@@ -384,6 +394,7 @@
 		$('#tab_che').DataTable({
 			"searching":false,
 			"paging":false,
+			"info":false,
 		});
 	</script>
 	<?php include("footer.php")  ?>
