@@ -128,7 +128,7 @@
 				</div>
 			</div>	
 		</div>
-		<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px;">
+		<div class="container" style="background-color: #edeef2; padding: 20px; margin-bottom: 50px; border-radius: 10px; border:2px solid #dbdbdb;">
 			<div class="tab">
 				<button onclick="document.getElementById('id01').style.display='block'" class="tablinks btn btn-primary" style="float: left;"><i class="fas fa-plus" style="margin-right: 10px;"></i>Add to Inventory</button>
 				<button class="tablinks btn btn-light" onclick="openTab(event, 'Chemicals')">Chemicals</button>
@@ -151,9 +151,7 @@
 			<?php include("table_glass.php");?>
 		</div>
 	</div>
-
-		
-
+	
 	</body>
 </html>
 

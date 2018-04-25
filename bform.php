@@ -23,7 +23,7 @@
   <div class="container">
         <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
         <p class="text-center">Required fields are indicated by *</p>
-        <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2;">
+        <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2; border:2px solid #dbdbdb;">
           <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
