@@ -179,7 +179,7 @@
 					</thead>
 					<tbody>
 								<?php
-										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
+										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0 LIMIT 5";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{
@@ -222,7 +222,7 @@
 					            <tbody >
 								
 									<?php
-										$MySearchQuery = "SELECT * FROM transaction JOIN glasswares USING (Glassware_Id) ORDER BY transaction.Date_Returned";
+										$MySearchQuery = "SELECT * FROM transaction JOIN glasswares USING (Glassware_Id) ORDER BY transaction.Date_Returned LIMIT 5";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{
@@ -292,7 +292,7 @@
 					            </thead>
 					            <tbody >
 									<?php
-										$MySearchQuery = "SELECT * FROM transaction JOIN chemicals USING (Chemical_Id) ORDER BY transaction.Date_Returned";
+										$MySearchQuery = "SELECT * FROM transaction JOIN chemicals USING (Chemical_Id) ORDER BY transaction.Date_Returned LIMIT 5";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{
@@ -356,6 +356,8 @@
 			"info":false
 		});
 		$('#tab_lia').DataTable({
+			"searching":false,
+			"paging":false,
 		"columns":
 		[
 			null,
@@ -366,6 +368,8 @@
 		]
 		});
 		$('#tab_gla').DataTable({
+			"searching":false,
+			"paging":false,
 		"columns":
 		[
 			null,
@@ -377,7 +381,10 @@
 		    null
 		]
 		});
-		$('#tab_che').DataTable({});
+		$('#tab_che').DataTable({
+			"searching":false,
+			"paging":false,
+		});
 	</script>
 	<?php include("footer.php")  ?>
 </body>
