@@ -34,7 +34,7 @@
 </head>
 <body>
 		<div class="container">
-			<div class="row container-fluid" style="color: black; background-color: #edeef2; border-radius: 5px; margin-bottom: 50px;">
+			<div class="row container-fluid" style="color: black; background-color: #edeef2; border-radius: 5px; margin-bottom: 50px; border:2px solid #dbdbdb;">
 				<div class="col-sm-4 timestamp" style="text-align: left !important;">
 					<span id="date_time" style="color:black;"></span>
 					<script type="text/javascript">window.onload = date_time('date_time');</script>
@@ -64,7 +64,7 @@
 			</div>
 			<div class="row justify-content-between">
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll; border-color: #d3d3d3;">
+					<div style="background-color: #edeef2; border-radius: 10px; padding: 20px; height: 350px; overflow-y: scroll; border:2px solid #dbdbdb;">
 	      			<table class="table table-striped table-condensed table-hover" id="nistab">
 	      				<thead class="text-center">
 	      					<tr>
@@ -110,7 +110,7 @@
 				</div>
 				
 				<div class="col">
-					<div style="background-color: #edeef2; border-radius: 10px; border-color:#d3d3d3 ; padding: 20px; height: 350px; overflow-y: scroll;">
+					<div style="background-color: #edeef2; border-radius: 10px; border-color:#d3d3d3 ; padding: 20px; height: 350px; overflow-y: scroll;border:2px solid #dbdbdb;">
 						<table class="table table-striped table-condensed table-hover" id="nistab2">
 	      				<thead class="text-center">
 	      					<tr>
@@ -163,7 +163,7 @@
 					</div>
 				</div>
 		</div>
-		<div class="container-fluid" style="padding-top :35px;padding-bottom :35px; margin-top:35px;margin-bottom:35px; background-color: #edeef2; border-radius: 10px; border-color:#d3d3d3;">
+		<div class="container-fluid" style="padding-top :35px;padding-bottom :35px; margin-top:35px;margin-bottom:35px; background-color: #edeef2; border-radius: 10px; border:2px solid #dbdbdb;">
 			<div class="container" style="padding: 10px;">
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Liabilities</h1>
 			<div>
