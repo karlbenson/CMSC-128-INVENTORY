@@ -13,17 +13,22 @@
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 ?>
 
-<script src="datatables/DataTables/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
+<link rel="stylesheet" href="css/master.css">
+<link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/font-awesome.min.js">
 <link rel="stylesheet" href="datatables/DataTables/css/dataTables.bootstrap4.css">
+<script src="js/jquery.min.js"></script>
+<script src="datatables/DataTables/js/jquery.dataTables.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
 
 <h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Equipments</em></h1>
 <div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table table-sm table-striped table-condensed table-hover" id="table_id4">
-					<thead class="text-center">
+				<table class="table table-sm table-striped table-hover" id="table_id4">
+					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
@@ -40,25 +45,18 @@
 							{
 								while ($MyResults = $MyValues -> fetch_assoc())
 								{
-								echo '<tr>';
-								echo '<td class="align-middle text-center">'.$MyResults['Glassware_Id'].'</td>';
-								echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-								echo '<td class="align-middle">'.$MyResults['Quantity_Available'].'</td>';
-
-								echo '<td>
-								<form method="POST" action = "edit_glassware_item.php">
-								<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-								<button type="submit" class="button button5"><i class="fas fa-pencil-alt"></i></button>
-								</form>
-								</td>';
-
-
-								echo '<td>
-								<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-								</td>
-								</tr>';
-								//ADD DELETE CONFIRMATION
-
+									echo '<tr>';
+									echo '<td>'.$MyResults['Glassware_Id'].'</td>';
+									echo '<td>'.$MyResults['Name'].'</td>';
+									echo '<td>'.$MyResults['Quantity_Available'].'</td>';
+									echo '<td><button type="submit" class="button button5 onclick="editFunction()"><i class="fas fa-pencil-alt"></i></button></td>';
+									echo '<td><button type="submit" class="button button5"';
+									echo 'onclick = "deleteFunction('.$MyResults['Glassware_Id'].', &quot;GLASS&quot;)"';
+									echo'><i class="fas fa-trash-alt"></i></button> 
+										</td>';
+									echo '</tr>';
+									
+									//ADD DELETE CONFIRMATION
 								}
 							}
 						?>
@@ -70,7 +68,6 @@
 </div>
 
 <script>
-	
 	$('#table_id4').DataTable(
 	{
 		"columns":

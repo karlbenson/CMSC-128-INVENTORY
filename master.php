@@ -49,10 +49,10 @@
 										<p>Are you sure you want to delete this item from the inventory?</p>
 								        <footer class="w3-container">
 											<div>
-											<button class="btn btn-danger" type="submit" name="submit">Yes</button>
+												<button class="btn btn-danger" id = "YES_ON_DELETE">Yes</button>
 											</div>
 											<div style="padding: 0px 80px 0px">
-											<button class="btn btn-default" type="submit" name="submit" style="border: 1px solid #ccc" onclick="document.getElementById('id02').style.display='none'">No</button>
+												<button class="btn btn-default" style="border: 1px solid #ccc" onclick="document.getElementById('id02').style.display='none'" id = "NO_ON_DELETE">No</button>
 											</div>
 										</footer>
 										</form>
@@ -93,7 +93,7 @@
 							            	<tbody class="text-center" id = "data_input">
 								            	<tr>
 													<td class="align-middle text-center" align="center">
-														<select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType">
+														<select name="item_type[]" class="form-control" onchange="MyChange(this.id, this.value)" id = "myType">
 															<option value="chem" selected="selected">Add Chemical</option>
 															<option value="glass">Add Equipment</option>
 														</select>
@@ -175,19 +175,71 @@
 			}
 		
 		
-			function deleteFunction()
+			function deleteFunction(ID_VALUE, type)
 			{
 				document.getElementById("id02").style.display = "block";
+
+				if (type == "CHEMICAL")
+				{
+					$('#YES_ON_DELETE').on('click', function(event)
+						{
+							event.preventDefault();
+							document.getElementById('id02').style.display='none';
+							deleteChem(ID_VALUE);
+						}
+					);
+				}
+
+				else
+				{
+					$('#YES_ON_DELETE').on('click', function(event)
+						{
+							event.preventDefault();
+							document.getElementById('id02').style.display='none';
+							deleteGlass(ID_VALUE);
+						}
+					);
+				}
 			}
 
-			function deleteChem()
+			function deleteChem(ID_VALUE)
 			{
-				
+				$.ajax
+				(
+					{
+					    url: "delete_chemical_item.php",
+					    method: "POST",
+					    data: {CHEM_ID: ID_VALUE},
+					    success: function()
+					    {
+					    	topFunction();
+					      	$('#error').html('<div class="alert alert-success"><strong>Item Deleted!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+					      	$('#All').load("table_all.php");
+					      	$('#Chemicals').load("table_chem.php");
+					      	$('#Equipments').load("table_glass.php");
+					    }
+				   	}
+			   	);
 			}
 
-			function deleteGlass()
+			function deleteGlass(ID_VALUE)
 			{
-				
+				$.ajax
+				(
+					{
+					    url: "delete_glassware_item.php",
+					    method: "POST",
+					    data: {GLASS_ID: ID_VALUE},
+					    success: function()
+					    {
+					    	topFunction();
+					      	$('#error').html('<div class="alert alert-success"><strong>Item Deleted!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+					      	$('#All').load("table_all.php");
+					      	$('#Chemicals').load("table_chem.php");
+					      	$('#Equipments').load("table_glass.php");
+					    }
+				   	}
+			   	);
 			}
 		
 			$(document).ready(function()
@@ -197,7 +249,7 @@
 				{
 					var html = '';
 					html += '<tr>';
-					html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
+					html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="MyChange(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
 					html += '<td class="align-middle text-center" align="center" align="center"><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
 					html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml" selected="selected">ml</option><option value = "mg">mg</option></select></div></td>';
 					html += '<td align="center"><button type="button" name="remove" class="button button5 remove" id="remover"><i class="fas fa-minus"></i></button></td>';
@@ -234,9 +286,10 @@
 					    data: form_data,
 					    success: function()
 					    {
+					    	topFunction();
 				      		var html = '';
 							html += '<tr>';
-							html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
+							html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="MyChange(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
 							html += '<td class="align-middle text-center" align="center" align="center"><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
 							html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml" selected="selected">ml</option><option value = "mg">mg</option></select></div></td>';
 							html += '<td align="center"><button type="button" name="remove" class="button button5 remove" id="remover" style="visibility: hidden;"><i class="fas fa-minus"></i></button></td>';
@@ -256,7 +309,16 @@
 				   	}
 			   	);
 			});
-		
+			
+			$('#NO_ON_DELETE').on('click', function(event)
+				{
+					event.preventDefault();
+					document.getElementById('id02').style.display='none';
+					$('#error').html('<div class="alert alert-danger"><strong>Delete Cancelled!</strong><button class="btn btn-sm btn-danger" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+					topFunction();
+				}
+			);
+
 			jQuery(function()
 			{
 			   jQuery('#allbtn').click();
@@ -286,7 +348,7 @@
 				});
 			}
 
-			function test(name, value)
+			function MyChange(name, value)
 			{
 				if (name == "myType")
 				{

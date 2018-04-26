@@ -13,11 +13,8 @@
 	//Start Connection
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 
-	$item = $_POST['Chemical_Id'];
+	$item = $_POST['CHEM_ID'];
 	
 
 	mysqli_query($MyConnection, "DELETE FROM chemicals WHERE (chemicals.Chemical_Id = $item)");
-	
-	
-	header("Location: master.php");
 ?>

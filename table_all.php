@@ -13,16 +13,22 @@
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 ?>
 
-<script src="datatables/DataTables/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
+<link rel="stylesheet" href="css/master.css">
+<link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/font-awesome.min.js">
 <link rel="stylesheet" href="datatables/DataTables/css/dataTables.bootstrap4.css">
+<script src="js/jquery.min.js"></script>
+<script src="datatables/DataTables/js/jquery.dataTables.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
+
 <h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Chemicals</em></h1>
 <div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table table-sm table-striped table-condensed table-hover" id="table_id">
-					<thead class="text-center">
+				<table class="table table-sm table-striped table-hover" id="table_id">
+					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
@@ -33,28 +39,27 @@
 						</tr>
 					</thead>
 					<tbody>
-
 						<?php
 							$MySearchQuery = "SELECT * FROM chemicals ORDER BY Chemical_Id;";
 							$MyValues = $MyConnection -> query($MySearchQuery);
 							if (($MyValues -> num_rows) > 0)
+							{
+								while ($MyResults = $MyValues -> fetch_assoc())
 								{
-									while ($MyResults = $MyValues -> fetch_assoc())
-									{
 									echo '<tr>';
-									echo '<td class="align-middle text-center">'.$MyResults['Chemical_Id'].'</td>';
-									echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-									echo '<td class="align-middle">'.$MyResults['Quantity_Available_mg'].'</td>';
-									echo '<td class="align-middle">'.$MyResults['Quantity_Available_ml'].'</td>';
+									echo '<td>'.$MyResults['Chemical_Id'].'</td>';
+									echo '<td>'.$MyResults['Name'].'</td>';
+									echo '<td>'.$MyResults['Quantity_Available_mg'].'</td>';
+									echo '<td>'.$MyResults['Quantity_Available_ml'].'</td>';
 									echo '<td>
 									<button type="submit" class="button button5 onclick="editFunction()"><i class="fas fa-pencil-alt"></i></button>
 									</td>';
-
-
 									echo '<td>
-									<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-									</td>
-									</tr>';
+									<button type="submit" class="button button5"';
+									echo 'onclick = "deleteFunction('.$MyResults['Chemical_Id'].', &quot;CHEMICAL&quot;)"';
+									echo'><i class="fas fa-trash-alt"></i></button> 
+									</td>';
+									echo '</tr>';
 									//ADD DELETE CONFIRMATION
 								}
 							}
@@ -65,13 +70,14 @@
 		</div>
 	</div>
 </div>
-<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Equipment</em></h1>
+
+<h1 class="jumbotron-fluid py-4 text-center" style="font-size: 50px"><em>Equipments</em></h1>
 <div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table table-sm table-striped table-condensed table-hover" id="table_id2">
-					<thead class="text-center">
+				<table class="table table-sm table-striped table-hover" id="table_id2">
+					<thead>
 						<tr>
 							<th>ID</th>
 							<th>Name</th>
@@ -81,7 +87,6 @@
 						</tr>
 					</thead>
 					<tbody>
-
 						<?php
 							$MySearchQuery = "SELECT * FROM glasswares ORDER BY Glassware_Id;";
 							$MyValues = $MyConnection -> query($MySearchQuery);
@@ -89,25 +94,17 @@
 							{
 								while ($MyResults = $MyValues -> fetch_assoc())
 								{
-								echo '<tr>';
-								echo '<td class="align-middle text-center">'.$MyResults['Glassware_Id'].'</td>';
-								echo '<td class="align-middle">'.$MyResults['Name'].'</td>';
-								echo '<td class="align-middle">'.$MyResults['Quantity_Available'].'</td>';
-
-								echo '<td>
-								<form method="POST" action = "edit_glassware_item.php">
-								<input type="hidden" class="hide" placeholder="'.$MyResults['Glassware_Id'].'" value="'.$MyResults['Glassware_Id'].'" name="Glassware_Id" readonly>
-								<button type="submit" class="button button5"><i class="fas fa-pencil-alt"></i></button>
-								</form>
-								</td>';
-
-
-								echo '<td>
-								<button type="submit" class="button button5" onclick="deleteFunction()"><i class="fas fa-trash-alt"></i></button> 
-								</td>
-								</tr>';
-								//ADD DELETE CONFIRMATION
-
+									echo '<tr>';
+									echo '<td>'.$MyResults['Glassware_Id'].'</td>';
+									echo '<td>'.$MyResults['Name'].'</td>';
+									echo '<td>'.$MyResults['Quantity_Available'].'</td>';
+									echo '<td><button type="submit" class="button button5 onclick="editFunction()"><i class="fas fa-pencil-alt"></i></button></td>';
+									echo '<td><button type="submit" class="button button5"';
+									echo 'onclick = "deleteFunction('.$MyResults['Glassware_Id'].', &quot;GLASS&quot;)"';
+									echo'><i class="fas fa-trash-alt"></i></button> 
+										</td>';
+									echo '</tr>';
+									//ADD DELETE CONFIRMATION
 								}
 							}
 						?>
@@ -123,14 +120,13 @@
 	{
 		"columns":
 		[
-			null,
-			null,
+            null,
+            null,
 		    null,
 		    null,
-			
 		    { "orderable": false },
 		    { "orderable": false }
-		]
+        ]
 	});
 
 	$('#table_id2').DataTable(
@@ -140,7 +136,6 @@
 			null,
 			null,
 		    null,
-			
 		    { "orderable": false },
 		    { "orderable": false }
 		]

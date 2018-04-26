@@ -13,12 +13,9 @@
 	//Start Connection
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 
-	$item = $_POST['Glassware_Id'];
+	$item = $_POST['GLASS_ID'];
 
 
 	mysqli_query($MyConnection, "DELETE FROM glasswares WHERE (glasswares.Glassware_Id = $item)");
 	
-	
-	
-	header("Location: master.php");
 ?>
