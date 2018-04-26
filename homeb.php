@@ -2,12 +2,15 @@
 	session_start();
 	
 	error_reporting(0);
+
 	//Server Credentials
 	$MyServerName = "localhost";
 	$MyUserName = "root";
 	$MyPassword = "";
+
 	//Database
 	$MyDBName = 'chem_glasswares';
+
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
 	//include("verify.php");
@@ -186,35 +189,8 @@
 												echo '<td>'.$MyResults['Student_Number'].'</td>';
 												echo '<td>'.$MyResults['Last_Name'].'</td>';
 												echo '<td>'.$MyResults['First_Name'].'</td>';
-												echo '<td>'.$MyResults['Amt_of_transactions'].' transaction/s</td>';
-												/*
-													echo '
-												<form role="form" action = "clear_liability.php" method="POST">
-												<input class="hide" name="Student_Number" type="text" value="'.$MyResults["Student_Number"].'" />
-												<input class="hide" name="Last_Name" type="text" value="'.$MyResults["Last_Name"].'" />
-												<input class="hide" name="First_Name" type="text" value="'.$MyResults["First_Name"].'" />
-												<td class="text-center"><input id="see_details" class="btn btn-success" style="cursor:pointer;" type="submit" value="See Details" /></td>
-												</form>';
-												*/
-												echo '
-												
-												<td class="text-center">
-													<button class="openmodal btn btn-success ">See Details</button>
-												</td>
-
-											
-												<div class="modal see_details_modal">
-												
-													<div class="modal-content">
-														<span class="close_modal" >&times;</span>
-														<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3><br>
-														Student Number: '. $MyResults['Student_Number'].' <br><br>
-
-														
-
-													</div>
-												</div>
-												';
+												echo '<td>'.$MyResults['Amt_of_transactions'].' pc/s</td>';
+												echo '<td class="text-center"><button class="btn btn-success" style="cursor:pointer;">See Details</button></td>';
 												echo "</tr>";
 											}
 										}	
@@ -420,30 +396,6 @@
 			"paging":false,
 			"info":false,
 		});
-
-		//-------------Modal scripting
-		var modals = document.getElementsByClassName('modal');
-		var btns = document.getElementsByClassName("openmodal");
-		var spans=document.getElementsByClassName("close_modal");
-
-		for(let i=0;i<btns.length;i++){
-   			 btns[i].onclick = function() {
-        		modals[i].style.display = "block";
-    		}
-		}
-
-		for(let i=0;i<spans.length;i++){
-    		spans[i].onclick = function() {
-        		modals[i].style.display = "none";
-    		}	
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		}
 	</script>
 	<?php include("footer.php")  ?>
 </body>

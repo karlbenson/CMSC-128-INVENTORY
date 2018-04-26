@@ -34,31 +34,42 @@
 
 	<!-- Body -->
 	<body>
-    	<!-- Search -->
-    	<div class="py-0">
-    		<form class="form-signin" action="item_search_query.php">
-    			<!-- Filter -->
-    			<div class="form-group" >
-    				<select name = "search_Filter" id = "sell" class = "form-control" style="cursor: pointer;">
-						<option value = "0">Chemicals</option>
-						<option value = "1">Glasswares</option>
-						<option value = "2">Students</option>
-				    </select>
-    			</div>
-    			<!-- Search Bar -->
-    			<div class="form-group" id = "search">
-            		<input class = "form-control" type="search" id="search-input" name = "search_Query" placeholder="Search..." required="required"></input>
-        		</div>
-        		
-        		<!-- Enter Button -->
-      			<button type="submit" class="btn btn-primary" style="cursor: pointer;">Enter</button>
-    		</form>
-    	</div>
-
+		<div class="container-fluid">
+			<!-- Search -->
+	    	<div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2; border:2px solid #dbdbdb;">
+	    		<div class="py-0">
+	    		<form class="form-signin" action="item_search_query.php">
+	    			<!-- Filter -->
+	    			<div class="form-group" >
+	    				<select name = "search_Filter" id = "sell" class = "form-control" style="cursor: pointer;">
+							<option value = "0">Chemicals</option>
+							<option value = "1">Glasswares</option>
+							<option value = "2">Students</option>
+					    </select>
+	    			</div>
+	    			<!-- Search Bar -->
+	    			<div class="form-group" id = "search">
+	            		<input class = "form-control" type="search" id="search-input" name = "search_Query" placeholder="Search..." required="required"></input>
+	        		</div>
+	        		
+	        		<!-- Enter Button -->
+	      			<button type="submit" class="btn btn-primary" style="cursor: pointer;">Enter</button>
+	    		</form>
+	    		</div>
+	    		
+	    	</div>
+		</div>
+    	
+    	
+		
     	<!-- Scripts -->
     	<script type = "text/javascript" src = "scripts/script.js"></script>
     	<script src="scripts/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="scripts/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 		<script src="scripts/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	</body>
+	<footer class="footer" style="position: absolute;right: 0;bottom: 0;left: 0; flex-shrink: 0;">
+		<?php include("footer.php") ?>
+	</footer>
+	
 </html>
