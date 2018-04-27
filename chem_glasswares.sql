@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2018 at 01:09 PM
+-- Generation Time: Apr 27, 2018 at 01:13 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -40,8 +40,8 @@ CREATE TABLE `borrower` (
 --
 
 INSERT INTO `borrower` (`Borrower_Id`, `First_Name`, `Last_Name`, `Student_Number`, `Amt_of_transactions`, `Group_Id`) VALUES
-(1, 'Kiana Alessandra', 'Villaera', '2014-15055', 1, 1),
-(2, 'Karlvinzon', 'Mabutas', '2015-12345', 1, 1),
+(1, 'Kiana Alessandra', 'Villaera', '2014-15055', 3, 1),
+(2, 'Karlvinzon', 'Mabutas', '2015-12345', 3, 1),
 (3, 'Bernadette', 'Genove', '2015-54321', 0, 2),
 (4, 'Ralston Mark', 'Chan', '2015-35142', 0, 2);
 
@@ -88,7 +88,7 @@ CREATE TABLE `glasswares` (
 --
 
 INSERT INTO `glasswares` (`Glassware_Id`, `Name`, `Quantity_Available`) VALUES
-(4, 'Scoopula', 0),
+(4, 'Scoopula', 6),
 (5, 'Bunsen Burner', 4),
 (6, 'Crucible Tongs', 12),
 (7, 'Erlenmeyer Flask', 2),
@@ -178,7 +178,9 @@ INSERT INTO `transaction` (`Trans_Id`, `Glassware_Id`, `Chemical_Id`, `Group_Id`
 (10, NULL, 6, 2, 0, 8.1, 0, '2018-04-03', '2018-04-03'),
 (11, 4, NULL, 1, 3, 0, 0, '2018-04-17', NULL),
 (12, 9, NULL, 2, 2, 0, 0, '2018-04-15', '2018-04-18'),
-(13, 11, NULL, 2, 2, 0, 0, '2018-04-26', '2018-04-30');
+(13, 11, NULL, 2, 2, 0, 0, '2018-04-26', '2018-04-30'),
+(14, 6, NULL, 1, 2, 0, 0, '2018-04-08', NULL),
+(15, 9, NULL, 1, 4, 0, 0, '2018-02-08', NULL);
 
 -- --------------------------------------------------------
 
@@ -292,7 +294,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Trans_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `user_accounts`
 --
