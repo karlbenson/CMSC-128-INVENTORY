@@ -170,7 +170,7 @@
 							<th>Student Number</th>
 							<th>Last Name</th>
 							<th>First Name</th>
-							<th>No. of Items</th>
+							<th>No. of Transactions</th>
 							<th class="text-center">Details</th>
 						</tr>
 					</thead>
@@ -187,33 +187,89 @@
 												echo '<td>'.$MyResults['Last_Name'].'</td>';
 												echo '<td>'.$MyResults['First_Name'].'</td>';
 												echo '<td>'.$MyResults['Amt_of_transactions'].' transaction/s</td>';
-												/*
-													echo '
-												<form role="form" action = "clear_liability.php" method="POST">
-												<input class="hide" name="Student_Number" type="text" value="'.$MyResults["Student_Number"].'" />
-												<input class="hide" name="Last_Name" type="text" value="'.$MyResults["Last_Name"].'" />
-												<input class="hide" name="First_Name" type="text" value="'.$MyResults["First_Name"].'" />
-												<td class="text-center"><input id="see_details" class="btn btn-success" style="cursor:pointer;" type="submit" value="See Details" /></td>
-												</form>';
-												*/
+											
+												$grp_id = $MyResults['Group_Id'];
+												
 												echo '
 												
 												<td class="text-center">
 													<button class="openmodal btn btn-success ">See Details</button>
 												</td>
 
+
+
 											
 												<div class="modal see_details_modal">
-												
-													<div class="modal-content">
-														<span class="close_modal" >&times;</span>
-														<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3><br>
-														Student Number: '. $MyResults['Student_Number'].' <br><br>
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<span class="close_modal" >&times;</span>
+															<div class="modal-header">
+  																<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3>
+															Student Number: '. $MyResults['Student_Number'].'
+															</div>
+															 
 
+															<p> </p>';
+
+												//Fetch all unresolved transactions for this person
+												$MySearchQuery2 = "SELECT * FROM transaction JOIN borrower USING (Group_Id) WHERE transaction.Group_Id = $grp_id AND transaction.Date_Returned IS NULL ";
+												$MyValues2 = $MyConnection -> query($MySearchQuery2);
+
+													/*
+														<input class="hide" name="Student_Number" type="text" value="'.$MyResults["Student_Number"].'" />
+																<input class="hide" name="Last_Name" type="text" value="'.$MyResults["Last_Name"].'" />
+																<input class="hide" name="First_Name" type="text" value="'.$MyResults["First_Name"].'" />
+													*/	
+
+												if (($MyValues2 -> num_rows) > 0){ //get all transactions where date returned is null
+													while ($MyResults2 = $MyValues2 -> fetch_assoc() ) {
+														/*
+														
+														$gid = $MyResults2['Glassware_Id'];
+														$q = "SELECT Name FROM Glasswares  WHERE Glassware_Id=$gid";
+														$r = mysql_query($q);
+														$i = mysql_fetch_array($r);
+														$g_name = $i['Name'];
+														*/
 														
 
+														//actual data here
+														echo '<div class="container">
+																		<div class="row">';
+														echo '<h4></h4>
+														
+															<ul>
+																<li>Date Borrowed: '.$MyResults2['Date_Borrowed'].'
+																<li>Number of Pieces: '.$MyResults2['Qty_Borrowed_Glasswares'].'
+															</ul>
+
+															<form role="form" action = "clear_liability.php" method="POST">
+																
+																<input class="btn " style="cursor:pointer;margin:0 auto;" type="submit"  value="Clear Liability" onclick="return confirm('."You are about to clear this student's liability along with his/her groupmates' liabilities. Proceed?".');" >
+															</form>
+														';
+
+														echo '</div>
+															</div>
+															<p></p><p></p>';					
+													}
+												}	 			
+
+
+															
+															
+																		
+												
+
+
+												echo '	
+														<div class="modal-footer">
+
+     													</div>
+														</div>
+
 													</div>
-												</div>
+												</div> 
 												';
 												echo "</tr>";
 											}
@@ -253,7 +309,8 @@
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{
-											while ($MyResults = $MyValues -> fetch_assoc()) //from transaction table
+											
+											while ($MyResults = $MyValues -> fetch_assoc() ) //from transaction table
 											{											
 												echo '<tr>';
 												echo '<td>'.$MyResults['Name'].'</td>';
