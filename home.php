@@ -194,7 +194,7 @@
 												echo '
 												
 												<td class="text-center">
-													<button class="openmodal btn btn-success ">See Details</button>
+													<button class="openmodal btn btn-success " style="cursor:pointer;">See Details</button>
 												</td>
 
 
