@@ -189,6 +189,7 @@
 												echo '<td>'.$MyResults['Amt_of_transactions'].' transaction/s</td>';
 											
 												$grp_id = $MyResults['Group_Id'];
+												$b_id = $MyResults['Borrower_Id'];
 												
 												echo '
 												
@@ -200,53 +201,57 @@
 
 											
 												<div class="modal see_details_modal">
-													<div class="modal-dialog">
+													
 														<div class="modal-content">
 															<span class="close_modal" >&times;</span>
+
 															<div class="modal-header">
   																<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3>
 															Student Number: '. $MyResults['Student_Number'].'
 															</div>
 															 
+															 <div class = "modal-body">
 
 															<p> </p>';
 
 												//Fetch all unresolved transactions for this person
-												$MySearchQuery2 = "SELECT * FROM transaction JOIN borrower USING (Group_Id) WHERE transaction.Group_Id = $grp_id AND transaction.Date_Returned IS NULL ";
+												$MySearchQuery2 = "SELECT * FROM transaction JOIN borrower USING (Group_Id) WHERE transaction.Group_Id = $grp_id AND transaction.Date_Returned IS NULL AND borrower.Borrower_Id = $b_id";
 												$MyValues2 = $MyConnection -> query($MySearchQuery2);
-
-													/*
-														<input class="hide" name="Student_Number" type="text" value="'.$MyResults["Student_Number"].'" />
-																<input class="hide" name="Last_Name" type="text" value="'.$MyResults["Last_Name"].'" />
-																<input class="hide" name="First_Name" type="text" value="'.$MyResults["First_Name"].'" />
-													*/	
 
 												if (($MyValues2 -> num_rows) > 0){ //get all transactions where date returned is null
 													while ($MyResults2 = $MyValues2 -> fetch_assoc() ) {
-														/*
-														
+
 														$gid = $MyResults2['Glassware_Id'];
 														$q = "SELECT Name FROM Glasswares  WHERE Glassware_Id=$gid";
-														$r = mysql_query($q);
-														$i = mysql_fetch_array($r);
+														$r = $MyConnection -> query($q);
+														$i = $r->fetch_assoc();
 														$g_name = $i['Name'];
-														*/
 														
+														$t_id=$MyResults2['Trans_Id'];
 
 														//actual data here
 														echo '<div class="container">
 																		<div class="row">';
-														echo '<h4></h4>
+														echo '
+															<div class = "col-8">
+															<h2>'.$g_name.'</h2>
 														
 															<ul>
 																<li>Date Borrowed: '.$MyResults2['Date_Borrowed'].'
 																<li>Number of Pieces: '.$MyResults2['Qty_Borrowed_Glasswares'].'
 															</ul>
-
+															</div>
+															<div class = "col-4">
 															<form role="form" action = "clear_liability.php" method="POST">
+																<input class="hide" name="Group_Id" type="hidden" value="'.$grp_id.'" />
+																<input class="hide" name="Borrower_Id" type="hidden" value="'.$b_id.'" />
+																<input class="hide" name="Glassware_Id" type="hidden" value="'.$gid.'" />
+																<input class="hide" name="Trans_Id" type="hidden" value="'.$t_id.'" />
+																<input class="hide" name="Qty" type="hidden" value="'.$MyResults2['Qty_Borrowed_Glasswares'].'" />
 																
-																<input class="btn " style="cursor:pointer;margin:0 auto;" type="submit"  value="Clear Liability" onclick="return confirm('."You are about to clear this student's liability along with his/her groupmates' liabilities. Proceed?".');" >
+																<input class="btn" style="cursor:pointer;margin:0 auto;" type="submit"  value="Clear Liability"  >
 															</form>
+															</div>
 														';
 
 														echo '</div>
@@ -262,13 +267,12 @@
 												
 
 
-												echo '	
+												echo '	</div>
 														<div class="modal-footer">
 
      													</div>
 														</div>
-
-													</div>
+													
 												</div> 
 												';
 												echo "</tr>";
