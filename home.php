@@ -193,85 +193,95 @@
 												
 												echo '
 												
-												<td class="text-center">
-													<button class="openmodal btn btn-success " style="cursor:pointer;">See Details</button>
-												</td>
 
+									          <!-- Modal -->
+									          <div class="modal" id="myModal" role="dialog">
+									            <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">
+									              <div class="modal-content" style="border-radius: 10px; padding: 20px;">
+									              	<!-- Modal Header -->
+									                <div class="modal-header" style="background-color: white; color: black; text-align: center;">
+									                	<div class="row">
+									                		<div class="col-sm-11">
+									                			<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3>
+									                		</div>
+									                		<div class="col-sm-1">
+									                			<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
+									                		</div>
+									                		<div class="w-100"></div>
+									                		<div class="col-sm-11">
+									                			<div style="float:right: text-align:right;">Student Number: '. $MyResults['Student_Number'].'</div>
+									                		</div>
+									                		<div class="col-sm-1">
+									                		</div>
+									                	</div>
+									                    
+									                </div>
+									                <div class="modal-body">
+									                	<p> </p>';
 
+															//Fetch all unresolved transactions for this person
+															$MySearchQuery2 = "SELECT * FROM transaction JOIN borrower USING (Group_Id) WHERE transaction.Group_Id = $grp_id AND transaction.Date_Returned IS NULL AND borrower.Borrower_Id = $b_id";
+															$MyValues2 = $MyConnection -> query($MySearchQuery2);
 
-											
-												<div class="modal see_details_modal">
-													
-														<div class="modal-content">
-															<div class="modal-header">
-  																<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3>
-  																<div style="float:right: text-align:right;">Student Number: '. $MyResults['Student_Number'].'</div>
-																<button type="button" class="btn btn-secondary close_modal" data-dismiss="modal"><i class="fas fa-times"></i></button>
-															</div>
-															 <div class = "modal-body">
-															<p> </p>';
+															if (($MyValues2 -> num_rows) > 0){ //get all transactions where date returned is null
+																while ($MyResults2 = $MyValues2 -> fetch_assoc() ) {
 
-												//Fetch all unresolved transactions for this person
-												$MySearchQuery2 = "SELECT * FROM transaction JOIN borrower USING (Group_Id) WHERE transaction.Group_Id = $grp_id AND transaction.Date_Returned IS NULL AND borrower.Borrower_Id = $b_id";
-												$MyValues2 = $MyConnection -> query($MySearchQuery2);
+																	$gid = $MyResults2['Glassware_Id'];
+																	$q = "SELECT Name FROM Glasswares  WHERE Glassware_Id=$gid";
+																	$r = $MyConnection -> query($q);
+																	$i = $r->fetch_assoc();
+																	$g_name = $i['Name'];
+																	
+																	$t_id=$MyResults2['Trans_Id'];
 
-												if (($MyValues2 -> num_rows) > 0){ //get all transactions where date returned is null
-													while ($MyResults2 = $MyValues2 -> fetch_assoc() ) {
+																	//actual data here
+																	echo '<div class="container">
+																					<div class="row">';
+																	echo '
+																		<div class = "col-8">
+																		<h2>'.$g_name.'</h2>
+																	
+																		<ul>
+																			<li>Date Borrowed: '.$MyResults2['Date_Borrowed'].'
+																			<li>Number of Pieces: '.$MyResults2['Qty_Borrowed_Glasswares'].'
+																		</ul>
+																		</div>
+																		<div class = "col-4">
+																		<form role="form" action = "clear_liability.php" method="POST">
+																			<input class="hide" name="Group_Id" type="hidden" value="'.$grp_id.'" />
+																			<input class="hide" name="Borrower_Id" type="hidden" value="'.$b_id.'" />
+																			<input class="hide" name="Glassware_Id" type="hidden" value="'.$gid.'" />
+																			<input class="hide" name="Trans_Id" type="hidden" value="'.$t_id.'" />
+																			<input class="hide" name="Qty" type="hidden" value="'.$MyResults2['Qty_Borrowed_Glasswares'].'" />
+																			
+																			<input class="btn" style="cursor:pointer;margin:0 auto;" type="submit"  value="Clear Liability"  >
+																		</form>
+																		</div>
+																	';
 
-														$gid = $MyResults2['Glassware_Id'];
-														$q = "SELECT Name FROM Glasswares  WHERE Glassware_Id=$gid";
-														$r = $MyConnection -> query($q);
-														$i = $r->fetch_assoc();
-														$g_name = $i['Name'];
-														
-														$t_id=$MyResults2['Trans_Id'];
-
-														//actual data here
-														echo '<div class="container">
-																		<div class="row">';
-														echo '
-															<div class = "col-8">
-															<h2>'.$g_name.'</h2>
-														
-															<ul>
-																<li>Date Borrowed: '.$MyResults2['Date_Borrowed'].'
-																<li>Number of Pieces: '.$MyResults2['Qty_Borrowed_Glasswares'].'
-															</ul>
-															</div>
-															<div class = "col-4">
-															<form role="form" action = "clear_liability.php" method="POST">
-																<input class="hide" name="Group_Id" type="hidden" value="'.$grp_id.'" />
-																<input class="hide" name="Borrower_Id" type="hidden" value="'.$b_id.'" />
-																<input class="hide" name="Glassware_Id" type="hidden" value="'.$gid.'" />
-																<input class="hide" name="Trans_Id" type="hidden" value="'.$t_id.'" />
-																<input class="hide" name="Qty" type="hidden" value="'.$MyResults2['Qty_Borrowed_Glasswares'].'" />
-																
-																<input class="btn" style="cursor:pointer;margin:0 auto;" type="submit"  value="Clear Liability"  >
-															</form>
-															</div>
-														';
-
-														echo '</div>
-															</div>
-															<p></p><p></p>';					
-													}
-												}	 			
-
-
-															
-															
-																		
+																	echo '</div>
+																		</div>
+																		<p></p><p></p>';					
+																}
+															}
+									                echo'  
+									                </div>
+									                <div class="modal-footer" style="background-color: white; color: black;">
+									                  <span style="width: 20px;"></span>
+									                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+									                </div>
+									              </div>
+									            </div>
+									          </div>
+									        </form>
+									        </div>
 												
-
-
-												echo '	</div>
-														<div class="modal-footer">
-
-     													</div>
-														</div>
-													
-												</div> 
-												';
+												<td class="text-center">
+													<!-- Button trigger modal -->
+										          	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="margin: auto; cursor: pointer;">
+										            	See Details
+										          	</button>
+												</td>';
 												echo "</tr>";
 											}
 										}	
