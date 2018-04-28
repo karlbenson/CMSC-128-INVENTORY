@@ -18,6 +18,10 @@
   <link rel="stylesheet" type="text/css" href="css/home.css">
   <?php 'loading head';include("head.php"); ?>
   <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+  <link rel="stylesheet" href="datatables/DataTables/css/dataTables.bootstrap4.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
 </head>
 <body  style="z-index: -10000:">
   <div class="container">
@@ -77,7 +81,35 @@
           </div>
           <center><button type="button" class="btn btn-info" id="add-item" name="add-item" onmouseover="" style="cursor: pointer; margin-top: 20px; text-align: right;">Add Item</button></center>
 
-          <input type="submit" class="btn btn-success btn-lg btn-block" style="margin: auto; margin-top: 60px; cursor: pointer;">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" style="margin: auto; margin-top: 60px; cursor: pointer;">
+            Confirm
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">
+              <div class="modal-content" style="border-radius: 10px; padding: 20px;">
+                <div class="modal-header" style="background-color: white; color: black; text-align: center;">
+                    <div style="text-align: center;">
+                      <h3 style="padding: 8px;"><strong>Confirm Credentials</strong></h3>  
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer" style="background-color: white; color: black;">
+                  <div class="text-center" style="float: left; text-align: left;">
+                    <p>Are you sure you want to submit?</p>
+                  </div>
+                  <span style="width: 20px;"></span>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button submit" class="btn btn-success" style="cursor: pointer;">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
         </div>
 
