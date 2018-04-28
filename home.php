@@ -203,15 +203,12 @@
 												<div class="modal see_details_modal">
 													
 														<div class="modal-content">
-															<span class="close_modal" >&times;</span>
-
 															<div class="modal-header">
   																<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3>
-															Student Number: '. $MyResults['Student_Number'].'
+  																<div style="float:right: text-align:right;">Student Number: '. $MyResults['Student_Number'].'</div>
+																<button type="button" class="btn btn-secondary close_modal" data-dismiss="modal"><i class="fas fa-times"></i></button>
 															</div>
-															 
 															 <div class = "modal-body">
-
 															<p> </p>';
 
 												//Fetch all unresolved transactions for this person
