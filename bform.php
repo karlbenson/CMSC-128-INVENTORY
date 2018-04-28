@@ -91,7 +91,7 @@
             <div class="modal-dialog modal-dialog-centered w3-animate-bottom" style="max-width: 1000px !important;">
               <div class="modal-content" style="border-radius: 10px; padding: 20px;">
                 <div class="modal-header" style="background-color: white; color: black; text-align: center;">
-                    <h3 style="padding: 8px;"><strong>Confirm Credentials</strong></h3>
+                  <h3 style="padding: 8px;"><strong>Confirm Credentials</strong></h3>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
