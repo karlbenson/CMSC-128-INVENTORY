@@ -34,6 +34,60 @@
 		<div id="container-fluid">
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Master List</h1>
 			<!--trigger the modal for confirm delete for chemical-->
+			<div id="id03" class="w3-modal" style="z-index:9999;">
+				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
+					<header class="w3-container" style="text-align: center;"> 
+						<button onclick="document.getElementById('id03').style.display='none'" 
+						class="btn btn-danger"><i class="fas fa-times"></i></button>
+						<h3 style="padding: 8px;"><strong>Edit Item</strong></h3>
+					</header>
+					<div class="w3-container">
+						<div class="content">
+							<div class="container">
+						    	<div class="row">
+						        	<div class="col-md-12">
+										<table class="table table-fit">
+						          			<thead class="text-center">
+								            	<tr>
+									                <th class="align-middle text-center" style="width: 13%">ID</th>
+									                <th class="align-middle text-center" style="width: 55%">Name</th>
+									                <th class="align-middle text-center" style="width: 35%">Amount</th>
+								            	</tr>
+							            	</thead>
+											<tbody class="text-center">
+								            	<tr>
+													<td class="align-middle text-center" align="center">
+														<!--echo yung id number-->
+													</td>
+													<td class="align-middle text-center" align="center" align="center">
+														<div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div>
+													</td>
+													<td class="align-middle text-center" align="center">
+														<div class = "row align-content-center">
+															<input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount">
+															<select name = "unit[]" class="form-control col-6" id="ChemUnit">
+																	<option value = "ml" selected="selected">ml</option>
+																	<option value = "mg">mg</option>
+															</select>
+														</div>
+													</td>
+												</tr>
+								        	</tbody>
+						          		</table>
+								        <footer class="w3-container">
+											<div>
+												<button class="btn btn-primary">EDIT</button>
+											</div>
+										</footer>
+										</form>
+								    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--trigger the modal for confirm delete for chemical-->
 			<div id="id02" class="w3-modal" style="z-index:9999;">
 				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
@@ -175,6 +229,12 @@
 
 				document.getElementById(tabName).style.display = "block";
 				evt.currentTarget.className += " active";
+			}
+			
+			function editFunction(ID_VALUE)
+			{
+				document.getElementById("id03").style.display = "block";
+
 			}
 		
 		
