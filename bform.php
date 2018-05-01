@@ -31,7 +31,10 @@
           <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
-            <input class="form-control" id="borrowerid" readonly="readonly" value="insert php increment" />
+            <input class="form-control" id="borrowerid" readonly="readonly" value="<?php
+              $MySearchQuery = "SELECT MAX(Borrower_Id) FROM borrower;";
+              $variable = mysqli_query($MyConnection, $MySearchQuery); 
+              echo ($variable)?>" />
           </div>
           
           <label class="try" for="members">Group Members: </label>
@@ -82,7 +85,7 @@
           <center><button type="button" class="btn btn-info" id="add-item" name="add-item" onmouseover="" style="cursor: pointer; margin-top: 20px; text-align: right;">Add Item</button></center>
 
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#myModal" style="margin: auto; margin-top: 60px; cursor: pointer;">
+          <button type="button" class="btn btn-success btn-lg btn-block" id="confirm" data-toggle="modal" data-target="#myModal" style="margin: auto; margin-top: 60px; cursor: pointer;">
             Confirm
           </button>
 
@@ -95,7 +98,15 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
                 </div>
                 <div class="modal-body">
-                  
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <strong>Borrower ID:</strong>
+                      </div>
+                      <div class="col-sm-5">
+                        
+                      </div>
+                      <div class="w-100"></div>
+                    </div>
                 </div>
                 <div class="modal-footer" style="background-color: white; color: black;">
                   <div class="text-center" style="float: left; text-align: left;">
@@ -110,7 +121,7 @@
           </div>
         </form>
         </div>
-
+ 
   </div>
   <?php include("footer.php") ?>
 </body>
@@ -152,6 +163,59 @@
     });
     
 });
+  $(document).ready(function() {
+      $("#confirm").click(function(event) {
+        $(".modal-body").html("<div class='row' id='inner'></div>");
+        $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Borrower Id: </strong>"+$("#borrowerid").val()+"</div>");
+        $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Group Members: </strong></div>");
+        
+        //GATEHRING ALL NAME INPUTS
+        var id=new Array();
+        var lname=new Array();
+        var fname=new Array();
+        var ctr=0;
+        $('input[name^="sid"]').each(function() {
+            id[ctr]=$(this).val();
+            ctr++;
+        });
+        ctr=0;
+        $('input[name^="lname"]').each(function() {
+            lname[ctr]=$(this).val();
+            ctr++;
+        });
+        ctr=0;
+        $('input[name^="fname"]').each(function() {
+            fname[ctr]=$(this).val();
+            ctr++;
+        });
+        for (var i = 0; i < id.length; i++) {
+          $("#inner").append("<div class='col-sm-7 text-center'><strong>"+lname[i]+", </strong>"+fname[i]+"</div><div class='col-sm-5 text-center'><strong>"+id[i]+"</strong></div>");
+        }
+        //////////////////////////////////////////////////////////
+        
+        $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Subject: </strong>"+$("#prof").val()+" ("+$("#subj").val()+")</div>");
+        $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Items: </strong></div>");
+
+        //GATEHRING ALL ITEM INPUTS
+        var it=new Array();
+        var amt=new Array();
+        ctr=0;
+        $('input[name^="it"]').each(function() {
+            it[ctr]=$(this).val();
+            ctr++;
+        });
+        ctr=0;
+        $('input[name^="amount"]').each(function(){
+            amt[ctr]=$(this).val();
+            ctr++;
+        });
+
+        for (var i = 0; i < it.length; i++) {
+          $("#inner").append("<div class='col-sm-7 text-center'><strong>"+amt[i]+"</strong> - "+it[i]+"</div><div class='col-sm-5 text-center'></div>");
+        }
+        //////////////////////////////////////////////////////////
+      });
+  });
 </script>
 
 <style type="text/css">
