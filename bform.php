@@ -37,7 +37,7 @@
           <label class="try" for="members">Group Members: </label>
           <div class="row grpmem" style="padding: 5px; margin: auto;">
             <div class="col-md-4">
-              <input type="text" name="sid[]" class="form-control" placeholder="Student ID*" required="true">
+              <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XXXXXXX)*" required="true">
             </div>
             <div class="col-md-4">
               <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
@@ -111,7 +111,7 @@
                   </div>
                   <span style="width: 20px;"></span>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="button submit" class="btn btn-success" style="cursor: pointer;">Submit</button>
+                  <button type="button submit" class="btn btn-success" id="submitter" style="cursor: pointer;">Submit</button>
                 </div>
               </div>
             </div>
@@ -190,7 +190,7 @@
         }
         //////////////////////////////////////////////////////////
         
-        $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Subject: </strong>"+$("#prof").val()+" ("+$("#subj").val()+")</div>");
+        $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Subject: </strong>"+$("#subj").val()+" ("+$("#prof").val()+")</div>");
         $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Items: </strong></div>");
 
         //GATEHRING ALL ITEM INPUTS
@@ -211,6 +211,55 @@
           $("#inner").append("<div class='col-sm-7 text-center'><strong>"+amt[i]+"</strong> - "+it[i]+"</div><div class='col-sm-5 text-center'></div>");
         }
         //////////////////////////////////////////////////////////
+
+        //ERROR CHECKING
+        var flag=0;
+        var subj=$("#subj").val();
+        if(subj==""){
+          flag=1;
+        }
+
+        for (var i = 0; i < id.length; i++) {
+          if (flag==1){
+            break;
+          }
+          if (id[i]==""){
+            flag=1;
+            break;
+          }
+          if (lname[i]==""){
+            flag=1;
+            break;
+          }
+          if(fname[i]==""){
+            flag=1;
+            break;
+          }
+        }
+        for (var i = 0; i < it.length; i++) {
+          if (it[i]==""){
+            flag=1;
+            break;
+          }
+          if (amt[i]=="") {
+            flag=1;
+            break;
+          }
+        }
+
+        //CHECK IF ALL SID IS A NUMBER
+        //CHECK IF SID EXCEEDS 9 NUMERALS
+        //CHECK IF AMT IS A NUMBER
+        //CHECK IF AMT EXCEEDS MAX
+
+        if (flag==1) {
+          $("#inner").html("Error: Some input fields have invalid values. Kindly recheck.");
+          $("#submitter").attr('disabled', 'disabled');
+          flag=0;
+        }else{
+          flag=0;
+          $("#submitter").prop('disabled', false);
+        }
       });
   });
 </script>
