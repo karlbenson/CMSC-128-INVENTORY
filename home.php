@@ -209,7 +209,7 @@
 									                			<div>Student Number: '. $MyResults['Student_Number'].'</div>
 									                		</div>
 									                	</div>
-									                	<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
+									                	<button type="button" class="close_modal btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
 									                    
 									                </div>
 									                <div class="modal-body">
@@ -262,10 +262,6 @@
 															}
 									                echo'  
 									                </div>
-									                <div class="modal-footer" style="background-color: white; color: black;">
-									                  <span style="width: 20px;"></span>
-									                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-									                </div>
 									              </div>
 									            </div>
 									          </div>
@@ -274,7 +270,7 @@
 												
 												<td class="text-center">
 													<!-- Button trigger modal -->
-										          	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" style="margin: auto; cursor: pointer;">
+										          	<button type="button" class="openmodal btn btn-success" data-toggle="modal" data-target="#myModal" style="margin: auto; cursor: pointer;">
 										            	See Details
 										          	</button>
 												</td>';
@@ -499,6 +495,7 @@
 		for(let i=0;i<spans.length;i++){
     		spans[i].onclick = function() {
         		modals[i].style.display = "none";
+        		$('.modal').modal('hide');
     		}	
 		}
 
