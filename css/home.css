@@ -121,7 +121,7 @@ input[type = search]:focus
 }
 
 /* Modal Body */
-.modal-body {padding: 2px 16px;height: 600px;width:auto;
+.modal-body {padding: 2px 16px;width:auto;
     overflow-y: auto;}
 
 /* Modal Footer */
