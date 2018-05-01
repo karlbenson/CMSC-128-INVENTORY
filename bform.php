@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="background-color: white; color: black;">
-                  <div class="text-center" style="float: left; text-align: left;">
+                  <div class="text-center" id="footmsg" style="float: left; text-align: left;">
                     <p>Are you sure you want to submit?</p>
                   </div>
                   <span style="width: 20px;"></span>
@@ -253,10 +253,12 @@
         //CHECK IF AMT EXCEEDS MAX
 
         if (flag==1) {
+          $("#footmsg").html("");
           $("#inner").html("Error: Some input fields have invalid values. Kindly recheck.");
           $("#submitter").attr('disabled', 'disabled');
           flag=0;
         }else{
+          $("#footmsg").html("Are you sure you want to submit?");
           flag=0;
           $("#submitter").prop('disabled', false);
         }
