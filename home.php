@@ -199,21 +199,17 @@
 									            <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">
 									              <div class="modal-content" style="border-radius: 10px; padding: 20px;">
 									              	<!-- Modal Header -->
-									                <div class="modal-header" style="background-color: white; color: black; text-align: center;">
+									                <div class="modal-header" style="background-color: white; color: black;">
 									                	<div class="row">
-									                		<div class="col-sm-11">
+									                		<div class="col-sm-12">
 									                			<h3><strong>'.$MyResults['First_Name'].' '.$MyResults['Last_Name'].'</strong> </h3>
 									                		</div>
-									                		<div class="col-sm-1">
-									                			<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
-									                		</div>
 									                		<div class="w-100"></div>
-									                		<div class="col-sm-11">
-									                			<div style="float:right: text-align:right;">Student Number: '. $MyResults['Student_Number'].'</div>
-									                		</div>
-									                		<div class="col-sm-1">
+									                		<div class="col-sm-12">
+									                			<div>Student Number: '. $MyResults['Student_Number'].'</div>
 									                		</div>
 									                	</div>
+									                	<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times"></i></button>
 									                    
 									                </div>
 									                <div class="modal-body">
@@ -254,7 +250,7 @@
 																			<input class="hide" name="Trans_Id" type="hidden" value="'.$t_id.'" />
 																			<input class="hide" name="Qty" type="hidden" value="'.$MyResults2['Qty_Borrowed_Glasswares'].'" />
 																			
-																			<input class="btn" style="cursor:pointer;margin:0 auto;" type="submit"  value="Clear Liability"  >
+																			<input class="btn" style="cursor:pointer;margin:0 auto; float:right;" type="submit"  value="Clear Liability"  >
 																		</form>
 																		</div>
 																	';
