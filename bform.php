@@ -31,10 +31,7 @@
           <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
-            <input class="form-control" id="borrowerid" readonly="readonly" value="<?php
-              $MySearchQuery = "SELECT MAX(Borrower_Id) FROM borrower;";
-              $variable = mysqli_query($MyConnection, $MySearchQuery); 
-              echo ($variable)?>" />
+            <input class="form-control" id="borrowerid" readonly="readonly" value="bakit error" />
           </div>
           
           <label class="try" for="members">Group Members: </label>
