@@ -205,7 +205,7 @@
 			<?php include("table_glass.php");?>
 		</div>
 	</div>
-	
+	<?php include("footer.php") ?>
 	</body>
 </html>
 
