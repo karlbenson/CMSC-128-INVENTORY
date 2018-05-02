@@ -145,7 +145,7 @@
 												
 												<td class="text-center">
 													<!-- Button trigger modal -->
-										          	<button type="button" class="openmodal btn btn-success" data-toggle="modal" data-target="#myModal" style="margin: auto; cursor: pointer; ">
+										          	<button type="button" class="openmodal btn btn-success" data-toggle="modal" data-target="#myModal" style="cursor: pointer; ">
 										            	See Details
 										          	</button>
 												</td>';
