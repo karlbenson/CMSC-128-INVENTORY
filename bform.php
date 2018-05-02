@@ -31,7 +31,7 @@
           <form  action="/bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
-            <input class="form-control" id="borrowerid" readonly="readonly" value="bakit error" />
+            <input class="form-control" id="borrowerid" readonly="readonly" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" />
           </div>
           
           <label class="try" for="members">Group Members: </label>
@@ -64,20 +64,22 @@
               <div class="col-md-7"><center>Item</center></div>
               <div class="col-md-4"><center>Quantity</center></div>
           </div>
-          <div class="row grpit" style="padding: 5px; margin: auto;">
+          <div class="container-fluid" id="clonegrp">
+            <div class="row grpit" style="padding: 5px; margin: auto;">
             <div class="col-md-7">
-              <input type="text" name="it[]" class="form-control" placeholder="Chemical/Equipment*" required="true">
+              <input type="text" name="it[]" class="form-control" id="item" placeholder="Chemical/Equipment*" required="true">
             </div>
             <div class="col-md-2">
               <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
             </div>
             /<div class="col-md-1">
-              <input type="text" class="form-control" placeholder="Max" readonly="readonly">
+              <input type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
             </div>
             <div class="col-md-1">
-              <input type="text" class="form-control" placeholder="Unit" readonly="readonly">
+              <input type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly">
             </div>
             <button class="btn btn-danger remover2" form="" style="float:right; cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
+            </div>
           </div>
           <center><button type="button" class="btn btn-info" id="add-item" name="add-item" onmouseover="" style="cursor: pointer; margin-top: 20px; text-align: right;">Add Item</button></center>
 
@@ -145,9 +147,9 @@
 
     var $button2=$('#add-item'),
         $row2=$('.grpit').clone(),
-        $try2=$('.try2');
+        $try2=$('#clonegrp');
     $button2.click(function() {
-      $row2.clone().insertAfter($try2);
+      $row2.clone().appendTo($try2);
       $('.remover2').css({
         visibility: ''
       });
@@ -263,6 +265,12 @@
           $("#submitter").prop('disabled', false);
         }
       });
+
+  });
+
+  $('#clonegrp').on('keyup','#item', function() {
+    $(this).closest('.grpit').find('#max').val('text');
+    $(this).closest('.grpit').find('#unit').val('text');
   });
 </script>
 
