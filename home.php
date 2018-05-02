@@ -47,8 +47,8 @@
 			<div class="text-center" style="margin-bottom: 20px;">
 					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-user-plus" style="font-size: 50px;"></i><br/>Add New User</button>
 					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-user-times" style="font-size: 50px;"></i><br/>Delete User</button>
-					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-list-ol" style="font-size: 50px;"></i><br/>Liability Table</button>
-					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-list-alt" style="font-size: 50px;"></i><br/>Transaction Table</button>
+					<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_full_liabilities.php'"><i class="fas fa-list-ol" style="font-size: 50px;"></i><br/>Liability Table</button>
+					<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_all_transactions.php'"><i class="fas fa-list-alt" style="font-size: 50px;"></i><br/>Transaction Table</button>
 			</div>
 		
 			<div class="row justify-content-between">
@@ -250,7 +250,7 @@
 																			<input class="hide" name="Trans_Id" type="hidden" value="'.$t_id.'" />
 																			<input class="hide" name="Qty" type="hidden" value="'.$MyResults2['Qty_Borrowed_Glasswares'].'" />
 																			
-																			<input class="btn" style="cursor:pointer;margin:0 auto; float:right;" type="submit"  value="Clear Liability"  >
+																			<input class="btn" style="cursor:pointer;margin:0 auto; float:right;" type="submit"  value="Clear Liability" Onclick="return confirm_clear()" >
 																		</form>
 																		</div>
 																	';
@@ -283,7 +283,7 @@
 			</div>
 		</div>
 		<div class="col-sm-12 text-center">
-			<button class="btn btn-primary" style="cursor: pointer;"> SEE FULL TABLE </button>
+			<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_full_liabilities.php'"> SEE FULL TABLE </button>
 		</div>
 		<div>
 		
@@ -362,7 +362,7 @@
 					        </table>
 				</div>
 				<div class="col-sm-12 text-center">
-					<button class="btn btn-primary" style="cursor: pointer;"> SEE FULL TABLE </button>
+					<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_full_glassware_transactions.php'"> SEE FULL TABLE </button>
 				</div>
 				
 				<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px; margin-top:35px;"><em>Transaction History for Chemicals</h1>
@@ -428,7 +428,7 @@
 					        </table>
 				</div>
 				<div class="col-sm-12 text-center">
-					<button class="btn btn-primary" style="cursor: pointer;"> SEE FULL TABLE </button>
+					<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_full_chemical_transactions.php'"> SEE FULL TABLE </button>
 				</div>	
 			</div>	
 			
@@ -437,16 +437,22 @@
 		</div>
 	</div>
 	<script>
+		function confirm_clear() {
+ 		 return confirm("Clearing this student's liability will also clear his/her groupmates' liabilities. Proceed?");
+		}//end function
+
 		$('#nistab').DataTable({
 			"searching":false,
 			"paging":false,
 			"info": false
-		});
+		});//end function
+
 		$('#nistab2').DataTable({
 			"searching":false,
 			"paging":false,
 			"info":false
-		});
+		});//end function
+
 		$('#tab_lia').DataTable({
 			"searching":false,
 			"paging":false,
@@ -459,7 +465,8 @@
 		    { "orderable": false },
 		    { "orderable": false }
 		]
-		});
+		}); //end function
+
 		$('#tab_gla').DataTable({
 			"searching":false,
 			"paging":false,
@@ -474,12 +481,13 @@
 		    null,
 		    null
 		]
-		});
+		}); //end function
+
 		$('#tab_che').DataTable({
 			"searching":false,
 			"paging":false,
 			"info":false,
-		});
+		}); //end function
 
 		//-------------Modal scripting
 		var modals = document.getElementsByClassName('modal');
