@@ -155,11 +155,14 @@
 									?>
 					</tbody>
 				</table>
-			</div>
+			</div>	
 		</div>
 		</div>
+	</div>
+</div>
 	
 	</body>
+	<?php include("footer.php")  ?>
 </html>
 
 <script>
