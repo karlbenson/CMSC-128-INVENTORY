@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/fa/css/fontawesome-all.css">
 </head>
 <body>
-	<footer>
+	<footer style="padding:0 !important;">
 		<div class="container-fluid" style="height: 70px; background-color: #7b1113;">
 			<div class="container-fluid" style="padding-top: 23px; position: absolute;">
 				<h6 style="color: white;">
