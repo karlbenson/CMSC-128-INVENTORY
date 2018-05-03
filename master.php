@@ -35,7 +35,7 @@
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Master List</h1>
 			<!--trigger the modal for confirm delete for chemical-->
 			<div id="id03" class="w3-modal" style="z-index:9999;">
-				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
+				<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
 						<button onclick="document.getElementById('id03').style.display='none'" 
 						class="btn btn-danger"><i class="fas fa-times"></i></button>
@@ -89,7 +89,7 @@
 			</div>
 			<!--trigger the modal for confirm delete for chemical-->
 			<div id="id02" class="w3-modal" style="z-index:9999;">
-				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
+				<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
 						<button onclick="document.getElementById('id02').style.display='none'" 
 						class="btn btn-danger"><i class="fas fa-times"></i></button>

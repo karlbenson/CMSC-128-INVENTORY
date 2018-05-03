@@ -178,5 +178,30 @@
 		    null,
 		    { "orderable": false }
 		]
-	});		
+	});
+
+	//-------------Modal scripting
+		var modals = document.getElementsByClassName('modal');
+		var btns = document.getElementsByClassName("openmodal");
+		var spans=document.getElementsByClassName("close_modal");
+
+		for(let i=0;i<btns.length;i++){
+   			 btns[i].onclick = function() {
+        		modals[i].style.display = "block";
+    		}
+		}
+
+		for(let i=0;i<spans.length;i++){
+    		spans[i].onclick = function() {
+        		modals[i].style.display = "none";
+        		$('.modal').modal('hide');
+    		}	
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		}		
 </script>
