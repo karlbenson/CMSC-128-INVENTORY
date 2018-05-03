@@ -35,18 +35,21 @@
           </div>
           
           <label class="try" for="members">Group Members: </label>
-          <div class="row grpmem" style="padding: 5px; margin: auto;">
-            <div class="col-md-4">
-              <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" maxlength="10" required="true">
+          <div id="namegrp">
+            <div class="row grpmem" style="padding: 5px; margin: auto;">
+              <div class="col-md-4">
+                <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" maxlength="10" required="true">
+              </div>
+              <div class="col-md-4">
+                <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
+              </div>
+              <div class="col-md-3">
+                <input type="text" name="fname[]" class="form-control" placeholder="First Name*" required="true">
+              </div>
+              <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden; text-align: right;"><i class="fas fa-minus"></i></button>
             </div>
-            <div class="col-md-4">
-              <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
-            </div>
-            <div class="col-md-3">
-              <input type="text" name="fname[]" class="form-control" placeholder="First Name*" required="true">
-            </div>
-            <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden; text-align: right;"><i class="fas fa-minus"></i></button>
           </div>
+          
           <center><button type="button" class="btn btn-info" id="add-row" name="add-row" onmouseover="" style="cursor: pointer; margin-top: 20px;">Add Member</button></center>
           
           <label for="instruct">Instructor's Info:</label>
@@ -131,9 +134,9 @@
   jQuery(function($){
     var $button = $('#add-row'),
         $row = $('.grpmem').clone();
-    var $try=$('.try');
+    var $try=$('#namegrp');
     $button.click(function(){
-        $row.clone().insertAfter( $try );
+        $row.clone().appendTo( $try );
         $('.remover').css({
           visibility: ''
         });
@@ -146,7 +149,8 @@
     });
 
     var $button2=$('#add-item'),
-        $row2=$('.grpit').clone(),
+        $row2=$('.grpit').clone();
+        $row2.find('input[name^="sid"]')
         $try2=$('#clonegrp');
     $button2.click(function() {
       $row2.clone().appendTo($try2);
@@ -177,7 +181,7 @@
     }
   });
 
-  $('input[name^="sid"]').on('keyup', function(event) {
+  $('input[name^="sid"]').on('keypress', function(event) {
     var val=$(this).val();
     val= val.replace("/-/g","");
     if (val.length == 4) {
