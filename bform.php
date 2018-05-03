@@ -181,13 +181,13 @@
     }
   });
 
-  $('input[name^="sid"]').on('keypress', function(event) {
-    var val=$(this).val();
+  /*$('input[name^="sid"]').on('keypress', function(event) {
+    var val=$(this).closest('.grpmem').find('input[name^="sid"]').val();
     val= val.replace("/-/g","");
     if (val.length == 4) {
       $(this).val(val+"-");
     }
-  });
+  });*/
 
   function modbod(){
         $(".modal-body").html("<div class='row' id='inner'></div>");
