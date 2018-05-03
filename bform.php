@@ -180,8 +180,8 @@
   $('input[name^="sid"]').on('keyup', function(event) {
     var val=$(this).val();
     val= val.replace("/-/g","");
-    if (val.length > 4) {
-      $(this).val(val.substring(0,4)+"-"+val.substring(5));
+    if (val.length == 4) {
+      $(this).val(val+"-");
     }
   });
 
