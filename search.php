@@ -18,6 +18,8 @@
 	{
 		die("Connection Failed: ". $MyConnection -> connect_error);
 	}
+
+	include("verify.php")
 ?>
 <!DOCTYPE html>
 <html>

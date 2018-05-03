@@ -10,7 +10,7 @@
 	$MyDBName = 'chem_glasswares';
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
-	//include("verify.php");
+	include("verify.php");
 ?>
 
 

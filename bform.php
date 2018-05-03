@@ -37,7 +37,7 @@
           <label class="try" for="members">Group Members: </label>
           <div class="row grpmem" style="padding: 5px; margin: auto;">
             <div class="col-md-4">
-              <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XXXXXXX)*" required="true">
+              <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" required="true">
             </div>
             <div class="col-md-4">
               <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
