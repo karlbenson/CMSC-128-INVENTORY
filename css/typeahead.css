@@ -185,7 +185,7 @@ fieldset[disabled] .twitter-typeahead .tt-input {
   cursor: pointer;
   text-decoration: none;
   outline: 0;
-  background-color: #f5f5f5;
+  background-color: #cecece;
   color: #262626;
 }
 .tt-dropdown-menu .tt-suggestion.tt-cursor a,
