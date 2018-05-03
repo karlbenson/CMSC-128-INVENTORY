@@ -362,6 +362,22 @@
     }
     
   });
+  
+  $('.grpit').on('click',  function(event) {
+    event.preventDefault();
+    if ($(this).closest('.grpit').find('#item').val()=='') {
+    }else{
+      var itarr= <?php echo json_encode($it)?>;
+      for (var i = 0; i < itarr.length; i++) {
+        if (itarr[i]==$(this).closest('.grpit').find('#item').val()) {
+          $(this).closest('.grpit').find('#max').val(itarr[i]);
+          $(this).closest('.grpit').find('#unit').val(itarr[i]);
+        }
+        
+      }
+    }
+    
+  });
 
 </script>
 
