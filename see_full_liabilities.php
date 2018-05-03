@@ -1,19 +1,15 @@
 <?php
 	session_start();
 	error_reporting(0);
-
 	//Server Credentials
 	$MyServerName = "localhost";
 	$MyUserName = "root";
 	$MyPassword = "";
-
 	//Database
 	$MyDBName = 'chem_glasswares';
-
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
 	//include("verify.php");
-
 	
 ?>
 <!DOCTYPE html>
@@ -68,7 +64,6 @@
 												
 												echo '
 												
-
 									          <!-- Modal -->
 									          <div class="modal" id="myModal" role="dialog">
 									            <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px !important;">
@@ -89,14 +84,11 @@
 									                </div>
 									                <div class="modal-body">
 									                	<p> </p>';
-
 															//Fetch all unresolved transactions for this person
 															$MySearchQuery2 = "SELECT * FROM transaction JOIN borrower USING (Group_Id) WHERE transaction.Group_Id = $grp_id AND transaction.Date_Returned IS NULL AND borrower.Borrower_Id = $b_id";
 															$MyValues2 = $MyConnection -> query($MySearchQuery2);
-
 															if (($MyValues2 -> num_rows) > 0){ //get all transactions where date returned is null
 																while ($MyResults2 = $MyValues2 -> fetch_assoc() ) {
-
 																	$gid = $MyResults2['Glassware_Id'];
 																	$q = "SELECT Name FROM Glasswares  WHERE Glassware_Id=$gid";
 																	$r = $MyConnection -> query($q);
@@ -104,7 +96,6 @@
 																	$g_name = $i['Name'];
 																	
 																	$t_id=$MyResults2['Trans_Id'];
-
 																	//actual data here
 																	echo '<div class="container">
 																					<div class="row">';
@@ -129,7 +120,6 @@
 																		</form>
 																		</div>
 																	';
-
 																	echo '</div>
 																		</div>
 																		<p></p><p></p>';					
@@ -167,7 +157,6 @@
 
 <script>
 		
-
 		$('#table_id').DataTable(
 	{
 		"columns":
@@ -179,29 +168,29 @@
 		    { "orderable": false }
 		]
 	});
-
 	//-------------Modal scripting
 		var modals = document.getElementsByClassName('modal');
 		var btns = document.getElementsByClassName("openmodal");
 		var spans=document.getElementsByClassName("close_modal");
-
 		for(let i=0;i<btns.length;i++){
    			 btns[i].onclick = function() {
         		modals[i].style.display = "block";
     		}
 		}
-
 		for(let i=0;i<spans.length;i++){
     		spans[i].onclick = function() {
         		modals[i].style.display = "none";
         		$('.modal').modal('hide');
     		}	
 		}
-
 		// When the user clicks anywhere outside of the modal, close it
 		window.onclick = function(event) {
 		    if (event.target == modal) {
 		        modal.style.display = "none";
 		    }
-		}		
+		}	
+
+		function confirm_clear() {
+ 		 return confirm("Clearing this student's liability will also clear his/her groupmates' liabilities. Proceed?");
+		}//end function	
 </script>
