@@ -20,6 +20,8 @@
   <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
   <link rel="stylesheet" href="datatables/DataTables/css/dataTables.bootstrap4.css">
   <script src="js/jquery.min.js"></script>
+  <script src="js/typeahead.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/typeahead.css">
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
 </head>
@@ -62,6 +64,20 @@
             </div>
           </div>
 
+          <?php
+            $itquery=mysqli_query($MyConnection,"SELECT * FROM chemicals");
+            $it=array();
+
+            while ($row=$itquery->fetch_assoc()) {
+              array_push($it, $row['Name']);
+            }
+
+            $itquery=mysqli_query($MyConnection,"SELECT * FROM glasswares");
+            while ($row=$itquery->fetch_assoc()) {
+              array_push($it, $row['Name']);
+            }
+          ?>
+
           <label for="item">Items:</label>
           <div class="row try2">
               <div class="col-md-7"><center>Item</center></div>
@@ -70,7 +86,7 @@
           <div class="container-fluid" id="clonegrp">
             <div class="row grpit" style="padding: 5px; margin: auto;">
             <div class="col-md-7">
-              <input type="text" name="it[]" class="form-control" id="item" placeholder="Chemical/Equipment*" required="true">
+              <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true">
             </div>
             <div class="col-md-2">
               <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
@@ -131,6 +147,30 @@
 </html>
 
 <script type="text/javascript">
+
+  $(document).ready(function() {
+      var itarr= <?php echo json_encode($it)?>;
+
+      var itarr = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: itarr
+      });
+
+      $('input[name^="it"]').typeahead({
+        hint:true,
+        highlight:true,
+        minLength:1
+      },{
+        name: 'itarr',
+        source: itarr
+      });
+
+      $("#confirm").click(function(event) {
+        modbod();
+      });
+  });
+
   jQuery(function($){
     var $button = $('#add-row'),
         $row = $('.grpmem').clone();
@@ -148,12 +188,25 @@
         });
     });
 
+    var itarr= <?php echo json_encode($it)?>;
+
+      var itarr = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: itarr
+      });
     var $button2=$('#add-item'),
         $row2=$('.grpit').clone();
-        $row2.find('input[name^="sid"]')
         $try2=$('#clonegrp');
     $button2.click(function() {
-      $row2.clone().appendTo($try2);
+      $row2.clone().appendTo($try2).find('input[name^="it"]').typeahead({
+        hint:true,
+        highlight:true,
+        minLength:1
+      },{
+        name: 'itarr',
+        source: itarr
+      });
       $('.remover2').css({
         visibility: ''
       });
@@ -163,14 +216,11 @@
       $('.grpit').on('click','.remover2', function() {
           $(this).closest('.grpit').remove();
       });
+
     });
     
 });
-  $(document).ready(function() {
-      $("#confirm").click(function(event) {
-        modbod();
-      });
-  });
+  
 
   $(document).on('keypress', function(event) {
     var key=event.which;
