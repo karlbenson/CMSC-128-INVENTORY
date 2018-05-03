@@ -411,7 +411,7 @@
 				});
 			}
 
-			function MyChange(name, value)
+			function test(name, value)
 			{
 				if (name == "myType")
 				{
