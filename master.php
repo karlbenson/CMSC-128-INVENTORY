@@ -12,7 +12,7 @@
 
 	$MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	
-	include("verify.php");
+	//include("verify.php");
 
 	
 ?>
@@ -35,7 +35,7 @@
 			<h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Master List</h1>
 			<!--trigger the modal for confirm delete for chemical-->
 			<div id="id03" class="w3-modal" style="z-index:9999;">
-				<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
+				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
 						<button onclick="document.getElementById('id03').style.display='none'" 
 						class="btn btn-danger"><i class="fas fa-times"></i></button>
@@ -64,8 +64,8 @@
 													</td>
 													<td class="align-middle text-center" align="center">
 														<div class = "row align-content-center">
-															<input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount">
-															<select name = "unit[]" class="form-control col-6" id="ChemUnit">
+															<input class="form-control col-6" name="amount[]" placeholder="Amount" required="required">
+															<select name = "unit[]" class="form-control col-6">
 																	<option value = "ml" selected="selected">ml</option>
 																	<option value = "mg">mg</option>
 															</select>
@@ -89,7 +89,7 @@
 			</div>
 			<!--trigger the modal for confirm delete for chemical-->
 			<div id="id02" class="w3-modal" style="z-index:9999;">
-				<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
+				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
 						<button onclick="document.getElementById('id02').style.display='none'" 
 						class="btn btn-danger"><i class="fas fa-times"></i></button>
@@ -123,7 +123,7 @@
 			</div>
 			<!--trigger the modal for add to inventory-->
 			<div id="id01" class="w3-modal" style="z-index:9999;">
-				<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
+				<div class="w3-modal-content w3-animate-bottom" style="border-radius: 10px; padding: 20px;">
 					<header class="w3-container" style="text-align: center;"> 
 						<button onclick="document.getElementById('id01').style.display='none'" 
 						class="btn btn-danger"><i class="fas fa-times"></i></button>
@@ -147,7 +147,7 @@
 							            	<tbody class="text-center" id = "data_input">
 								            	<tr>
 													<td class="align-middle text-center" align="center">
-														<select name="item_type[]" class="form-control" onchange="MyChange(this.id, this.value)" id = "myType">
+														<select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType">
 															<option value="chem" selected="selected">Add Chemical</option>
 															<option value="glass">Add Equipment</option>
 														</select>
@@ -205,7 +205,7 @@
 			<?php include("table_glass.php");?>
 		</div>
 	</div>
-	<?php include("footer.php") ?>
+	
 	</body>
 </html>
 
@@ -312,7 +312,7 @@
 				{
 					var html = '';
 					html += '<tr>';
-					html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="MyChange(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
+					html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
 					html += '<td class="align-middle text-center" align="center" align="center"><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
 					html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml" selected="selected">ml</option><option value = "mg">mg</option></select></div></td>';
 					html += '<td align="center"><button type="button" name="remove" class="button button5 remove" id="remover"><i class="fas fa-minus"></i></button></td>';
@@ -349,10 +349,9 @@
 					    data: form_data,
 					    success: function()
 					    {
-					    	topFunction();
 				      		var html = '';
 							html += '<tr>';
-							html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="MyChange(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
+							html += '<td class="align-middle text-center" align="center"><select name="item_type[]" class="form-control" onchange="test(this.id, this.value)" id = "myType"><option value="chem" selected="selected">Add Chemical</option><option value="glass">Add Equipment</option></select></td>';
 							html += '<td class="align-middle text-center" align="center" align="center"><div class="col"><input class="form-control" name="name[]" placeholder="Name" required="required"></div></td>';
 							html += '<td class="align-middle text-center" align="center"><div class = "row align-content-center"><input class="form-control col-6" name="amount[]" placeholder="Amount" required="required" id="MyAmount"><select name = "unit[]" class="form-control col-6" id="ChemUnit"><option value = "ml" selected="selected">ml</option><option value = "mg">mg</option></select></div></td>';
 							html += '<td align="center"><button type="button" name="remove" class="button button5 remove" id="remover" style="visibility: hidden;"><i class="fas fa-minus"></i></button></td>';
@@ -372,15 +371,35 @@
 				   	}
 			   	);
 			});
+		
+			jQuery(function()
+			{
+			   jQuery('#allbtn').click();
+			});
 			
-			$('#NO_ON_DELETE').on('click', function(event)
-				{
-					event.preventDefault();
-					document.getElementById('id02').style.display='none';
-					$('#error').html('<div class="alert alert-danger"><strong>Delete Cancelled!</strong><button class="btn btn-sm btn-danger" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
-					topFunction();
-				}
-			);
+			function changeID()
+			{
+				var i=0;
+				$('[id*=ChemUnit]').each(function(){
+				    i++;
+				    var newID='ChemUnit_' + i;
+				    $(this).attr('id',newID);
+				});
+
+				i = 0;
+				$('[id*=MyAmount]').each(function(){
+				    i++;
+				    var newID='MyAmount_' + i;
+				    $(this).attr('id',newID);
+				});
+
+				i = 0;
+				$('[id*=myType]').each(function(){
+				    i++;
+				    var newID='myType_' + i;
+				    $(this).attr('id',newID);
+				});
+			}
 
 			jQuery(function()
 			{
