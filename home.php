@@ -45,8 +45,8 @@
 			</div>
 
 			<div class="text-center" style="margin-bottom: 20px;">
-					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-user-plus" style="font-size: 50px;"></i><br/>Add New User</button>
-					<button class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-user-times" style="font-size: 50px;"></i><br/>Delete User</button>
+					<button class="btn btn-primary" style="cursor: pointer;display: none;"><i class="fas fa-user-plus" style="font-size: 50px;"></i><br/>Add New User</button>
+					<button class="btn btn-primary" style="cursor: pointer; display: none;"><i class="fas fa-user-times" style="font-size: 50px;"></i><br/>Delete User</button>
 					<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_full_liabilities.php'"><i class="fas fa-list-ol" style="font-size: 50px;"></i><br/>Liability Table</button>
 					<button class="btn btn-primary" style="cursor: pointer;" onclick="window.location='see_all_transactions.php'"><i class="fas fa-list-alt" style="font-size: 50px;"></i><br/>Transaction Table</button>
 			</div>

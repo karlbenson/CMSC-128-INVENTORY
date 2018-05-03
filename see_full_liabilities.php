@@ -19,11 +19,11 @@
 		<link rel="stylesheet" href="css/master.css">
 		<link rel="stylesheet" href="css/modal.css">
 		<link rel="stylesheet" href="css/font-awesome.min.js">
-		<link rel="stylesheet" href="datatables/DataTables/css/dataTables.bootstrap4.css">
 		<script src="js/jquery.min.js"></script>
 		<script src="datatables/DataTables/js/jquery.dataTables.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" charset="utf8" src="datatables/DataTables/js/dataTables.bootstrap4.js"></script>
+		<link rel="stylesheet" href="datatables/DataTables/css/dataTables.bootstrap4.css">
 		<?php 'loading head';include("head.php"); ?>
 	</head>
 	<body>
