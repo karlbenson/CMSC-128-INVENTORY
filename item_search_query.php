@@ -132,7 +132,7 @@
 				if (($MyValues -> num_rows) > 0)
 				{
 					echo "<div class=py-3> <div class=container> <div class=row>";
-					$TableClass = "table";
+					$TableClass = "table table-sm table-striped table-hover";
 	                echo "<table class =".$TableClass.">";
 	                echo
 	                "
@@ -187,7 +187,7 @@
 				if (($MyValues -> num_rows) > 0)
 				{
 					echo "<div class=py-3> <div class=container> <div class=row>";
-					$TableClass = "table";
+					$TableClass = "table table-sm table-striped table-hover";
 	                echo "<table class =".$TableClass.">";
 	                echo
 	                "
@@ -241,7 +241,7 @@
 				if (($MyValues -> num_rows) > 0)
 				{
 					echo "<div class=py-3> <div class=container> <div class=row>";
-					$TableClass = "table";
+					$TableClass = "table table-sm table-striped table-hover";
 	                echo "<table class =".$TableClass.">";
 	                echo
 	                "
