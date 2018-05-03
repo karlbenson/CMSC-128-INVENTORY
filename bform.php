@@ -37,7 +37,7 @@
           <label class="try" for="members">Group Members: </label>
           <div class="row grpmem" style="padding: 5px; margin: auto;">
             <div class="col-md-4">
-              <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" required="true">
+              <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" maxlength="10" required="true">
             </div>
             <div class="col-md-4">
               <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
@@ -166,7 +166,6 @@
       $("#confirm").click(function(event) {
         modbod();
       });
-
   });
 
   $(document).on('keypress', function(event) {
@@ -175,6 +174,14 @@
       event.preventDefault();
       $('#myModal').modal('show');
       modbod();
+    }
+  });
+
+  $('input[name^="sid"]').on('keyup', function(event) {
+    var val=$(this).val();
+    val= val.replace("/-/g","");
+    if (val.length > 4) {
+      $(this).val(val.substring(0,4)+"-"+val.substring(5));
     }
   });
 
