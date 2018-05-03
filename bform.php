@@ -86,7 +86,7 @@
           <div class="container-fluid" id="clonegrp">
             <div class="row grpit" style="padding: 5px; margin: auto;">
             <div class="col-md-7">
-              <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true">
+              <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true" style="background-color: white !important;">
             </div>
             <div class="col-md-2">
               <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
@@ -205,8 +205,11 @@
         minLength:1
       },{
         name: 'itarr',
-        source: itarr
-      });
+        source: itarr,
+        afterSelect: function(item){
+          $(this).focus();
+        }
+      }).css('background-color', 'white');
       $('.remover2').css({
         visibility: ''
       });
@@ -342,16 +345,24 @@
         }
   }
 
-  $('#clonegrp').on('keyup','#item', function() {
+  $('#clonegrp').on('keyup','#item', function(e) {
     if ($(this).closest('.grpit').find('#item').val()=='') {
       $(this).closest('.grpit').find('#max').val('');
       $(this).closest('.grpit').find('#unit').val('');
     }else{
-      $(this).closest('.grpit').find('#max').val('catch');
-      $(this).closest('.grpit').find('#unit').val('catch');
+      var itarr= <?php echo json_encode($it)?>;
+      for (var i = 0; i < itarr.length; i++) {
+        if (itarr[i]==$(this).closest('.grpit').find('#item').val() && e.which==13) {
+          $(this).closest('.grpit').find('#max').val(itarr[i]);
+          $(this).closest('.grpit').find('#unit').val(itarr[i]);
+        }
+        
+      }
+      
     }
     
   });
+
 </script>
 
 <style type="text/css">
