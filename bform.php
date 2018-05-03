@@ -164,6 +164,21 @@
 });
   $(document).ready(function() {
       $("#confirm").click(function(event) {
+        modbod();
+      });
+
+  });
+
+  $(document).on('keypress', function(event) {
+    var key=event.which;
+    if (key==13) {
+      event.preventDefault();
+      $('#myModal').modal('show');
+      modbod();
+    }
+  });
+
+  function modbod(){
         $(".modal-body").html("<div class='row' id='inner'></div>");
         $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Borrower Id: </strong>"+$("#borrowerid").val()+"</div>");
         $("#inner").append("<div class='col-sm-12' style='margin-top:10px; margin-bottom:10px;'><strong>Group Members: </strong></div>");
@@ -264,16 +279,7 @@
           flag=0;
           $("#submitter").prop('disabled', false);
         }
-      });
-
-  });
-
-  $(document).on('keydown', 'document', function(event) {
-    var key=event.which;
-    if (key==13) {
-      $("#confirm").click();
-    }
-  });
+  }
 
   $('#clonegrp').on('keyup','#item', function() {
     if ($(this).closest('.grpit').find('#item').val()=='') {
