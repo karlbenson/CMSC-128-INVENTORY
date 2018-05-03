@@ -8,6 +8,15 @@
 		//validate form data to prevent XSS attacks
 		$username = test_input($_POST["username"]);
 		$password = test_input($_POST["password"]);
+		if(isset($_POST["remember"])){
+			$remember = $_POST["remember"];
+		}else{
+			
+			$remember=null;
+			
+		}
+
+		
 		
 		$con = mysqli_connect('127.0.0.1','root','');
 		$query = "SELECT * FROM user_accounts WHERE Username = '$username'";
@@ -64,7 +73,19 @@
 		$data = stripslashes($data);
 		$data = htmlspecialchars($data);
 		return $data;
+	}//end function
+
+	//Remember me script
+	if(isset($remember)){ //if nakacheck
+		setcookie("username",$username,time() + (86400 * 30), "/");
+		setcookie("password",$password,time() + (86400 * 30), "/");
+	}else{
+
+		setcookie("username","",time() - 3600,"/");
+		setcookie("password","",time() - 3600,"/");
+		
 	}
+
 ?>
 
 <!DOCTYPE html>
@@ -104,15 +125,15 @@
 				?>
 				<div class="form-group">
 					<label for="exampleInputEmail1">USERNAME</label>
-					<input type="text" name="username" class="form-control" id="exampleInputUsername1" placeholder="Username" required >
+					<input type="text" name="username" class="form-control" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>" id="exampleInputUsername1" placeholder="Username" required >
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">PASSWORD</label>
-					<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required >
+					<input type="password" name="password" class="form-control" value="<?php if(isset($_COOKIE["password"])) { echo $_COOKIE["password"]; } ?>" id="exampleInputPassword1" placeholder="Password" required >
 				</div>
 				<div class="checkbox">
 					<label>
-						<input title="kapag nag-iisa~" type="checkbox" name="remember_me"> Remember me
+						<input title="kapag nag-iisa~" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?> type="checkbox" name="remember"> Remember me
 					</label>
 				</div>
 				<button type="submit" class="btn btn-success btn-block"  name="Login">LOG IN</button>
