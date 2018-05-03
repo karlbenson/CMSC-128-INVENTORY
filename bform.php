@@ -268,9 +268,28 @@
 
   });
 
+  $(document).on('keydown', 'document', function(event) {
+    var key=event.which;
+    if (key==13) {
+      $("#confirm").click();
+    }
+  });
+
   $('#clonegrp').on('keyup','#item', function() {
-    $(this).closest('.grpit').find('#max').val('text');
-    $(this).closest('.grpit').find('#unit').val('text');
+    if ($(this).closest('.grpit').find('#item').val()=='') {
+      $(this).closest('.grpit').find('#max').val('');
+      $(this).closest('.grpit').find('#unit').val('');
+    }else{
+      <?php 
+        $query2="SELECT Name FROM glasswares;";
+        $row2=mysqli_query($MyConnection,$query);
+        $result2=mysqli_fetch_array($row,MYSQLI_ASSOC);
+      ?>
+      alert("<?php json_encode($result2[0])?>");
+      $(this).closest('.grpit').find('#max').val('catch');
+      $(this).closest('.grpit').find('#unit').val('catch');
+    }
+    
   });
 </script>
 
