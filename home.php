@@ -135,7 +135,7 @@
 										}
 								}
 								
-								$MySearchQuery = "SELECT * FROM chemicals WHERE (Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)) AND Quantity_Available_mg > 0 AND Quantity_Available_ml > 0";
+								$MySearchQuery = "SELECT * FROM chemicals WHERE (Quantity_Available_ml < 0.3*(Original_Amt) OR Quantity_Available_mg < 0.3*(Original_Amt)) AND (Quantity_Available_mg > 0 OR Quantity_Available_ml > 0)";
 								$MyValues = $MyConnection -> query($MySearchQuery);
 								if (($MyValues -> num_rows) > 0)
 								{
@@ -223,6 +223,7 @@
 																while ($MyResults2 = $MyValues2 -> fetch_assoc() ) {
 
 																	$gid = $MyResults2['Glassware_Id'];
+																	
 																	$q = "SELECT Name FROM Glasswares  WHERE Glassware_Id=$gid";
 																	$r = $MyConnection -> query($q);
 																	$i = $r->fetch_assoc();

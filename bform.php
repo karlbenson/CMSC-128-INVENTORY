@@ -30,18 +30,7 @@
         <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
         <p class="text-center">Required fields are indicated by *</p>
         <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2; border:2px solid #dbdbdb;">
-          <?php 
-            //use this for multiple add
-            $cnt_mem=1;
-            $cnt_item=1;
-
-            /*consider: if nageexist na yung borrower sa database VS di pa nageexist si borrower
-              find match of item in chemical/glassware
-              yung unit kapag chemical siya 
-              dadagdag ka din sa group
-              +1 amt of transactions sa bawat member
-            */
-          ?>
+          
 
           <form  action="bprocess.php" target="_self" method="POST">
           <div class="form-group">
@@ -112,7 +101,7 @@
               <input type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
             </div>
             <div class="col-md-1">
-              <input type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly" name="unit[]">
+              <input type="text" class="form-control" id="unit" placeholder="Unit"  name="unit[]">
             </div>
             <button class="btn btn-danger remover2" form="" style="float:right; cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
             </div>
