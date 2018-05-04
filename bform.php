@@ -30,12 +30,11 @@
         <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
         <p class="text-center">Required fields are indicated by *</p>
         <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2; border:2px solid #dbdbdb;">
-          
 
           <form  action="bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
-            <input class="form-control" id="borrowerid" readonly="readonly" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" name = "borrower_id" />
+            <input class="form-control" id="borrowerid" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" name = "borrower_id" />
           </div>
           
           <label class="try" for="members">Group Members: </label>
@@ -67,16 +66,26 @@
           </div>
 
           <?php
-            $itquery=mysqli_query($MyConnection,"SELECT * FROM chemicals");
+            $itquery=mysqli_query($MyConnection,"SELECT * FROM chemicals WHERE Quantity_Available_ml>0 OR Quantity_Available_mg>0");
             $it=array();
+            $chem=array();
+            $glass=array();
+            $qchemml=array();
+            $qchemmg=array();
+            $qglass=array();
 
             while ($row=$itquery->fetch_assoc()) {
               array_push($it, $row['Name']);
+              array_push($chem, $row['Name']);
+              array_push($qchemml, $row['Quantity_Available_ml']);
+              array_push($qchemmg, $row['Quantity_Available_mg']);
             }
 
-            $itquery=mysqli_query($MyConnection,"SELECT * FROM glasswares");
+            $itquery=mysqli_query($MyConnection,"SELECT * FROM glasswares WHERE Quantity_Available>0");
             while ($row=$itquery->fetch_assoc()) {
               array_push($it, $row['Name']);
+              array_push($glass, $row['Name']);
+              array_push($qglass, $row['Quantity_Available']);
             }
 
            
@@ -84,6 +93,7 @@
           ?>
 
           <label for="item">Items:</label>
+          <div style="margin-left: 20px;">Note: if the item does not show any suggestions, it is unavailable.</div>
           <div class="row try2">
               <div class="col-md-7"><center>Item</center></div>
               <div class="col-md-4"><center>Quantity</center></div>
@@ -101,7 +111,7 @@
               <input type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
             </div>
             <div class="col-md-1">
-              <input type="text" class="form-control" id="unit" placeholder="Unit"  name="unit[]">
+              <input type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly" name="unit[]">
             </div>
             <button class="btn btn-danger remover2" form="" style="float:right; cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
             </div>
@@ -156,6 +166,11 @@
 
   $(document).ready(function() {
       var itarr= <?php echo json_encode($it)?>;
+      var chem= <?php echo json_encode($chem)?>;
+      var glass= <?php echo json_encode($glass)?>;
+      var qchemml= <?php echo json_encode($qchemml)?>;
+      var qchemmg= <?php echo json_encode($qchemmg)?>;
+      var qglass= <?php echo json_encode($qglass)?>;
 
       var itarr = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -357,10 +372,27 @@
       $(this).closest('.grpit').find('#unit').val('');
     }else{
       var itarr= <?php echo json_encode($it)?>;
+      var chem= <?php echo json_encode($chem)?>;
+      var glass= <?php echo json_encode($glass)?>;
+      var qchemml= <?php echo json_encode($qchemml)?>;
+      var qchemmg= <?php echo json_encode($qchemmg)?>;
+      var qglass= <?php echo json_encode($qglass)?>;
       for (var i = 0; i < itarr.length; i++) {
-        if (itarr[i]==$(this).closest('.grpit').find('#item').val() && e.which==13) {
-          $(this).closest('.grpit').find('#max').val(itarr[i]);
-          $(this).closest('.grpit').find('#unit').val(itarr[i]);
+        if (chem[i]==$(this).closest('.grpit').find('#item').val() && e.which==13) {
+          if (qchemml[i]!=null) {
+            $(this).closest('.grpit').find('#max').val(qchemml[i]);
+            $(this).closest('.grpit').find('#unit').val('ml');
+            break;
+          }else{
+            $(this).closest('.grpit').find('#max').val(qchemmg[i]);
+            $(this).closest('.grpit').find('#unit').val('mg');
+            break;
+          }
+        }
+
+        if (glass[i]==$(this).closest('.grpit').find('#item').val() && e.which==13) {
+            $(this).closest('.grpit').find('#max').val(qglass[i]);
+            $(this).closest('.grpit').find('#unit').val('pc/s');
         }
         
       }
@@ -374,10 +406,13 @@
     if ($(this).closest('.grpit').find('#item').val()=='') {
     }else{
       var itarr= <?php echo json_encode($it)?>;
+      var chem= <?php echo json_encode($chem)?>;
+      var glass= <?php echo json_encode($glass)?>;
+      var qchemml= <?php echo json_encode($qchemml)?>;
+      var qchemmg= <?php echo json_encode($qchemmg)?>;
+      var qglass= <?php echo json_encode($qglass)?>;
       for (var i = 0; i < itarr.length; i++) {
         if (itarr[i]==$(this).closest('.grpit').find('#item').val()) {
-          $(this).closest('.grpit').find('#max').val(itarr[i]);
-          $(this).closest('.grpit').find('#unit').val(itarr[i]);
         }
         
       }
