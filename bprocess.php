@@ -149,7 +149,9 @@
 		$x=$x+1;//update amount index
 
 		//add transaction entry
-		$date_today=date("Y-m-d");
+		$date_now=date("Y-m-d");
+		
+		$date_today = date('Y-m-d H:i:s', strtotime($date_now));
 
 		if($is_glass==1){
 			mysqli_query($MyConnection,"INSERT INTO transaction (Glassware_Id,Group_Id,Qty_Borrowed_Glasswares,Date_Borrowed) VALUES ('$id','$group_id','$amt','date_today');");
