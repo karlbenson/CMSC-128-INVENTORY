@@ -55,7 +55,7 @@
 					            <tbody >
 								
 									<?php
-										$MySearchQuery = "SELECT * FROM transaction JOIN glasswares USING (Glassware_Id) ORDER BY transaction.Date_Returned LIMIT 5";
+										$MySearchQuery = "SELECT * FROM transaction JOIN glasswares USING (Glassware_Id) ORDER BY transaction.Date_Returned";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{

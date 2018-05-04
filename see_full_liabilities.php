@@ -47,7 +47,7 @@
 					</thead>
 					<tbody>
 								<?php
-										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0 LIMIT 5";
+										$MySearchQuery = "SELECT * FROM borrower WHERE Amt_of_transactions > 0";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{

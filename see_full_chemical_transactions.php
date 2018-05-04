@@ -54,7 +54,7 @@
 					            </thead>
 					            <tbody >
 									<?php
-										$MySearchQuery = "SELECT * FROM transaction JOIN chemicals USING (Chemical_Id) ORDER BY transaction.Date_Returned LIMIT 5";
+										$MySearchQuery = "SELECT * FROM transaction JOIN chemicals USING (Chemical_Id) ORDER BY transaction.Date_Returned";
 										$MyValues = $MyConnection -> query($MySearchQuery);
 										if (($MyValues -> num_rows) > 0)
 										{

@@ -259,7 +259,8 @@
     var val=$(this).closest('.grpmem').find('input[name^="sid"]').val();
     val= val.replace("/-/g","");
     if (val.length == 4) {
-      $(this).val(val+"-");
+      alert(val.length);
+      $(this).closest('.grpmem').find('input[name^="sid"]').val(val+"-");
     }
   });*/
 
