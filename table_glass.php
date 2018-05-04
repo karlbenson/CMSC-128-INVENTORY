@@ -46,18 +46,19 @@
 								while ($MyResults = $MyValues -> fetch_assoc())
 								{
 									echo '<tr>';
+
 									echo '<td>'.$MyResults['Glassware_Id'].'</td>';
 									echo '<td>'.$MyResults['Name'].'</td>';
 									echo '<td>'.$MyResults['Quantity_Available'].'</td>';
 									
-									echo '<td>
-									<button type="submit" class="button button5" onclick="editFunction()"><i class="fas fa-pencil-alt"></i></button>
-									</td>';
+									echo '<td><button type="submit" class="button button5"';
+									echo 'onclick = "editFunction('.$MyResults['Glassware_Id'].', &quot;GLASS&quot;)"';
+									echo '><i class="fas fa-pencil-alt"></i></button></td>';
 									
 									echo '<td><button type="submit" class="button button5"';
 									echo 'onclick = "deleteFunction('.$MyResults['Glassware_Id'].', &quot;GLASS&quot;)"';
-									echo'><i class="fas fa-trash-alt"></i></button> 
-										</td>';
+									echo'><i class="fas fa-trash-alt"></i></button></td>';
+									
 									echo '</tr>';
 									
 									//ADD DELETE CONFIRMATION
