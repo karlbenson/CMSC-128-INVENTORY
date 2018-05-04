@@ -151,21 +151,22 @@
 		//add transaction entry
 		$date_now=date("Y-m-d");
 		
-		$date_today = date('Y-m-d H:i:s', strtotime($date_now));
+		//$date_today = date('Y-m-d H:i:s', strtotime($date_now));
 
 		if($is_glass==1){
-			mysqli_query($MyConnection,"INSERT INTO transaction (Glassware_Id,Group_Id,Qty_Borrowed_Glasswares,Date_Borrowed) VALUES ('$id','$group_id','$amt','date_today');");
+			mysqli_query($MyConnection,"INSERT INTO transaction (Glassware_Id,Group_Id,Qty_Borrowed_Glasswares,Date_Borrowed) VALUES ('$id','$group_id','$amt', NOW());");
 			//add amt of transactions because it is glassware. does not apply to chemicals
 			mysqli_query($MyConnection, "UPDATE borrower SET Amt_of_transactions=Amt_of_transactions+1 WHERE Group_Id='$group_id'");
 		}else{
 			if($unit=='mg'){
-				mysqli_query($MyConnection,"INSERT INTO transaction (Chemical_Id,Group_Id,Qty_Borrowed_Chemicals_mg,Date_Borrowed,Date_Returned) VALUES ('$id','$group_id','$amt','date_today','date_today');");
+				mysqli_query($MyConnection,"INSERT INTO transaction (Chemical_Id,Group_Id,Qty_Borrowed_Chemicals_mg,Date_Borrowed,Date_Returned) VALUES ('$id','$group_id','$amt',NOW(),NOW());");
 			}else{
-				mysqli_query($MyConnection,"INSERT INTO transaction (Chemical_Id,Group_Id,Qty_Borrowed_Chemicals_ml,Date_Borrowed,Date_Returned) VALUES ('$id','$group_id','$amt','date_today','date_today');");
+				mysqli_query($MyConnection,"INSERT INTO transaction (Chemical_Id,Group_Id,Qty_Borrowed_Chemicals_ml,Date_Borrowed,Date_Returned) VALUES ('$id','$group_id','$amt',NOW(),NOW());");
 			}//end if
 		}//end if
-
-		
+		echo "<script>alert('Success!');</script>";
+		header('location:home.php');
+		exit();
 
 		
 	}//end for
