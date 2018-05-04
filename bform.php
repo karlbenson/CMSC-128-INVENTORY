@@ -30,10 +30,23 @@
         <h1 class="jumbotron-fluid text-center py-4" style="font-size: 50px"><em>Borrower's Form</h1>
         <p class="text-center">Required fields are indicated by *</p>
         <div class="container" style="padding: 20px; margin-bottom: 50px; border-radius: 10px; background-color: #edeef2; border:2px solid #dbdbdb;">
-          <form  action="/bprocess.php" target="_self" method="POST">
+          <?php 
+            //use this for multiple add
+            $cnt_mem=1;
+            $cnt_item=1;
+
+            /*consider: if nageexist na yung borrower sa database VS di pa nageexist si borrower
+              find match of item in chemical/glassware
+              yung unit kapag chemical siya 
+              dadagdag ka din sa group
+              +1 amt of transactions sa bawat member
+            */
+          ?>
+
+          <form  action="bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
-            <input class="form-control" id="borrowerid" readonly="readonly" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" />
+            <input class="form-control" id="borrowerid" readonly="readonly" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" name = "borrower_id" />
           </div>
           
           <label class="try" for="members">Group Members: </label>
@@ -57,10 +70,10 @@
           <label for="instruct">Instructor's Info:</label>
           <div class="row" id="instruct" style="margin: auto; padding: 5px;">
             <div class="col-md-6">
-              <input type="text" id="prof" class="form-control" placeholder="Name of Professor">
+              <input type="text" id="prof" class="form-control" placeholder="Name of Professor" name="professor">
             </div>
             <div class="col-md-5">
-              <input type="text" id="subj" class="form-control" placeholder="Name of Subject*" required="true">
+              <input type="text" id="subj" class="form-control" placeholder="Name of Subject*" required="true" name="subject">
             </div>
           </div>
 
@@ -76,6 +89,9 @@
             while ($row=$itquery->fetch_assoc()) {
               array_push($it, $row['Name']);
             }
+
+           
+
           ?>
 
           <label for="item">Items:</label>
@@ -86,7 +102,8 @@
           <div class="container-fluid" id="clonegrp">
             <div class="row grpit" style="padding: 5px; margin: auto;">
             <div class="col-md-7">
-              <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true" style="background-color: white !important;">
+              <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true" style="background-color: white !important;"> 
+             
             </div>
             <div class="col-md-2">
               <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
@@ -95,7 +112,7 @@
               <input type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
             </div>
             <div class="col-md-1">
-              <input type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly">
+              <input type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly" name="unit[]">
             </div>
             <button class="btn btn-danger remover2" form="" style="float:right; cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
             </div>
