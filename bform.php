@@ -214,7 +214,7 @@
           }
           
         }
-      });;
+      });
 
       $("#confirm").click(function(event) {
         modbod();
@@ -314,7 +314,6 @@
     var key=event.which;
     if (key==13) {
       event.preventDefault();
-      //$('#myModal').modal('show');
       var itarr= <?php echo json_encode($it)?>;
       var chem= <?php echo json_encode($chem)?>;
       var glass= <?php echo json_encode($glass)?>;
@@ -358,7 +357,9 @@
           }
         }
       }
-      //modbod();
+
+      $('#myModal').modal('show');
+      modbod();
     }
   });
 
@@ -406,6 +407,8 @@
         //GATEHRING ALL ITEM INPUTS
         var it=new Array();
         var amt=new Array();
+        var max=new Array();
+        var unit=new Array();
         ctr=0;
         $('input[name^="it"]').each(function() {
             it[ctr]=$(this).val();
@@ -416,9 +419,18 @@
             amt[ctr]=$(this).val();
             ctr++;
         });
-
+        ctr=0;
+        $('input[name^="max"]').each(function() {
+            max[ctr]=$(this).val();
+            ctr++;
+        });
+        ctr=0;
+        $('input[name^="unit"]').each(function() {
+            unit[ctr]=$(this).val();
+            ctr++;
+        });
         for (var i = 0; i < it.length; i++) {
-          $("#inner").append("<div class='col-sm-7 text-center'><strong>"+amt[i]+"</strong> - "+it[i]+"</div><div class='col-sm-5 text-center'></div>");
+          $("#inner").append("<div class='col-sm-7 text-center'>"+it[i]+"</div><div class='col-sm-1 text-center'>-</div><div class='col-sm-4 text-center'><strong>"+amt[i]+"</strong> "+unit[i]+"</div>");
         }
         //////////////////////////////////////////////////////////
 
@@ -455,10 +467,21 @@
             flag=1;
             break;
           }
+          if (max[i]=="") {
+            flag=1;
+            break;
+          }
+          if (unit[i]=="") {
+            flag=1;
+            break;
+          }
+          if (amt[i]>max[i]) {
+            flag=1;
+            break;
+          }
         }
 
         //CHECK IF ALL SID IS A NUMBER
-        //CHECK IF SID EXCEEDS 9 NUMERALS
         //CHECK IF AMT IS A NUMBER
         //CHECK IF AMT EXCEEDS MAX
 
