@@ -92,22 +92,24 @@
 
           ?>
 
-          <label for="item">Items:</label>
-          <div style="margin-left: 20px;">Note: if the item does not show any suggestions, it is unavailable.</div>
-          <div class="row try2">
-              <div class="col-md-7"><center>Item</center></div>
+          <label for="item" style="padding-top: 20px;">Items:</label>
+          <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <p><strong>Note:</strong><br/>-If the item field does not show any suggestions, then the item is <strong>UNAVAILABLE</strong>.</p>
+          </div>
+          <div class="row try2" style="margin-top: 25px;">
+              <div class="col-md-6"><center>Item</center></div>
               <div class="col-md-4"><center>Quantity</center></div>
           </div>
           <div class="container-fluid" id="clonegrp">
             <div class="row grpit" style="padding: 5px; margin: auto;">
-            <div class="col-md-7">
+            <div class="col-md-6 myItems">
               <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true" style="background-color: white !important;"> 
-             
             </div>
             <div class="col-md-2">
               <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
             </div>
-            /<div class="col-md-1">
+            /<div class="col-md-2">
               <input type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
             </div>
             <div class="col-md-1">
@@ -185,7 +187,34 @@
       },{
         name: 'itarr',
         source: itarr
-      });
+      }).on('typeahead:selected', function(event) {
+        event.preventDefault();
+        var itarr= <?php echo json_encode($it)?>;
+        var chem= <?php echo json_encode($chem)?>;
+        var glass= <?php echo json_encode($glass)?>;
+        var qchemml= <?php echo json_encode($qchemml)?>;
+        var qchemmg= <?php echo json_encode($qchemmg)?>;
+        var qglass= <?php echo json_encode($qglass)?>;
+        for (var i = 0; i < itarr.length; i++) {
+          if (chem[i]==$(this).val()) {
+            if (qchemml[i]!=null) {
+              $(this).closest('.grpit').find('#max').val(qchemml[i]);
+              $(this).closest('.grpit').find('#unit').val('ml');
+              break;
+            }else{
+              $(this).closest('.grpit').find('#max').val(qchemmg[i]);
+              $(this).closest('.grpit').find('#unit').val('mg');
+              break;
+            }
+          }
+
+          if (glass[i]==$(this).val()) {
+              $(this).closest('.grpit').find('#max').val(qglass[i]);
+              $(this).closest('.grpit').find('#unit').val('pc/s');
+          }
+          
+        }
+      });;
 
       $("#confirm").click(function(event) {
         modbod();
@@ -194,10 +223,15 @@
 
   jQuery(function($){
     var $button = $('#add-row'),
-        $row = $('.grpmem').clone();
+    $row = $('.grpmem').clone();
     var $try=$('#namegrp');
     $button.click(function(){
-        $row.clone().appendTo( $try );
+        $row.clone().appendTo( $try ).on('keypress', function(event) {
+        var val=$(this).closest('.grpmem').find('input[name^="sid"]').val();
+        val= val.replace("/-/g","");
+        if (val.length == 4) {
+          $(this).closest('.grpmem').find('input[name^="sid"]').val(val+"-");
+        };
         $('.remover').css({
           visibility: ''
         });
@@ -207,7 +241,10 @@
         $('.grpmem').on('click','.remover', function() {
           $(this).closest('.grpmem').remove();
         });
+  });
     });
+
+
 
     var itarr= <?php echo json_encode($it)?>;
 
@@ -230,6 +267,33 @@
         afterSelect: function(item){
           $(this).focus();
         }
+      }).on('typeahead:selected', function(event) {
+        event.preventDefault();
+        var itarr= <?php echo json_encode($it)?>;
+        var chem= <?php echo json_encode($chem)?>;
+        var glass= <?php echo json_encode($glass)?>;
+        var qchemml= <?php echo json_encode($qchemml)?>;
+        var qchemmg= <?php echo json_encode($qchemmg)?>;
+        var qglass= <?php echo json_encode($qglass)?>;
+        for (var i = 0; i < itarr.length; i++) {
+          if (chem[i]==$(this).val()) {
+            if (qchemml[i]!=null) {
+              $(this).closest('.grpit').find('#max').val(qchemml[i]);
+              $(this).closest('.grpit').find('#unit').val('ml');
+              break;
+            }else{
+              $(this).closest('.grpit').find('#max').val(qchemmg[i]);
+              $(this).closest('.grpit').find('#unit').val('mg');
+              break;
+            }
+          }
+
+          if (glass[i]==$(this).val()) {
+              $(this).closest('.grpit').find('#max').val(qglass[i]);
+              $(this).closest('.grpit').find('#unit').val('pc/s');
+          }
+          
+        }
       }).css('background-color', 'white');
       $('.remover2').css({
         visibility: ''
@@ -250,19 +314,62 @@
     var key=event.which;
     if (key==13) {
       event.preventDefault();
-      $('#myModal').modal('show');
-      modbod();
+      //$('#myModal').modal('show');
+      var itarr= <?php echo json_encode($it)?>;
+      var chem= <?php echo json_encode($chem)?>;
+      var glass= <?php echo json_encode($glass)?>;
+      var qchemml= <?php echo json_encode($qchemml)?>;
+      var qchemmg= <?php echo json_encode($qchemmg)?>;
+      var qglass= <?php echo json_encode($qglass)?>;
+
+      var it=new Array();
+      var max=new Array();
+      ctr=0;
+      $('input[name^="it"]').each(function() {
+           it[ctr]=$(this).val();
+           ctr++;
+      });
+      ctr=0;
+      for (var i = 0; i < it.length; i++) {
+        var flag=0;
+        for (var j = 0; j < chem.length; j++) {
+          if (it[i]==chem[j]) {
+            if (qchemml[j]==null) {
+              max[ctr]=qchemmg[j];
+              ctr++;
+            }else{
+              max[ctr]==qchemml[j];
+              ctr++;
+            }
+            flag=1;
+            break;
+          }
+        }
+
+        for (var j = 0; j < glass.length && flag==0; j++) {
+          if (it[i]==glass[j]) {
+            max[ctr]=qglass[j];
+            ctr++;
+            break;
+          }
+
+          if (i==it.length-1 && j==glass.length-1 && it[i]!=glass[j]) {
+            alert('Item "'+it[i]+'" is either unavailable or not in the inventory.');
+          }
+        }
+      }
+      //modbod();
     }
   });
 
-  /*$('input[name^="sid"]').on('keypress', function(event) {
+
+  $('input[name^="sid"]').on('keypress', function(event) {
     var val=$(this).closest('.grpmem').find('input[name^="sid"]').val();
     val= val.replace("/-/g","");
     if (val.length == 4) {
-      alert(val.length);
       $(this).closest('.grpmem').find('input[name^="sid"]').val(val+"-");
     }
-  });*/
+  });
 
   function modbod(){
         $(".modal-body").html("<div class='row' id='inner'></div>");
@@ -379,7 +486,7 @@
       var qchemmg= <?php echo json_encode($qchemmg)?>;
       var qglass= <?php echo json_encode($qglass)?>;
       for (var i = 0; i < itarr.length; i++) {
-        if (chem[i]==$(this).closest('.grpit').find('#item').val() && e.which==13) {
+        if (chem[i]==$(this).closest('.grpit').find('#item').val() ) {
           if (qchemml[i]!=null) {
             $(this).closest('.grpit').find('#max').val(qchemml[i]);
             $(this).closest('.grpit').find('#unit').val('ml');
@@ -391,7 +498,7 @@
           }
         }
 
-        if (glass[i]==$(this).closest('.grpit').find('#item').val() && e.which==13) {
+        if (glass[i]==$(this).closest('.grpit').find('#item').val() ) {
             $(this).closest('.grpit').find('#max').val(qglass[i]);
             $(this).closest('.grpit').find('#unit').val('pc/s');
         }
@@ -401,26 +508,6 @@
     }
     
   });
-  
-  $('.grpit').on('click',  function(event) {
-    event.preventDefault();
-    if ($(this).closest('.grpit').find('#item').val()=='') {
-    }else{
-      var itarr= <?php echo json_encode($it)?>;
-      var chem= <?php echo json_encode($chem)?>;
-      var glass= <?php echo json_encode($glass)?>;
-      var qchemml= <?php echo json_encode($qchemml)?>;
-      var qchemmg= <?php echo json_encode($qchemmg)?>;
-      var qglass= <?php echo json_encode($qglass)?>;
-      for (var i = 0; i < itarr.length; i++) {
-        if (itarr[i]==$(this).closest('.grpit').find('#item').val()) {
-        }
-        
-      }
-    }
-    
-  });
-
 </script>
 
 <style type="text/css">
