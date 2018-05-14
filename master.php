@@ -497,17 +497,27 @@
 			$.ajax
 			(
 				{
-				    url: "delete_chemical_item.php",
-				    method: "POST",
-				    data: {CHEM_ID: ID_VALUE},
-				    success: function()
-				    {
-				    	topFunction();
-				      	$('#error').html('<div class="alert alert-success"><strong>Item Deleted!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
-				      	$('#All').load("table_all.php");
-				      	$('#Chemicals').load("table_chem.php");
-				      	$('#Equipments').load("table_glass.php");
-				    }
+					url: "delete_chemical_item.php",
+					method: "POST",
+					dataType: "json",
+					data: {CHEM_ID: ID_VALUE},
+					success: function (thisHAHA)
+					{
+						if (thisHAHA.status == "error")
+						{
+							topFunction();
+							$('#error').html('<div class="alert alert-danger"><strong>The item you tried to delete from the inventory exists within the transactions.</strong><button class="btn btn-sm btn-danger" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+						}
+
+						else if (thisHAHA.status == "success")
+						{
+							topFunction();
+				      		$('#error').html('<div class="alert alert-success"><strong>Item Deleted!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+				      		$('#All').load("table_all.php");
+				      		$('#Chemicals').load("table_chem.php");
+				      		$('#Equipments').load("table_glass.php");
+						}
+					}
 			   	}
 		   	);
 		}
@@ -518,16 +528,26 @@
 			(
 				{
 				    url: "delete_glassware_item.php",
-				    method: "POST",
-				    data: {GLASS_ID: ID_VALUE},
-				    success: function()
-				    {
-				    	topFunction();
-				      	$('#error').html('<div class="alert alert-success"><strong>Item Deleted!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
-				      	$('#All').load("table_all.php");
-				      	$('#Chemicals').load("table_chem.php");
-				      	$('#Equipments').load("table_glass.php");
-				    }
+					method: "POST",
+					dataType: "json",
+					data: {GLASS_ID: ID_VALUE},
+					success: function (response)
+					{
+						if (response.status == "error")
+						{
+							topFunction();
+							$('#error').html('<div class="alert alert-danger"><strong>The item you tried to delete from the inventory exists within the transactions.</strong><button class="btn btn-sm btn-danger" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+						}
+
+						else if (response.status == "success")
+						{
+							topFunction();
+				      		$('#error').html('<div class="alert alert-success"><strong>Item Deleted!</strong><button class="btn btn-sm btn-success" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+				      		$('#All').load("table_all.php");
+				      		$('#Chemicals').load("table_chem.php");
+				      		$('#Equipments').load("table_glass.php");
+						}
+					}
 			   	}
 		   	);
 		}

@@ -15,7 +15,24 @@
 
 	$item = $_POST['GLASS_ID'];
 
+	$MySearchQuery = "SELECT * FROM transaction WHERE (Glassware_Id = $item);";
+	$MyValues = mysqli_query($MyConnection, $MySearchQuery);
 
-	mysqli_query($MyConnection, "DELETE FROM glasswares WHERE (glasswares.Glassware_Id = $item)");
+	if (mysqli_num_rows($MyValues) > 0)
+	{
+		echo json_encode(array(
+    		'status' => 'error'
+		));
+	}
+
+	else
+	{
+		mysqli_query($MyConnection, "DELETE FROM glasswares WHERE (glasswares.Glassware_Id = $item)");
+		echo json_encode(array(
+    		'status' => 'success'
+		));
+	}
+
+	exit();
 	
 ?>

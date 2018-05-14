@@ -44,7 +44,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 		<div id="id03" class="w3-modal" style="z-index:9999;">
 			<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
 				<header class="w3-container" style="text-align: center;"> 
-					<button  id = "CHEM_CLOSE_BTN" class="btn btn-danger"><i class="fas fa-times"></i></button>
+					<button  id = "CHEM_CLOSE_EDIT" class="btn btn-danger"><i class="fas fa-times"></i></button>
 					<h3 style="padding: 8px;"><strong>Edit Item</strong></h3>
 				</header>
 				<div class="w3-container">
@@ -77,7 +77,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 										</table>
 										<footer class="w3-container">
 											<div>
-												<button class="btn btn-primary" type="submit" name="submit" id = "CHEM_SUBMIT_EDIT">EDIT</button>
+												<button class="btn btn-primary" type="submit" name="submit">EDIT</button>
 											</div>
 										</footer>
 									</form>
@@ -94,7 +94,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	<div id="id04" class="w3-modal" style="z-index:9999;">
 		<div class="w3-modal-content w3-animate-top" style="border-radius: 10px; padding: 20px;">
 			<header class="w3-container" style="text-align: center;"> 
-				<button  id = "GLASS_CLOSE" class="btn btn-danger"><i class="fas fa-times"></i></button>
+				<button  id = "GLASS_CLOSE_EDIT" class="btn btn-danger"><i class="fas fa-times"></i></button>
 				<h3 style="padding: 8px;"><strong>Edit Item</strong></h3>
 			</header>
 			<div class="w3-container">
@@ -127,7 +127,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 									</table>
 									<footer class="w3-container">
 										<div>
-											<button class="btn btn-primary" type="submit" name="submit" id = "GLASS_SUBMIT_EDIT">EDIT</button>
+											<button class="btn btn-primary" type="submit" name="submit">EDIT</button>
 										</div>
 									</footer>
 								</form>
@@ -447,7 +447,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 			);
 		}
 
-		else (type == "GLASS")
+		else if (type == "GLASS")
 		{
 			$('#YES_ON_DELETE').on('click', function(event)
 				{
@@ -477,7 +477,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	}
 	);
 
-	$('#CHEM_CLOSE_BTN').on('click', function(event)
+	$('#CHEM_CLOSE_EDIT').on('click', function(event)
 	{
 		event.preventDefault();
 		document.getElementById('id03').style.display='none';
@@ -486,7 +486,7 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	}
 	);
 
-	$('#GLASS_CLOSE').on('click', function(event)
+	$('#GLASS_CLOSE_EDIT').on('click', function(event)
 	{
 		event.preventDefault();
 		document.getElementById('id04').style.display='none';
@@ -545,17 +545,27 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	{
 		$.ajax
 		(
-		{
-			url: "delete_chemical_item.php",
-			method: "POST",
-			data: {CHEM_ID: ID_VALUE},
-			success: function()
 			{
-				topFunction();
-				alert('Item Deleted!');
-				window.location.replace("master.php");
+				url: "delete_chemical_item.php",
+				method: "POST",
+				dataType: "json",
+				data: {CHEM_ID: ID_VALUE},
+				success: function (thisHAHA)
+				{
+					if (thisHAHA.status == "error")
+					{
+						topFunction();
+						$('#error').html('<div class="alert alert-danger"><strong>The item you tried to delete from the inventory exists within the transactions.</strong><button class="btn btn-sm btn-danger" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+					}
+
+					else if (thisHAHA.status == "success")
+					{
+						topFunction();
+						alert('Item Deleted!');
+						window.location.replace("master.php");
+					}
+				}
 			}
-		}
 		);
 	}
 
@@ -563,17 +573,27 @@ $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName);
 	{
 		$.ajax
 		(
-		{
-			url: "delete_glassware_item.php",
-			method: "POST",
-			data: {GLASS_ID: ID_VALUE},
-			success: function()
 			{
-				topFunction();
-				alert('Item Deleted!');
-				window.location.replace("master.php");
+				url: "delete_glassware_item.php",
+				method: "POST",
+				dataType: "json",
+				data: {GLASS_ID: ID_VALUE},
+				success: function (response)
+				{
+					if (response.status == "error")
+					{
+						topFunction();
+						$('#error').html('<div class="alert alert-danger"><strong>The item you tried to delete from the inventory exists within the transactions.</strong><button class="btn btn-sm btn-danger" onclick = "hideDiV(this.parentElement)"><i class="fas fa-times"></button></div>');
+					}
+
+					else if (response.status == "success")
+					{
+						topFunction();
+						alert('Item Deleted!');
+						window.location.replace("master.php");
+					}
+				}
 			}
-		}
 		);
 	}
 
