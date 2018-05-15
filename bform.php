@@ -58,10 +58,10 @@
           <label for="instruct">Instructor's Info:</label>
           <div class="row" id="instruct" style="margin: auto; padding: 5px;">
             <div class="col-md-6">
-              <input type="text" id="prof" class="form-control" placeholder="Name of Professor" name="professor">
+              <input type="text" autocomplete="off" id="prof" class="form-control" placeholder="Name of Professor" name="professor">
             </div>
             <div class="col-md-5">
-              <input type="text" id="subj" class="form-control" placeholder="Name of Subject*" required="true" name="subject">
+              <input type="text" autocomplete="off" id="subj" class="form-control" placeholder="Name of Subject*" required="true" name="subject">
             </div>
           </div>
 
