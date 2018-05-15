@@ -475,7 +475,9 @@
             flag=1;
             break;
           }
-          if (amt[i]>max[i]) {
+          curramt=parseFloat(amt[i]);
+          currmax=parseFloat(max[i]);
+          if (curramt>currmax) {
             flag=1;
             break;
           }
