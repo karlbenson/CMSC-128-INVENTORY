@@ -15,22 +15,12 @@
 
 	$item = $_POST['CHEM_ID'];
 
-	$MySearchQuery = "SELECT * FROM transaction WHERE (Chemical_Id = $item);";
-	$MyValues = mysqli_query($MyConnection, $MySearchQuery);
-
-	if (mysqli_num_rows($MyValues) > 0)
-	{
-		echo json_encode(array(
-    		'status' => 'error'
-		));
-	}
-
-	else
-	{
-		mysqli_query($MyConnection, "DELETE FROM chemicals WHERE (chemicals.Chemical_Id = $item)");
-		echo json_encode(array(
-    		'status' => 'success'
-		));
-	}
+	
+	mysqli_query($MyConnection, "SET FOREIGN_KEY_CHECKS=0");
+	mysqli_query($MyConnection, "DELETE FROM chemicals WHERE (chemicals.Chemical_Id = $item)");
+	mysqli_query($MyConnection, "SET FOREIGN_KEY_CHECKS=1");
+	echo json_encode(array(
+		'status' => 'success'
+	));
 	
 ?>
