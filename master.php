@@ -58,7 +58,7 @@
 									            	<tr>
 										                <th class="align-middle text-center" style="width: 13%">ID</th>
 										                <th class="align-middle text-center" style="width: 55%">Name</th>
-										                <th class="align-middle text-center" style="width: 35%">Amount</th>
+										                <th class="align-middle text-center" style="width: 35%">Amount in Stock</th>
 									            	</tr>
 								            	</thead>
 												<tbody class="text-center">
@@ -107,7 +107,7 @@
 									            	<tr>
 										                <th class="align-middle text-center" style="width: 13%">ID</th>
 										                <th class="align-middle text-center" style="width: 55%">Name</th>
-										                <th class="align-middle text-center" style="width: 35%">Amount</th>
+										                <th class="align-middle text-center" style="width: 35%">Amount in Stock</th>
 									            	</tr>
 								            	</thead>
 												<tbody class="text-center">
