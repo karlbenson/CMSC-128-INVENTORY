@@ -125,6 +125,6 @@
 
 
 	echo "<script>alert('Success!');</script>";
-	header('location:home.php');
+	echo'<script> window.location="home.php"; </script> ';
 	exit();
 ?>
