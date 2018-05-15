@@ -15,7 +15,7 @@
 
 	$item = $_POST['GLASS_ID'];
 
-	$MySearchQuery = "SELECT * FROM transaction WHERE (Glassware_Id = $item);";
+	$MySearchQuery = "SELECT * FROM transaction WHERE (Glassware_Id = $item AND transaction.Date_Returned = NULL);";
 	$MyValues = mysqli_query($MyConnection, $MySearchQuery);
 
 	if (mysqli_num_rows($MyValues) > 0)

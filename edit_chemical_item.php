@@ -32,31 +32,13 @@
 
 	if ($C_UNIT == 'ml')
 	{
-		if ($C_AMOUNT > $C_ORIG_AMT)
-		{
-			$MyQuery = "UPDATE CHEMICALS SET Name = '$C_FixedName', Quantity_Available_ml = $C_AMOUNT, Quantity_Available_mg = NULL, Original_Amt = $C_AMOUNT WHERE (CHEMICALS.Chemical_Id = $C_ID);";
+		$MyQuery = "UPDATE CHEMICALS SET Name = '$C_FixedName', Quantity_Available_ml = $C_AMOUNT, Quantity_Available_mg = NULL, Original_Amt = $C_AMOUNT WHERE (CHEMICALS.Chemical_Id = $C_ID);";
 			mysqli_query($MyConnection, $MyQuery);
-		}
-
-		else
-		{
-			$MyQuery = "UPDATE CHEMICALS SET Name = '$C_FixedName', Quantity_Available_ml = $C_AMOUNT, Quantity_Available_mg = NULL, Original_Amt = $C_ORIG_AMT WHERE (CHEMICALS.Chemical_Id = $C_ID);";
-			mysqli_query($MyConnection, $MyQuery);
-		}
 	}
 
 	else
 	{
-		if ($C_AMOUNT > $C_ORIG_AMT)
-		{
-			$MyQuery = "UPDATE CHEMICALS SET Name = '$C_FixedName', Quantity_Available_ml = NULL, Quantity_Available_mg = $C_AMOUNT, Original_Amt = $C_AMOUNT WHERE (CHEMICALS.Chemical_Id = $C_ID);";
+		$MyQuery = "UPDATE CHEMICALS SET Name = '$C_FixedName', Quantity_Available_ml = NULL, Quantity_Available_mg = $C_AMOUNT, Original_Amt = $C_AMOUNT WHERE (CHEMICALS.Chemical_Id = $C_ID);";
 			mysqli_query($MyConnection, $MyQuery);
-		}
-
-		else
-		{
-			$MyQuery = "UPDATE CHEMICALS SET Name = '$C_FixedName', Quantity_Available_ml = NULL, Quantity_Available_mg = $C_AMOUNT, Original_Amt = $C_ORIG_AMT WHERE (CHEMICALS.Chemical_Id = $C_ID);";
-			mysqli_query($MyConnection, $MyQuery);
-		}
 	}
 ?>
