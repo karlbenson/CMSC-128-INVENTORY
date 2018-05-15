@@ -8,7 +8,7 @@
 <body>
 	<footer style="padding:0 !important;">
 		<div class="container-fluid" style="height: 70px; background-color: #7b1113;">
-			<img src="src/up.png" style="position: absolute; width: 40px; padding-top: 20px;">
+			<a href="src/a.php"><img src="src/up.png" style="position: absolute; width: 40px; padding-top: 20px;"></a>
 			<div class="container-fluid" style="padding-top: 20px; margin-left: 35px; ">
 
 				<h6 style="color: white;">
