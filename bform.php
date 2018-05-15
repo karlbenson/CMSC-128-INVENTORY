@@ -34,20 +34,20 @@
           <form  action="bprocess.php" target="_self" method="POST">
           <div class="form-group">
             <label for="borrowerid">Borrower ID: </label>
-            <input class="form-control" id="borrowerid" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" name = "borrower_id" readonly="readonly"/>
+            <input class="form-control" id="borrowerid" autocomplete="off" value="<?php $MyConnection = mysqli_connect($MyServer, $MyUserName, $MyPassword, $MyDBName); $result = mysqli_query($MyConnection,"SELECT MAX(borrower_id) AS max FROM borrower"); $row = mysqli_fetch_array($result, MYSQLI_NUM); echo $row[0]+1;?>" name = "borrower_id" readonly="readonly"/>
           </div>
           
           <label class="try" for="members">Group Members: </label>
           <div id="namegrp">
             <div class="row grpmem" style="padding: 5px; margin: auto;">
               <div class="col-md-4">
-                <input type="text" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" maxlength="10" required="true">
+                <input type="text" autocomplete="off" name="sid[]" class="form-control" placeholder="Student ID (20XX-XXXXX)*" maxlength="10" required="true">
               </div>
               <div class="col-md-4">
-                <input type="text" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
+                <input type="text" autocomplete="off" name="lname[]" class="form-control" placeholder="Last Name*" required="true">
               </div>
               <div class="col-md-3">
-                <input type="text" name="fname[]" class="form-control" placeholder="First Name*" required="true">
+                <input type="text" autocomplete="off" name="fname[]" class="form-control" placeholder="First Name*" required="true">
               </div>
               <button class="btn btn-danger remover" form="" style="cursor: pointer; visibility: hidden; text-align: right;"><i class="fas fa-minus"></i></button>
             </div>
@@ -107,13 +107,13 @@
               <input type="text" name="it[]" class="form-control" autocomplete="off" id="item" placeholder="Chemical/Equipment*" required="true" style="background-color: white !important;"> 
             </div>
             <div class="col-md-2">
-              <input type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
+              <input autocomplete="off" type="text" name="amount[]" class="form-control" placeholder="Amount*" required="true">
             </div>
             /<div class="col-md-2">
-              <input type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
+              <input autocomplete="off" type="text" class="form-control" name="max[]" id="max" placeholder="Max" readonly="readonly">
             </div>
             <div class="col-md-1">
-              <input type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly" name="unit[]">
+              <input autocomplete="off" type="text" class="form-control" id="unit" placeholder="Unit" readonly="readonly" name="unit[]">
             </div>
             <button class="btn btn-danger remover2" form="" style="float:right; cursor: pointer; visibility: hidden;"><i class="fas fa-minus"></i></button>
             </div>
