@@ -110,10 +110,10 @@
 
 			if ($unit[$x]=='ml'){
 				mysqli_query($MyConnection, "UPDATE chemicals SET Quantity_Available_ml=Quantity_Available_ml-'$amt' WHERE Chemical_Id=$id");
-				mysqli_query($MyConnection, "INSERT INTO transaction (Chemical_Id,Group_Id,Qty_Borrowed_Glasswares, Qty_Borrowed_Chemicals_mg, Qty_Borrowed_Chemicals_ml,Date_Borrowed) VALUES ($id, $group_id, 0, 0, $amt, '$date')");
+				mysqli_query($MyConnection, "INSERT INTO transaction (Chemical_Id,Group_Id,Qty_Borrowed_Glasswares, Qty_Borrowed_Chemicals_mg, Qty_Borrowed_Chemicals_ml,Date_Borrowed,Date_Returned) VALUES ($id, $group_id, 0, 0, $amt, '$date','$date')");
 			}else{
 				mysqli_query($MyConnection, "UPDATE chemicals SET Quantity_Available_mg=Quantity_Available_mg-'$amt' WHERE Chemical_Id=$id");
-				mysqli_query($MyConnection, "INSERT INTO transaction (Glassware_Id,Group_Id,Qty_Borrowed_Glasswares, Qty_Borrowed_Chemicals_mg, Qty_Borrowed_Chemicals_ml,Date_Borrowed) VALUES ($id, $group_id, 0, $amt, 0, '$date')");
+				mysqli_query($MyConnection, "INSERT INTO transaction (Glassware_Id,Group_Id,Qty_Borrowed_Glasswares, Qty_Borrowed_Chemicals_mg, Qty_Borrowed_Chemicals_ml,Date_Borrowed,Date_Returned) VALUES ($id, $group_id, 0, $amt, 0, '$date','$date')");
 			}
 
 			
