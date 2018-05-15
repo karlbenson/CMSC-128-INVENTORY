@@ -256,6 +256,7 @@
 		<div id = "ARRAY_VALUES">
 			
 		</div>
+		<?php include("footer.php") ?>
 	</body>
 
 	<script>

@@ -8,9 +8,12 @@
 <body>
 	<footer style="padding:0 !important;">
 		<div class="container-fluid" style="height: 70px; background-color: #7b1113;">
-			<div class="container-fluid" style="padding-top: 23px; position: absolute;">
+			<img src="src/up.png" style="position: absolute; width: 40px; padding-top: 20px;">
+			<div class="container-fluid" style="padding-top: 20px; margin-left: 35px; ">
+
 				<h6 style="color: white;">
-					A CMSC 128 Project. All Rights Reserved 2018
+					University of The Philippines-Baguio<br/>
+					College of Science
 				</h6>
 			</div>
 		</div>
