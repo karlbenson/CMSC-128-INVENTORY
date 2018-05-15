@@ -36,12 +36,6 @@
 					<span id="date_time" style="color:black;"></span>
 					<script type="text/javascript">window.onload = date_time('date_time');</script>
 				</div>
-				<div class="col-sm-4">
-					Last Day of Classes: May 18, 2018
-				</div>
-				<div class="col-sm-4">
-					Deadline of Returning:
-				</div>
 			</div>
 
 			<div class="text-center" style="margin-bottom: 20px;">
