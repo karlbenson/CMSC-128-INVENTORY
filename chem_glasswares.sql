@@ -28,6 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `borrower`
 --
 
+CREATE DATABASE chem_glasswares;
+USE chem_glasswares;
+
 CREATE TABLE `borrower` (
   `Borrower_Id` int(11) NOT NULL,
   `First_Name` varchar(256) NOT NULL,
