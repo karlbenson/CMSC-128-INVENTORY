@@ -136,7 +136,8 @@ CREATE TABLE `user_accounts` (
 --
 -- Indexes for dumped tables
 --
-
+INSERT INTO `user_accounts` (`User_Id`, `Staff_Id`, `Username`, `Password`, `status`) VALUES
+(1, 1, 'admin', '$2y$10$TXqiyhSKm/2zWJT843WsaurTzjpxrvQ5vNq/VCnLj8QLasfE.KWWu', 1);
 --
 -- Indexes for table `borrower`
 --
